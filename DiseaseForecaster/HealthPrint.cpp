@@ -1,6 +1,6 @@
 // System include
-using namespace std;
 #include <iostream>
+using namespace std;
 
 // Personnal include
 #include "HealthPrint.h"
@@ -8,7 +8,7 @@ using namespace std;
 // Constants
 
 // Constructors
-HealthPrint::HealthPrint(map<string, double> attributes, string patientName, string doctorName, Date printDate, int sensorId) : attributes(attributes), patientName(patientName), doctorName(doctorName), printDate(printDate), sensorId(sensorId)
+HealthPrint::HealthPrint(map<string, double> attributes, string patientName, string doctorName, time_t printDate, int sensorId) : attributes(attributes), patientName(patientName), doctorName(doctorName), printDate(printDate), sensorId(sensorId)
 {
 	#ifdef DEBUG
 		cout << "HealthPrint constructor call" << endl;

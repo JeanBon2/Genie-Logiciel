@@ -6,7 +6,7 @@
 using namespace std;
 #include <iostream>
 #include <map>
-#include <QDateTime>
+#include <time.h>
 
 // Class
 class HealthPrint
@@ -16,13 +16,13 @@ private:
 	map<string, double> attributes;
 	string patientName;
 	string doctorName;
-	QDateTime printDate;
+	time_t printDate;
 	int sensorId;
 
 	// Methods
 public:
 	// Constructors
-	HealthPrint(map<string, double> attributes, string patientName, string doctorName, QDateTime printDate, int snesorId);
+	HealthPrint(map<string, double> attributes, string patientName, string doctorName, time_t printDate, int snesorId);
 
 	// Destructors
 	~HealthPrint();
