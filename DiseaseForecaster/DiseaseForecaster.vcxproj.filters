@@ -32,9 +32,21 @@
     <ClCompile Include="PotentialDisease.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Analyse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPrint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PotentialDisease.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Analyse.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthPrint.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
