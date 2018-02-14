@@ -1,0 +1,5 @@
+{
+  "LastUpdate": "Dernière synchronisation : ",
+  "ProductName": "DiseaseForecaster Version 1.0",
+  "reception Menu": "1 : Analyser une ou plusieurs empreintes\n2 : Synchroniser avec le Centre National\n3 : Accéder aux résultats des empreintes analysées\n4 : Accéder aux logs de l'application\n5 : Quitter l'application\n6 : Aide"
+}
