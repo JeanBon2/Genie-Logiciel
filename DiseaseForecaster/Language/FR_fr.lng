@@ -1,5 +1,28 @@
-{
+﻿{
   "LastUpdate": "Dernière synchronisation : ",
-  "ProductName": "DiseaseForecaster Version 1.0",
-  "reception Menu": "1 : Analyser une ou plusieurs empreintes\n2 : Synchroniser avec le Centre National\n3 : Accéder aux résultats des empreintes analysées\n4 : Accéder aux logs de l'application\n5 : Quitter l'application\n6 : Aide"
+  "ProductName": "DiseaseForecaster",
+  "Version":"1.0",
+
+  "Interface_Previous": "Appuyez sur \"0\" et validez avec la touche Entrée pour retourner à la page d'accueil.",
+
+  "MenuInterface_AnalysePrint": "Analyser une ou plusieurs empreintes",
+  "MenuInterface_Synchronisation": "Synchroniser avec le Centre National",
+  "MenuInterface_Search": "Accéder aux résultats des empreintes analysées",
+  "MenuInterface_Log": "Accéder aux logs de l'application",
+  "MenuInterface_Leave":"Quitter l'application",
+  "MenuInterface_Help": "Aide",
+  "MenuInterface_GetAction":"Indiquez le numéro de l'action que vous souhaitez réaliser puis validez avec la touche Entrée.",
+
+  "AnalyseInterface_GetAction":"Indiquez le chemin d'accès au fichier d'empreintes ou au dossier contenant les fichiers d'empreintes que vous souhaitez analyser puis validez avec la touche Entrée.",
+
+  "SynchroInterface_Start": "Lancement de la procédure de synchronisation...",
+  "SynchroInterface_Export": "Export des résultats d'analyses à transmettre...",
+  "SynchroInterface_GetModels": "Export des résultats d'analyses à transmettre...",
+  "SynchroInterface_Success": "Synchronisation terminée avec succès.",
+  "SynchroInterface_Fail": "Echec de la synchronisation.",
+
+  "SearchInterface_Search": "Indiquez le nom du patient dont vous souhaitez connaître les résultats d’analyse, puis validez avec la touche Entrée.",
+  "SearchInterface_ResultList":"Voici la liste des analyses correspondant au client dont le nom est ",
+  "SearchInterface_SearchNumber": "Indiquez le numéro de l'analyse que vous souhaitez consulter",
+  "SearchInterface_Delete": "Appuyez sur \"1\" pour supprimer cette analyse"
 }
