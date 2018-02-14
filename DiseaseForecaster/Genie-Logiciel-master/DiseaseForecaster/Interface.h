@@ -6,8 +6,6 @@ using namespace std;
 #include <iostream>
 #include <stack>
 #include <map>
-#include <string>
-
 // Personnal include
 
 // Constants
@@ -20,18 +18,18 @@ class Interface
 	// Attributes
 public:
 	static stack<Interface> stackInterface;
-protected:
-	static map<string, string> mapLanguage;
-private:
-	
 
+protected:
+
+private:
+	static map<string, string> mapLanguage;
 
 	// Methods
 public:
 	// Constructors
 	Interface();
 	Interface(const Interface* x);
-	bool loadMap(const string path);
+
 	// Destructors
 	~Interface();
 
@@ -39,19 +37,16 @@ public:
 	
 protected:
 	void previous();
-
-	string getText(string keyMessage);
 	
-	const string getText();
+	string getText();
 	
-	virtual void getInterfaceText();
+	virtual string getInterfaceText();
 
 	virtual string getAction();
 
-	void createInterface(const int);
+	void createInterface(int);
 
 private:
-	//bool LoadMap(const string path);
 };
 
 #endif 
