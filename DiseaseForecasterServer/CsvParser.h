@@ -4,6 +4,7 @@
 // System include
 #include <QFile>
 #include <vector>
+#include <string>
 using namespace std;
 
 // Personnal include
@@ -16,31 +17,23 @@ using namespace std;
 class CsvParser
 {
 	// Attributes
-public:
-	static int publicAttribute;
-
-protected:
-	char protectedAttribute;
-
 private:
-	double privateAttribute;
+	string content;
+	vector<vector<string> > parsedContent;
 
 	// Methods
 public:
 	// Constructors
-	CsvParser();
+	CsvParser(QFile &file);
+	CsvParser(string content);
 
 	// Destructors
 	~CsvParser();
 
 	// Others
-	void publicMethod();
-
-protected:
-	void protectedMethod();
-
-private:
-	void privateMethod();
+	const vector<vector<string> > parse();
+	static const vector<vector<string> > staticParse(QFile &file);
+	static const vector<vector<string> > staticParse(string content);
 };
 
 #endif // CSVPARSER_H
