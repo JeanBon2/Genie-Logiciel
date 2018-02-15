@@ -1,6 +1,6 @@
 #ifndef MENUINTERFACE_H
 #define MENUINTERFACE_H
-
+//MenuInt.h
 // System include
 using namespace std;
 #include <iostream>
@@ -18,11 +18,11 @@ class MenuInterface : public Interface
 {
 	// Attributes
 public:
-	
+
 protected:
 
 private:
-	
+
 	// Methods
 public:
 	// Constructors
