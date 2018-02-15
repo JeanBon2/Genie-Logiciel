@@ -9,6 +9,12 @@ using namespace std;
 // Personnal include
 
 // Constants
+const enum interfaceEnum {
+	MENU_INTERFACE,
+	SEARCH_INTERFACE,
+	UPDATE_INTERFACE,
+	ANALYSE_INTERFACE
+};
 
 // Types
 
@@ -38,7 +44,7 @@ public:
 protected:
 	void previous();
 	
-	string getText();
+	string getText(string keyMessage);
 	
 	virtual string getInterfaceText();
 

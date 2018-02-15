@@ -71,12 +71,16 @@
   <ItemGroup>
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="HealthPrint.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuInterface.cpp" />
     <ClCompile Include="PotentialDisease.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="HealthPrint.h" />
+    <ClInclude Include="Interface.h" />
+    <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
