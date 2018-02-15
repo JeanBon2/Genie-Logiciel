@@ -25,7 +25,13 @@ public:
 protected:
 
 private:
-	unsigned short stage;
+	const enum searchInterfaceStage
+	{
+		SEARCHING,
+		DISPLAYING,
+		INTERACTING
+	};
+	searchInterfaceStage stage;
 	vector<HealthPrint> resultsFromRequest;
 
 	// Methods

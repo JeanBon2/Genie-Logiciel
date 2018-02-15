@@ -10,12 +10,7 @@ using namespace std;
 // Personnal include
 
 // Constants
-const enum interfaceEnum {
-	MENU_INTERFACE,
-	SEARCH_INTERFACE,
-	UPDATE_INTERFACE,
-	ANALYSE_INTERFACE
-};
+
 
 // Types
 
@@ -25,9 +20,19 @@ class Interface
 	// Attributes
 public:
 	
+	
 protected:
-	static unordered_map<string, string> texts;
-	static stack<interfaceEnum> stackInterface;
+	const enum interfaceList
+	{
+		MENU_INTERFACE,
+		ANALYSE_INTERFACE,
+		UPDATE_INTERFACE,
+		SEARCH_INTERFACE
+	};
+	static unordered_map< string,  string> texts;
+	static stack<interfaceList> stackInterface;
+
+	
 private:
 	
 
@@ -51,7 +56,7 @@ protected:
 
 	virtual string getAction()=0;
 
-	void createInterface(const interfaceEnum interfaceID);
+	void createInterface(const interfaceList interfaceID);
 
 private:
 };

@@ -1,28 +1,31 @@
 ﻿{
-  "LastUpdate": "Dernière synchronisation : ",
+  "LastUpdate": "Derniere synchronisation : ",
   "ProductName": "DiseaseForecaster",
   "Version":"1.0",
 
-  "Interface_Previous": "Appuyez sur \"0\" et validez avec la touche Entrée pour retourner à la page d'accueil.",
+  "Interface_Previous": "Appuyez sur \"0\" et validez avec la touche Entree pour retourner a la page d'accueil.",
 
   "MenuInterface_AnalysePrint": "Analyser une ou plusieurs empreintes",
   "MenuInterface_Synchronisation": "Synchroniser avec le Centre National",
-  "MenuInterface_Search": "Accéder aux résultats des empreintes analysées",
-  "MenuInterface_Log": "Accéder aux logs de l'application",
+  "MenuInterface_Search": "Acceder aux resultats des empreintes analysees",
+  "MenuInterface_Log": "Acceder aux logs de l'application",
   "MenuInterface_Leave":"Quitter l'application",
   "MenuInterface_Help": "Aide",
-  "MenuInterface_GetAction":"Indiquez le numéro de l'action que vous souhaitez réaliser puis validez avec la touche Entrée.",
+  "MenuInterface_GetAction":"Indiquez le numero de l'action que vous souhaitez realiser puis validez avec la touche Entree.",
 
-  "AnalyseInterface_GetAction":"Indiquez le chemin d'accès au fichier d'empreintes ou au dossier contenant les fichiers d'empreintes que vous souhaitez analyser puis validez avec la touche Entrée.",
+  "AnalyseInterface_GetAction":"Indiquez le chemin d'acces au fichier d'empreintes ou au dossier contenant les fichiers d'empreintes que vous souhaitez analyser puis validez avec la touche Entree.",
 
-  "SynchroInterface_Start": "Lancement de la procédure de synchronisation...",
-  "SynchroInterface_Export": "Export des résultats d'analyses à transmettre...",
-  "SynchroInterface_GetModels": "Export des résultats d'analyses à transmettre...",
-  "SynchroInterface_Success": "Synchronisation terminée avec succès.",
+  "SynchroInterface_Start": "Lancement de la procedure de synchronisation...",
+  "SynchroInterface_Export": "Export des resultats d'analyses a transmettre...",
+  "SynchroInterface_GetModels": "Export des resultats d'analyses a transmettre...",
+  "SynchroInterface_Success": "Synchronisation terminee avec succes.",
   "SynchroInterface_Fail": "Echec de la synchronisation.",
 
-  "SearchInterface_Search": "Indiquez le nom du patient dont vous souhaitez connaître les résultats d’analyse, puis validez avec la touche Entrée.",
+  "SearchInterface_Search": "Indiquez le nom du patient dont vous souhaitez connaitre les resultats d'analyse, puis validez avec la touche Entree.",
   "SearchInterface_ResultList":"Voici la liste des analyses correspondant au client dont le nom est %s :",
-  "SearchInterface_SearchNumber": "Indiquez le numéro de l'analyse que vous souhaitez consulter",
-  "SearchInterface_Delete": "Appuyez sur \"1\" pour supprimer cette analyse"
+  "SearchInterface_SearchNumber": "Indiquez le numero de l'analyse que vous souhaitez consulter",
+  "SearchInterface_Delete": "Appuyez sur \"1\" pour supprimer cette analyse",
+
+  "Unknown_Command": "L'instruction saisie ne correspond a aucune action",
+  "Leave_App": "Au revoir..."
 }

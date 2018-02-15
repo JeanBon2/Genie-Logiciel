@@ -6,15 +6,17 @@
 #include <QFile>
 #include <string>
 #include <unordered_map>
+#include <iterator>
 using namespace std;
 
 // Personnal include
 #include "Interface.h"
 #include "MenuInterface.h"
 #include "SearchInterface.h"
+#include "Log.h"
 // Constants
 unordered_map <string, string> Interface::texts;
-stack<interfaceEnum> Interface::stackInterface;
+stack<Interface::interfaceList> Interface::stackInterface;
 
 // Constructors
 Interface::Interface()
@@ -40,7 +42,6 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 	string key, value;
 
 	QFile languageFile(QString::fromStdString(path));
-	cout << path << endl;
 
 	QByteArray byteFile;
 	QJsonDocument languageContent;
@@ -48,7 +49,6 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 
 	if (!languageFile.exists())
 	{
-		//Log.Info();
 		return false;
 	}
 	languageFile.open(QIODevice::ReadOnly);
@@ -81,10 +81,19 @@ void Interface::previous()
 
 string Interface::getText(const string keyMessage)
 {
-	return Interface::texts[keyMessage];
+	unordered_map< string, string>:: const_iterator  valueMessage = Interface::texts.find(keyMessage);
+	if (valueMessage != texts.end())
+	{
+		return valueMessage->second;
+	}
+	else
+	{
+		Log::Info("Not able to found : \""+ keyMessage + "\" in languageFile");
+		return "No Message Found";
+	}
 }
 
-void Interface::createInterface(const interfaceEnum interfaceID)
+void Interface::createInterface(const interfaceList interfaceID)
 {
 	stackInterface.push(interfaceID);
 	switch (interfaceID) 
@@ -96,8 +105,10 @@ void Interface::createInterface(const interfaceEnum interfaceID)
 		case SEARCH_INTERFACE:
 			SearchInterface();
 			break;
+
 		case UPDATE_INTERFACE:
 			break;
+
 		case ANALYSE_INTERFACE:
 			break;
 

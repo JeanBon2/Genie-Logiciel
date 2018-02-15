@@ -1,5 +1,4 @@
 #include <QtCore/QCoreApplication>
-#define DEBUG 1
 
 #include "Log.h"
 #include "Interface.h"

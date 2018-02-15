@@ -5,10 +5,11 @@ using namespace std;
 #include <iostream>
 #include <vector>
 #include <string>
-#include <windows.h>
+#include <stdlib.h>
 #define DEBUG
 // Personnal include
 #include "MenuInterface.h"
+#include "Log.h"
 
 // Constants
 
@@ -18,9 +19,7 @@ MenuInterface::MenuInterface()
 #ifdef DEBUG
 	cout << "MenuInterface constructor call" << endl;
 #endif // DEBUG
-	getInterfaceText();
 	getAction();
-
 }
 
 MenuInterface::MenuInterface(const MenuInterface* x)
@@ -45,56 +44,69 @@ MenuInterface::~MenuInterface()
 void MenuInterface::getInterfaceText()
 {
 	string menuContent = "";
-	string updateDate = "";
-	menuContent += Interface::getText("LastUpdate") + ":" + updateDate + "\n";
-	menuContent += Interface::getText("ProductName") + " Version " + Interface::getText("Version") + "\n";
+	string lastUpdateDate = "";
+	menuContent += getText("LastUpdate") + lastUpdateDate + "\n";
+	menuContent += getText("ProductName") + " Version " + getText("Version") + "\n";
 	menuContent += '\n';
-	menuContent += "1: " + Interface::getText("MenuInterface_AnalysePrint") + "\n";
-	menuContent += "2: " + Interface::getText("MenuInterface_Synchronisation") + "\n";
-	menuContent += "3: " + Interface::getText("MenuInterface_Search") + "\n";
+	menuContent += "1: " + getText("MenuInterface_AnalysePrint") + "\n";
+	menuContent += "2: " + getText("MenuInterface_Synchronisation") + "\n";
+	menuContent += "3: " + getText("MenuInterface_Search") + "\n";
 	menuContent += "\n";
-	menuContent += "4: " + Interface::getText("MenuInterface_Log") + "\n";
-	menuContent += "5: " + Interface::getText("MenuInterface_Leave") + "\n";
-	menuContent += "6: " + Interface::getText("MenuInterface_Help") + "\n";
+	menuContent += "4: " + getText("MenuInterface_Log") + "\n";
+	menuContent += "5: " + getText("MenuInterface_Leave") + "\n";
+	menuContent += "6: " + getText("MenuInterface_Help") + "\n";
 	menuContent += "\n";
-	menuContent += Interface::getText("MenuInterface_GetAction") + "\n";
+	menuContent += getText("MenuInterface_GetAction") + "\n";
 
 	cout << menuContent;
 }
 
 string MenuInterface::getAction()
 {
-
-
+	string returnValue="";
 	string choiceMenu = "0";
+	int actionToDo;
+
 	while (choiceMenu != "5")
 	{
-		int interfaceId;
-		cin >> choiceMenu;
-
-		switch (stoi(choiceMenu))
+		getInterfaceText();
+		getline(cin, choiceMenu);
+		try
 		{
-		case 1:
-			//Analyse
-			Interface::createInterface(interfaceEnum::ANALYSE_INTERFACE);
-			break;
-		case 2:
-			//Synchro
-			Interface::createInterface(interfaceEnum::UPDATE_INTERFACE);
-			break;
-		case 3:
-			//Search
-			Interface::createInterface(interfaceEnum::SEARCH_INTERFACE);
-			break;
-		case 4:
-			//LOG
-			break;
+			actionToDo = stoi(choiceMenu);
+		}
+		catch(invalid_argument& i)
+		{
+			actionToDo = 0;
+		}
+		catch (out_of_range& o)
+		{
+			actionToDo = 0;
+		}
 
-		case 5:
-			//QUIT
-			break;
-		case 6:
-			//HELP
+		switch (actionToDo)
+		{
+			case ANALYSE_INTERFACE:
+				//Analyse
+				createInterface(ANALYSE_INTERFACE);
+				break;
+			case UPDATE_INTERFACE:
+				//Synchro
+				createInterface(UPDATE_INTERFACE);
+				break;
+			case SEARCH_INTERFACE:
+				//Search
+				createInterface(SEARCH_INTERFACE);
+				break;
+			case 4:
+				//LOG
+				break;
+
+			case 5:
+				cout << getText("Leave_App");
+				break;
+			case 6:
+				//HELP
 
 			//string command = "iexplore";
 			//GetCurrentDirectoryA(sizeof(working_directory), working_directory); // **** win32 specific ****
@@ -102,11 +114,13 @@ string MenuInterface::getAction()
 
 			break;
 		default:
+			system("cls");
+			cout << getText("Unknown_Command") << endl;
 			break;
 		}
-
 	}
+	returnValue += choiceMenu;
 
-	return choiceMenu;
+	return returnValue;
 
 }

@@ -13,6 +13,7 @@ SearchInterface::SearchInterface()
 #ifdef DEBUG
 	cout << "SearchInterface constructor call" << endl;
 #endif // DEBUG
+	stage = SEARCHING;
 	getInterfaceText();
 }
 
@@ -31,7 +32,26 @@ SearchInterface::~SearchInterface()
 void SearchInterface::getInterfaceText()
 {
 	string interfaceText="";
-	interfaceText += getText("SearchInterface_Search");
+	switch (stage)
+	{
+	case SEARCHING:
+		interfaceText = getText("SearchInterface_Search");
+		stage = DISPLAYING;
+		break;
+	case DISPLAYING:
+		interfaceText += getText("SearchInterface_ResultList")+"\n";
+		interfaceText += getText("SearchInterface_SearchNumber");
+		stage = INTERACTING;
+		break;
+	case INTERACTING:
+		interfaceText += getText("SearchInterface_Delete");
+		interfaceText += getText("Interface_Previous") + "\n";
+		stage = SEARCHING;
+		break;
+	default:
+		interfaceText += getText("Unknown_Command") + "\n";
+		break;
+	}
 	cout << interfaceText << endl;
 }
 string SearchInterface::getAction()
