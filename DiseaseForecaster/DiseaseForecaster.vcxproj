@@ -43,6 +43,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtSql;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,6 +83,18 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Interface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Language\FR_fr.lng" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Interface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Language\FR_fr.lng" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

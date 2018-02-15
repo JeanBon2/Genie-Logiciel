@@ -24,9 +24,15 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Resource Files\Language">
+      <UniqueIdentifier>{d47c5a43-ee0c-4618-a824-b9823d8365af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PotentialDisease.cpp">
@@ -46,20 +52,35 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PotentialDisease.h">
+    <ClInclude Include="Interface.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Analyse.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HealthPrint.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Interface.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="MenuInterface.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+=======
+    <ClInclude Include="PotentialDisease.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Language\FR_fr.lng">
+      <Filter>Resource Files\Language</Filter>
+    </None>
+    <None Include="Language\FR_fr.lng" />
+>>>>>>> f17c52115006eb1e2633503c3375c6940e8c9946
   </ItemGroup>
 </Project>

@@ -5,7 +5,9 @@
 using namespace std;
 #include <iostream>
 #include <stack>
-#include <map>
+#include <unordered_map>
+#include <string>
+
 // Personnal include
 
 // Constants
@@ -24,18 +26,18 @@ class Interface
 	// Attributes
 public:
 	static stack<Interface> stackInterface;
-
 protected:
-
+	static unordered_map<string, string> mapLanguage;
 private:
-	static map<string, string> mapLanguage;
+	
+
 
 	// Methods
 public:
 	// Constructors
 	Interface();
 	Interface(const Interface* x);
-
+	bool loadMap(const string path);
 	// Destructors
 	~Interface();
 
@@ -43,16 +45,23 @@ public:
 	
 protected:
 	void previous();
-	
+
 	string getText(string keyMessage);
 	
-	virtual string getInterfaceText();
+<<<<<<< HEAD
+	string getText(string keyMessage);
+=======
+	const string getText();
+>>>>>>> f17c52115006eb1e2633503c3375c6940e8c9946
+	
+	virtual void getInterfaceText();
 
 	virtual string getAction();
 
-	void createInterface(int);
+	void createInterface(const int);
 
 private:
+	//bool LoadMap(const string path);
 };
 
 #endif 
