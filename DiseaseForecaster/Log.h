@@ -20,7 +20,6 @@ protected:
 
 private:
 		static const string path; 
-
 	// Methods
 public:
 	// Constructors

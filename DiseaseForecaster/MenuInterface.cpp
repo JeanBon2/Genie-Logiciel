@@ -56,43 +56,15 @@ void MenuInterface::getInterfaceText()
 	cout<<menuContent;
 }
 
-const string MenuInterface::getAction()
+string MenuInterface::getAction()
 {
 	
 	
 	string choiceMenu = 0;
-	while(choiceMenu != 5)
+	while(true)
 	{
 		int interfaceId;
 		cin >> choiceMenu;
-
-		switch (stoi(choiceMenu))
-		{
-		case 1:
-			Interface::createInterface(4);
-			break;
-		case 2:
-			Interface::createInterface(3);
-			break;
-		case 3:
-			Interface::createInterface(2);
-			break;
-		case 4:
-			//LOG
-			break;
-
-		case 5:
-			//QUIT
-			break;
-		case 6:
-			//HELP
-			string command = "iexplore";
-			GetCurrentDirectoryA(sizeof(working_directory), working_directory); // **** win32 specific ****
-			command.append(working_directory)
-				break;
-		default:
-			break;
-		}
 	}
 
 	return choiceMenu;

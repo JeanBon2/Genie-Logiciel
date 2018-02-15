@@ -37,7 +37,7 @@ public:
 protected:
 	void getInterfaceText();
 
-	const string getAction();
+	string getAction();
 
 private:
 

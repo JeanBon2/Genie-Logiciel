@@ -10,6 +10,8 @@ using namespace std;
 
 // Personnal include
 #include "Interface.h"
+#include "MenuInterface.h"
+#include "SearchInterface.h"
 // Constants
 unordered_map <string, string> Interface::texts;
 
@@ -21,12 +23,7 @@ Interface::Interface()
 #endif // DEBUG
 }
 
-Interface::Interface(const Interface* x)
-{
-#ifdef DEBUG
-	cout << "Interface copy constructor call" << endl;
-#endif // DEBUG
-}
+
 
 // Destructor
 Interface::~Interface()
@@ -37,6 +34,41 @@ Interface::~Interface()
 }
 
 // Public methods
+bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
+{
+	string key, value;
+
+	QFile languageFile(QString::fromStdString(path));
+	cout << path << endl;
+
+	QByteArray byteFile;
+	QJsonDocument languageContent;
+	QJsonObject dictionnary;
+
+	if (!languageFile.exists())
+	{
+		//Log.Info();
+		return false;
+	}
+	languageFile.open(QIODevice::ReadOnly);
+	byteFile = languageFile.readAll();
+	languageContent = QJsonDocument::fromJson(byteFile);
+	dictionnary = languageContent.object();
+	languageFile.close();
+
+	for (QString& currentKey : dictionnary.keys())
+	{
+		key = currentKey.toUtf8().constData();
+		value = dictionnary.take(currentKey).toString().toUtf8().constData();
+		texts.emplace(key, value);
+	}
+
+	/*for (auto& test : mapLanguage)
+	{
+	cout << test.first << ":" << test.second << endl;
+	}*/
+	return true;
+}
 
 
 // Protected methods
@@ -47,7 +79,7 @@ void Interface::previous()
 
 string Interface::getText(const string keyMessage)
 {
-	return "";
+	return Interface::texts[keyMessage];
 }
 
 
@@ -65,45 +97,20 @@ void Interface::createInterface(const int interfaceID)
 {
 	switch (interfaceID) 
 	{
-		case 1:
+		case MENU_INTERFACE :
+			MenuInterface();
 			break;
+
+		case SEARCH_INTERFACE:
+			SearchInterface();
+			break;
+		case UPDATE_INTERFACE:
+			break;
+		case ANALYSE_INTERFACE:
+			break;
+
 		default:
 			break;
 	}
 }
 // Private methods
-bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
-{
-	string key, value;
-
-	QFile languageFile(QString::fromStdString(path));
-	cout << path << endl;
-
-	QByteArray byteFile;
-	QJsonDocument languageContent;
-	QJsonObject dictionnary;
-
-	if (!languageFile.exists()) 
-	{
-		//Log.Info();
-		return false;
-	}
-	languageFile.open(QIODevice::ReadOnly);
-	byteFile = languageFile.readAll();
-	languageContent = QJsonDocument::fromJson(byteFile);
-	dictionnary = languageContent.object();
-	languageFile.close();
-
-	for (QString& currentKey : dictionnary.keys())
-	{
-		key = currentKey.toUtf8().constData();
-		value = dictionnary.take(currentKey).toString().toUtf8().constData();
-		texts.emplace(key, value);
-	}
-	
-	/*for (auto& test : mapLanguage)
-	{
-		cout << test.first << ":" << test.second << endl;
-	}*/
-	return true;
-}

@@ -25,9 +25,10 @@ class Interface
 {
 	// Attributes
 public:
-	static stack<Interface> stackInterface;
+	
 protected:
 	static unordered_map<string, string> texts;
+	static stack<Interface> stackInterface;
 private:
 	
 
@@ -36,12 +37,11 @@ private:
 public:
 	// Constructors
 	Interface();
-	Interface(const Interface* x);
-	bool loadMap(const string path);
 	// Destructors
 	~Interface();
 
 	// Others
+	static bool loadMap(const string path);
 	
 protected:
 	void previous();
@@ -55,7 +55,6 @@ protected:
 	void createInterface(const int);
 
 private:
-	//bool LoadMap(const string path);
 };
 
 #endif 
