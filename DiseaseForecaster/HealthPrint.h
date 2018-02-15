@@ -6,13 +6,12 @@
 using namespace std;
 #include <iostream>
 #include <map>
-#include <time.h>
 
 // Class
 class HealthPrint
 {
 	// Attributes
-private:
+protected:
 	map<string, double> attributes;
 	string patientName;
 	string doctorName;
@@ -26,6 +25,8 @@ public:
 
 	// Destructors
 	~HealthPrint();
+
+
 
 protected:
 	void analyse();
