@@ -79,6 +79,9 @@
     <ClInclude Include="HealthPrint.h" />
     <ClInclude Include="PotentialDisease.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Language\FR_fr.lng" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

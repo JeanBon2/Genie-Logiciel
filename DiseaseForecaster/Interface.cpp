@@ -1,6 +1,6 @@
 // System include
-using namespace std;
 #include <iostream>
+using namespace std;
 
 // Personnal include
 #include "Interface.h"
