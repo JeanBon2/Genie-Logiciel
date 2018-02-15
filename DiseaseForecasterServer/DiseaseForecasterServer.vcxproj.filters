@@ -32,10 +32,56 @@
     <ClCompile Include="CsvParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DbManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Disease.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContinuousAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscreteAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CsvParser.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="DbManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Disease.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Attribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CsvParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContinuousAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscreteAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\HealthMeasurementDescription.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Resources\HealthMeasurements.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Resources\HealthMeasurementsWithLabels.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DiseaseForecasterServer.db">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

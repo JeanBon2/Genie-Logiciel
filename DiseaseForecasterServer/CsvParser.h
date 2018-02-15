@@ -19,24 +19,21 @@ class CsvParser
 	// Attributes
 private:
 	string content;
+	vector<vector<string> > parsedContent;
 
 	// Methods
 public:
 	// Constructors
 	CsvParser(QFile &file);
-	CsvParser(string &);
+	CsvParser(string content);
 
 	// Destructors
 	~CsvParser();
 
 	// Others
-	void publicMethod();
-
-protected:
-	void protectedMethod();
-
-private:
-	void privateMethod();
+	const vector<vector<string> > parse();
+	static const vector<vector<string> > staticParse(QFile &file);
+	static const vector<vector<string> > staticParse(string content);
 };
 
 #endif // CSVPARSER_H

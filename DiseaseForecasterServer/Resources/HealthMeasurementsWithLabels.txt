@@ -1,0 +1,4 @@
+A1;A2;A3;A4;AZ51;Desease
+True;2.12;13;3.156;1236;Maladie1
+False;1.1;14.3;13.2;2367;
+None;12;145;12.1;11;Maladie1
