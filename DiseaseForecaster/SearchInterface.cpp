@@ -33,7 +33,7 @@ void SearchInterface::getInterfaceText()
 }
 string SearchInterface::getAction()
 {
-	return;
+	return "";
 }
 void SearchInterface::searchHealthPrint(string patientName)
 {}
