@@ -5,7 +5,7 @@
 using namespace std;
 #include <iostream>
 #include <stack>
-#include <map>
+#include <unordered_map>
 #include <string>
 
 // Personnal include
@@ -21,7 +21,7 @@ class Interface
 public:
 	static stack<Interface> stackInterface;
 protected:
-	static map<string, string> mapLanguage;
+	static unordered_map<string, string> mapLanguage;
 private:
 	
 
