@@ -10,8 +10,11 @@ using namespace std;
 
 // Personnal include
 #include "Interface.h"
+#include "MenuInterface.h"
+#include "SearchInterface.h"
 // Constants
 unordered_map <string, string> Interface::texts;
+stack<interfaceEnum> Interface::stackInterface;
 
 // Constructors
 Interface::Interface()
@@ -21,12 +24,7 @@ Interface::Interface()
 #endif // DEBUG
 }
 
-Interface::Interface(const Interface* x)
-{
-#ifdef DEBUG
-	cout << "Interface copy constructor call" << endl;
-#endif // DEBUG
-}
+
 
 // Destructor
 Interface::~Interface()
@@ -37,41 +35,6 @@ Interface::~Interface()
 }
 
 // Public methods
-
-
-// Protected methods
-void Interface::previous()
-{
-
-}
-
-string Interface::getText(const string keyMessage)
-{
-	return "";
-}
-
-
-void Interface::getInterfaceText()
-{
-
-}
-
-string Interface::getAction()
-{
-	return "";
-}
-
-void Interface::createInterface(const int interfaceID)
-{
-	switch (interfaceID) 
-	{
-		case 1:
-			break;
-		default:
-			break;
-	}
-}
-// Private methods
 bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 {
 	string key, value;
@@ -83,7 +46,7 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 	QJsonDocument languageContent;
 	QJsonObject dictionnary;
 
-	if (!languageFile.exists()) 
+	if (!languageFile.exists())
 	{
 		//Log.Info();
 		return false;
@@ -100,10 +63,47 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 		value = dictionnary.take(currentKey).toString().toUtf8().constData();
 		texts.emplace(key, value);
 	}
-	
+
 	/*for (auto& test : mapLanguage)
 	{
-		cout << test.first << ":" << test.second << endl;
+	cout << test.first << ":" << test.second << endl;
 	}*/
 	return true;
 }
+
+
+// Protected methods
+void Interface::previous()
+{
+	stackInterface.pop();
+	createInterface(stackInterface.top());	
+}
+
+string Interface::getText(const string keyMessage)
+{
+	return Interface::texts[keyMessage];
+}
+
+void Interface::createInterface(const interfaceEnum interfaceID)
+{
+	stackInterface.push(interfaceID);
+	switch (interfaceID) 
+	{
+		case MENU_INTERFACE :
+			MenuInterface();
+			break;
+
+		case SEARCH_INTERFACE:
+			SearchInterface();
+			break;
+		case UPDATE_INTERFACE:
+			break;
+		case ANALYSE_INTERFACE:
+			break;
+
+		default:
+			stackInterface.pop();
+			return;
+	}
+}
+// Private methods

@@ -7,7 +7,6 @@ using namespace std;
 #include <stack>
 #include <unordered_map>
 #include <string>
-
 // Personnal include
 
 // Constants
@@ -25,9 +24,10 @@ class Interface
 {
 	// Attributes
 public:
-	static stack<Interface> stackInterface;
+	
 protected:
 	static unordered_map<string, string> texts;
+	static stack<interfaceEnum> stackInterface;
 private:
 	
 
@@ -36,26 +36,24 @@ private:
 public:
 	// Constructors
 	Interface();
-	Interface(const Interface* x);
-	bool loadMap(const string path);
 	// Destructors
 	~Interface();
 
 	// Others
+	static bool loadMap(const string path);
 	
 protected:
 	void previous();
 
 	string getText(string keyMessage);
 	
-	virtual void getInterfaceText();
+	virtual void getInterfaceText()=0;
 
-	virtual string getAction();
+	virtual string getAction()=0;
 
-	void createInterface(const int);
+	void createInterface(const interfaceEnum interfaceID);
 
 private:
-	//bool LoadMap(const string path);
 };
 
 #endif 

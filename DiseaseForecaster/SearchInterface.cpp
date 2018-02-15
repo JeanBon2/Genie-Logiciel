@@ -13,6 +13,7 @@ SearchInterface::SearchInterface()
 #ifdef DEBUG
 	cout << "SearchInterface constructor call" << endl;
 #endif // DEBUG
+	getInterfaceText();
 }
 
 // Destructor
@@ -29,7 +30,9 @@ SearchInterface::~SearchInterface()
 // Protected methods
 void SearchInterface::getInterfaceText()
 {
-
+	string interfaceText="";
+	interfaceText += getText("SearchInterface_Search");
+	cout << interfaceText << endl;
 }
 string SearchInterface::getAction()
 {

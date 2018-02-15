@@ -1,10 +1,12 @@
+//menu
 // System include
 using namespace std;
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <windows.h>
-
+#define DEBUG
 // Personnal include
 #include "MenuInterface.h"
 
@@ -14,8 +16,11 @@ using namespace std;
 MenuInterface::MenuInterface()
 {
 #ifdef DEBUG
-	cout << "Xxx constructor call" << endl;
+	cout << "MenuInterface constructor call" << endl;
 #endif // DEBUG
+	getInterfaceText();
+	getAction();
+
 }
 
 MenuInterface::MenuInterface(const MenuInterface* x)
@@ -23,6 +28,7 @@ MenuInterface::MenuInterface(const MenuInterface* x)
 #ifdef DEBUG
 	cout << "Xxx copy constructor call" << endl;
 #endif // DEBUG
+
 }
 
 // Destructor
@@ -40,10 +46,10 @@ void MenuInterface::getInterfaceText()
 {
 	string menuContent = "";
 	string updateDate = "";
-	menuContent += Interface::getText("LastUpdate")+":"+updateDate+"\n";
-	menuContent += Interface::getText("ProductName")+" Version "+ Interface::getText("Version")+"\n";
+	menuContent += Interface::getText("LastUpdate") + ":" + updateDate + "\n";
+	menuContent += Interface::getText("ProductName") + " Version " + Interface::getText("Version") + "\n";
 	menuContent += '\n';
-	menuContent += "1: "+ Interface::getText("MenuInterface_AnalysePrint")+"\n";
+	menuContent += "1: " + Interface::getText("MenuInterface_AnalysePrint") + "\n";
 	menuContent += "2: " + Interface::getText("MenuInterface_Synchronisation") + "\n";
 	menuContent += "3: " + Interface::getText("MenuInterface_Search") + "\n";
 	menuContent += "\n";
@@ -53,15 +59,15 @@ void MenuInterface::getInterfaceText()
 	menuContent += "\n";
 	menuContent += Interface::getText("MenuInterface_GetAction") + "\n";
 
-	cout<<menuContent;
+	cout << menuContent;
 }
 
-const string MenuInterface::getAction()
+string MenuInterface::getAction()
 {
-	
-	
-	string choiceMenu = 0;
-	while(choiceMenu != 5)
+
+
+	string choiceMenu = "0";
+	while (choiceMenu != "5")
 	{
 		int interfaceId;
 		cin >> choiceMenu;
@@ -69,13 +75,16 @@ const string MenuInterface::getAction()
 		switch (stoi(choiceMenu))
 		{
 		case 1:
-			Interface::createInterface(4);
+			//Analyse
+			Interface::createInterface(interfaceEnum::ANALYSE_INTERFACE);
 			break;
 		case 2:
-			Interface::createInterface(3);
+			//Synchro
+			Interface::createInterface(interfaceEnum::UPDATE_INTERFACE);
 			break;
 		case 3:
-			Interface::createInterface(2);
+			//Search
+			Interface::createInterface(interfaceEnum::SEARCH_INTERFACE);
 			break;
 		case 4:
 			//LOG
@@ -86,13 +95,16 @@ const string MenuInterface::getAction()
 			break;
 		case 6:
 			//HELP
-			string command = "iexplore";
-			GetCurrentDirectoryA(sizeof(working_directory), working_directory); // **** win32 specific ****
-			command.append(working_directory)
-				break;
+
+			//string command = "iexplore";
+			//GetCurrentDirectoryA(sizeof(working_directory), working_directory); // **** win32 specific ****
+			//command.append(working_directory)
+
+			break;
 		default:
 			break;
 		}
+
 	}
 
 	return choiceMenu;

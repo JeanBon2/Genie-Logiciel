@@ -1,4 +1,4 @@
-#ifndef SEARCHINTERFACE_H
+	#ifndef SEARCHINTERFACE_H
 #define SEARCHINTERFACE_H
 
 // System include
