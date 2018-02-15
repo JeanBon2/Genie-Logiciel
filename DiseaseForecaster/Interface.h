@@ -11,6 +11,12 @@ using namespace std;
 // Personnal include
 
 // Constants
+const enum interfaceEnum {
+	MENU_INTERFACE,
+	SEARCH_INTERFACE,
+	UPDATE_INTERFACE,
+	ANALYSE_INTERFACE
+};
 
 // Types
 
@@ -42,7 +48,11 @@ protected:
 
 	string getText(string keyMessage);
 	
+<<<<<<< HEAD
+	string getText(string keyMessage);
+=======
 	const string getText();
+>>>>>>> f17c52115006eb1e2633503c3375c6940e8c9946
 	
 	virtual void getInterfaceText();
 

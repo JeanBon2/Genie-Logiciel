@@ -44,7 +44,14 @@
     <ClCompile Include="HealthPrint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="SearchInterface.cpp">
+=======
+    <ClCompile Include="Interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuInterface.cpp">
+>>>>>>> 6bf04bb59560a2d438602483cde34fe790ebd271
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -58,6 +65,14 @@
     <ClInclude Include="HealthPrint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInterface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+=======
     <ClInclude Include="PotentialDisease.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -76,9 +91,13 @@
       <Filter>Resource Files\Language</Filter>
     </None>
     <None Include="Language\FR_fr.lng" />
+<<<<<<< HEAD
     <None Include="Language\FR_fr.lng" />
     <None Include="DiseaseForecaster.db">
       <Filter>Resource Files</Filter>
     </None>
+=======
+>>>>>>> f17c52115006eb1e2633503c3375c6940e8c9946
+>>>>>>> 6bf04bb59560a2d438602483cde34fe790ebd271
   </ItemGroup>
 </Project>
