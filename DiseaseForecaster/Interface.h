@@ -5,12 +5,18 @@
 using namespace std;
 #include <iostream>
 #include <stack>
-#include <map>
+#include <unordered_map>
 #include <string>
 
 // Personnal include
 
 // Constants
+const enum interfaceEnum {
+	MENU_INTERFACE,
+	SEARCH_INTERFACE,
+	UPDATE_INTERFACE,
+	ANALYSE_INTERFACE
+};
 
 // Types
 
@@ -21,7 +27,7 @@ class Interface
 public:
 	static stack<Interface> stackInterface;
 protected:
-	static map<string, string> mapLanguage;
+	static unordered_map<string, string> texts;
 private:
 	
 
@@ -41,8 +47,6 @@ protected:
 	void previous();
 
 	string getText(string keyMessage);
-	
-	const string getText();
 	
 	virtual void getInterfaceText();
 
