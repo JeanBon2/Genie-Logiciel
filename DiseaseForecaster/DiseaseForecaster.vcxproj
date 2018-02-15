@@ -75,16 +75,19 @@
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PotentialDisease.cpp" />
+    <ClCompile Include="SearchInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="HealthPrint.h" />
     <ClInclude Include="PotentialDisease.h" />
+    <ClInclude Include="SearchInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Interface.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DiseaseForecaster.db" />
     <None Include="Language\FR_fr.lng" />
   </ItemGroup>
   <ItemGroup>

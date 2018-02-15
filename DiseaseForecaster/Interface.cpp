@@ -11,7 +11,7 @@ using namespace std;
 // Personnal include
 #include "Interface.h"
 // Constants
-unordered_map <string, string> Interface::mapLanguage;
+unordered_map <string, string> Interface::texts;
 
 // Constructors
 Interface::Interface()
@@ -98,7 +98,7 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 	{
 		key = currentKey.toUtf8().constData();
 		value = dictionnary.take(currentKey).toString().toUtf8().constData();
-		mapLanguage.emplace(key, value);
+		texts.emplace(key, value);
 	}
 	
 	/*for (auto& test : mapLanguage)

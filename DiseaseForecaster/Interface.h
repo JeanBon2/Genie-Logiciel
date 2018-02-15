@@ -21,7 +21,7 @@ class Interface
 public:
 	static stack<Interface> stackInterface;
 protected:
-	static unordered_map<string, string> mapLanguage;
+	static unordered_map<string, string> texts;
 private:
 	
 

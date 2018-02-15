@@ -44,6 +44,9 @@
     <ClCompile Include="HealthPrint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SearchInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Interface.h">
@@ -61,11 +64,21 @@
     <ClInclude Include="Interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchInterface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Language\FR_fr.lng">
       <Filter>Resource Files\Language</Filter>
     </None>
     <None Include="Language\FR_fr.lng" />
+    <None Include="Language\FR_fr.lng" />
+    <None Include="DiseaseForecaster.db">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
