@@ -14,6 +14,7 @@ using namespace std;
 #include "SearchInterface.h"
 // Constants
 unordered_map <string, string> Interface::texts;
+stack<interfaceEnum> Interface::stackInterface;
 
 // Constructors
 Interface::Interface()
@@ -74,7 +75,8 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 // Protected methods
 void Interface::previous()
 {
-
+	stackInterface.pop();
+	createInterface(stackInterface.top());	
 }
 
 string Interface::getText(const string keyMessage)
@@ -82,8 +84,9 @@ string Interface::getText(const string keyMessage)
 	return Interface::texts[keyMessage];
 }
 
-void Interface::createInterface(const int interfaceID)
+void Interface::createInterface(const interfaceEnum interfaceID)
 {
+	stackInterface.push(interfaceID);
 	switch (interfaceID) 
 	{
 		case MENU_INTERFACE :
@@ -99,7 +102,8 @@ void Interface::createInterface(const int interfaceID)
 			break;
 
 		default:
-			break;
+			stackInterface.pop();
+			return;
 	}
 }
 // Private methods

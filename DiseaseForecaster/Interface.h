@@ -7,7 +7,6 @@ using namespace std;
 #include <stack>
 #include <unordered_map>
 #include <string>
-
 // Personnal include
 
 // Constants
@@ -28,7 +27,7 @@ public:
 	
 protected:
 	static unordered_map<string, string> texts;
-	static stack<Interface> stackInterface;
+	static stack<interfaceEnum> stackInterface;
 private:
 	
 
@@ -52,7 +51,7 @@ protected:
 
 	virtual string getAction()=0;
 
-	void createInterface(const int);
+	void createInterface(const interfaceEnum interfaceID);
 
 private:
 };
