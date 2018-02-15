@@ -19,18 +19,14 @@ public:
 protected:
 
 private:
-		static string path; 
+		static const string path; 
 
 	// Methods
 public:
 	// Constructors
-	Log ( string path );
+	Log ();
 
-    static bool info ( string text );
-
-    void setPath ( string path);
-
-    string getPath ();
+    static bool Info ( const string text );
 
 	// Destructors
 	~Log ();

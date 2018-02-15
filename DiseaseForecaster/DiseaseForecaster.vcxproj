@@ -43,7 +43,6 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtSql;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -73,8 +72,8 @@
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="HealthPrint.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuInterface.cpp" />
     <ClCompile Include="PotentialDisease.cpp" />
     <ClCompile Include="SearchInterface.cpp" />
   </ItemGroup>
@@ -82,22 +81,9 @@
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="HealthPrint.h" />
     <ClInclude Include="Interface.h" />
-    <ClInclude Include="MenuInterface.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="PotentialDisease.h" />
     <ClInclude Include="SearchInterface.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Interface.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DiseaseForecaster.db" />
-    <None Include="Language\FR_fr.lng" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Interface.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Language\FR_fr.lng" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Language\FR_fr.lng" />
@@ -107,7 +93,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="msvc2017_64" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="$(DefaultQtVersion)" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
