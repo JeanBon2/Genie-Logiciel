@@ -266,3 +266,8 @@ __pycache__/
 *.vcxproj
 *.vcxproj.user
 *.vcxproj.filters
+*.o
+*.pro
+*.app
+Makefile
+.vscode
