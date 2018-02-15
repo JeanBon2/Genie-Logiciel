@@ -48,9 +48,9 @@ protected:
 
 	string getText(string keyMessage);
 	
-	virtual void getInterfaceText();
+	virtual void getInterfaceText()=0;
 
-	virtual string getAction();
+	virtual string getAction()=0;
 
 	void createInterface(const int);
 

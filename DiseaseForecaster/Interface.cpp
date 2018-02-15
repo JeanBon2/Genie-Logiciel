@@ -82,17 +82,6 @@ string Interface::getText(const string keyMessage)
 	return Interface::texts[keyMessage];
 }
 
-
-void Interface::getInterfaceText()
-{
-
-}
-
-string Interface::getAction()
-{
-	return "";
-}
-
 void Interface::createInterface(const int interfaceID)
 {
 	switch (interfaceID) 

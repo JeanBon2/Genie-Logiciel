@@ -10,8 +10,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	Interface stat;
-	stat.loadMap(R"(.\Language\Fr_fr.lng)");
+	Interface::loadMap(R"(.\Language\Fr_fr.lng)");
 	SearchInterface test = SearchInterface();
 	QCoreApplication a(argc, argv);
 
