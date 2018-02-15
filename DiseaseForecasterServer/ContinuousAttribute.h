@@ -16,12 +16,10 @@ using namespace std;
 typedef pair<double, double> interval;
 
 // Class
-class ContinuousAttribute : Attribute
+class ContinuousAttribute : public Attribute
 {
 	// Attributes
 private:
-	int id;
-	string name;
 	vector<interval> normalIntervals;
 
 	// Methods
@@ -35,8 +33,8 @@ public:
 	// Others
 	int getId() const { return id; }
 	string getName() const { return name; }
-	vector<interval> getNormalIntervals() const { return normalIntervals; }
 
+	vector<interval> getNormalIntervals() const { return normalIntervals; }
 	void addNormalInterval(const interval& normalInterval);
 	bool isInNormalInterval(const double& value);
 };

@@ -35,6 +35,7 @@ public:
 	int getId() const { return id; }
 	string getName() const { return name; }
 
+	vector<Attribute*> getDiscriminantAttributes() const { return discriminantAttributes; }
 	void addDiscriminantAttribute(Attribute* attribute);
 	bool isDiscriminant(Attribute* attribute);
 };

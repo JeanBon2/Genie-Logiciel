@@ -72,14 +72,20 @@
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="HealthPrint.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuInterface.cpp" />
     <ClCompile Include="PotentialDisease.cpp" />
+    <ClCompile Include="SearchInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="HealthPrint.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Log.h" />
+    <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
+    <ClInclude Include="SearchInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Language\FR_fr.lng" />

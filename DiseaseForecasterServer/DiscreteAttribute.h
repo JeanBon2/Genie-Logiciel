@@ -16,12 +16,10 @@ using namespace std;
 typedef pair<string, double> value;
 
 // Class
-class DiscreteAttribute : Attribute
+class DiscreteAttribute : public Attribute
 {
 	// Attributes
 private:
-	int id;
-	string name;
 	vector<value> normalValues;
 
 	// Methods
@@ -36,6 +34,7 @@ public:
 	int getId() const { return id; }
 	string getName() const { return name; }
 
+	vector<value> getNormalValues() const { return normalValues; }
 	void addNormalValue(const value& normalValue);
 	bool isInNormalValues(const value& value);
 };

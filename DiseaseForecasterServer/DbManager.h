@@ -30,6 +30,15 @@ public:
 
 	// Others
 	bool insertIntoDatabase(const vector<Disease>& diseases);
+
+private:
+	bool insertIntoDatabase(const Disease& disease);
+	bool insertIntoDatabase(const Attribute* attribute);
+	bool insertIntoDatabase(const DiscreteAttribute& attribute);
+	bool insertIntoDatabase(const ContinuousAttribute& attribute);
+	bool insertIntoDatabase(const int diseaseId, const int attributeId);
+
+	void wipeData();
 };
 
 #endif // DBMANAGER_H
