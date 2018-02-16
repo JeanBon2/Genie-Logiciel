@@ -4,6 +4,7 @@
 // System include
 #include <iostream>
 #include <vector>
+#include <memory>
 using namespace std;
 
 // Personnal include
@@ -21,12 +22,12 @@ class Disease
 private:
 	int id;
 	string name;
-	vector<Attribute*> discriminantAttributes;
+	vector<shared_ptr<Attribute>> discriminantAttributes;
 
 	// Methods
 public:
 	// Constructors
-	Disease(const int id, const string& name, const vector<Attribute*>&& discriminantAttributes = vector<Attribute*>());
+	Disease(const int id, const string& name, const vector<shared_ptr<Attribute>>&& discriminantAttributes = vector<shared_ptr<Attribute>>());
 
 	// Destructors
 	~Disease();
@@ -35,9 +36,9 @@ public:
 	int getId() const { return id; }
 	string getName() const { return name; }
 
-	vector<Attribute*> getDiscriminantAttributes() const { return discriminantAttributes; }
-	void addDiscriminantAttribute(Attribute* attribute);
-	bool isDiscriminant(Attribute* attribute);
+	vector<shared_ptr<Attribute>> getDiscriminantAttributes() const { return discriminantAttributes; }
+	void addDiscriminantAttribute(shared_ptr<Attribute> attribute);
+	bool isDiscriminant(shared_ptr<Attribute> attribute);
 };
 
 #endif // DISEASE_H

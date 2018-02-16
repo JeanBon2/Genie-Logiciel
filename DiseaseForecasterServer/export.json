@@ -1,0 +1,46 @@
+[
+    {
+        "discriminantAttributes": {
+            "continuousAttributes": [
+                {
+                    "id": 2,
+                    "name": "Poids",
+                    "normalIntervals": [
+                        {
+                            "maximum": 80,
+                            "minimum": 60
+                        }
+                    ]
+                }
+            ],
+            "discreteAttributes": [
+                {
+                    "id": 1,
+                    "name": "Yeux",
+                    "normalValues": [
+                        {
+                            "value": 1,
+                            "valueName": "Bleu"
+                        },
+                        {
+                            "value": 2,
+                            "valueName": "Rouge"
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "Couleur de peau",
+                    "normalValues": [
+                        {
+                            "value": 1,
+                            "valueName": "Blanche"
+                        }
+                    ]
+                }
+            ]
+        },
+        "id": 1,
+        "name": "T�tanos"
+    }
+]

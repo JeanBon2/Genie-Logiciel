@@ -28,7 +28,7 @@ public:
 	DiscreteAttribute(const int id, const string& name, const vector<value>&& normalValues = vector<value>());
 
 	// Destructors
-	~DiscreteAttribute();
+	~DiscreteAttribute() override;
 
 	// Others
 	int getId() const { return id; }

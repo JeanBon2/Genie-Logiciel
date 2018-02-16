@@ -39,7 +39,7 @@ CsvParser::~CsvParser()
 }
 
 // Public methods
-const vector<vector<string>> CsvParser::parse()
+vector<vector<string>> CsvParser::parse()
 {
 	if (!parsedContent.empty())
 	{
@@ -64,13 +64,13 @@ const vector<vector<string>> CsvParser::parse()
 	return parsedContent;
 }
 
-const vector<vector<string>> CsvParser::staticParse(QFile& file)
+vector<vector<string>> CsvParser::staticParse(QFile& file)
 {
 	CsvParser csvParser(file);
 	return csvParser.parse();
 }
 
-const vector<vector<string>> CsvParser::staticParse(string content)
+vector<vector<string>> CsvParser::staticParse(string content)
 {
 	CsvParser csvParser(content);
 	return csvParser.parse();
