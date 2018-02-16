@@ -28,7 +28,7 @@ public:
 	ContinuousAttribute(const int id, const string& name, const vector<interval>&& normalIntervals = vector<interval>() );
 
 	// Destructors
-	~ContinuousAttribute();
+	~ContinuousAttribute() override;
 
 	// Others
 	int getId() const { return id; }

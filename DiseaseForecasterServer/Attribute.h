@@ -26,7 +26,7 @@ public:
 	Attribute(const int id, const string& name, const bool discrete);
 
 	// Destructors
-	~Attribute();
+	virtual ~Attribute();
 
 	// Others
 	int getId() const { return id; }

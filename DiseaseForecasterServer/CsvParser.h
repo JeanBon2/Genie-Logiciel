@@ -31,9 +31,9 @@ public:
 	~CsvParser();
 
 	// Others
-	const vector<vector<string> > parse();
-	static const vector<vector<string> > staticParse(QFile &file);
-	static const vector<vector<string> > staticParse(string content);
+	vector<vector<string> > parse();
+	static vector<vector<string> > staticParse(QFile &file);
+	static vector<vector<string> > staticParse(string content);
 };
 
 #endif // CSVPARSER_H
