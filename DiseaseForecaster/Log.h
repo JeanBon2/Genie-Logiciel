@@ -25,7 +25,7 @@ public:
 	// Constructors
 	Log ();
 
-    static bool Info ( const string text );
+    static bool info ( const string text );
 
 	// Destructors
 	~Log ();

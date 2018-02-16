@@ -27,7 +27,6 @@ Interface::Interface()
 }
 
 
-
 // Destructor
 Interface::~Interface()
 {
@@ -39,8 +38,8 @@ Interface::~Interface()
 // Public methods
 bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 {
+	const QString defaultpath = R"(.\Language\Fr_fr.lng)";
 	string key, value;
-
 	QFile languageFile(QString::fromStdString(path));
 
 	QByteArray byteFile;
@@ -49,7 +48,13 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 
 	if (!languageFile.exists())
 	{
-		return false;
+		languageFile.setFileName(defaultpath);
+		if (!languageFile.exists())
+		{
+			cout << "Can't access to default language" << endl << endl;
+			return false;
+		}
+		
 	}
 	languageFile.open(QIODevice::ReadOnly);
 	byteFile = languageFile.readAll();
@@ -70,6 +75,10 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 	}*/
 	return true;
 }
+void Interface::start()
+{
+	createInterface(MENU_INTERFACE);
+}
 
 
 // Protected methods
@@ -88,22 +97,23 @@ string Interface::getText(const string keyMessage)
 	}
 	else
 	{
-		Log::Info("Not able to found : \""+ keyMessage + "\" in languageFile");
+		Log::info("Not able to found : \""+ keyMessage + "\" in languageFile");
 		return "No Message Found";
 	}
 }
 
 void Interface::createInterface(const interfaceList interfaceID)
 {
+	Interface* currentInterface;
 	stackInterface.push(interfaceID);
 	switch (interfaceID) 
 	{
 		case MENU_INTERFACE :
-			MenuInterface();
+			currentInterface= new MenuInterface();
 			break;
 
 		case SEARCH_INTERFACE:
-			SearchInterface();
+			currentInterface = new SearchInterface();
 			break;
 
 		case UPDATE_INTERFACE:
@@ -116,5 +126,15 @@ void Interface::createInterface(const interfaceList interfaceID)
 			stackInterface.pop();
 			return;
 	}
+	currentInterface->run();
+	delete currentInterface;
+}
+
+string Interface::getAction()
+{
+	string inputValue;
+	getline(cin, inputValue);
+
+	return inputValue;
 }
 // Private methods

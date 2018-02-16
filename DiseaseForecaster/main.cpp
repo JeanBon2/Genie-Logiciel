@@ -9,9 +9,13 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	Interface::loadMap(R"(.\Language\Fr_fr.lng)");
-
-	MenuInterface menu = MenuInterface();
+	if (Interface::loadMap(R"(.\Language\Fr_fr.lng)"))
+	{
+		Log::info("ça démarre");
+		Interface::start();
+		Log::info("ça termine");
+	}
+	
 
 	QCoreApplication a(argc, argv);
 

@@ -10,16 +10,26 @@ const string Log::path = "forecaster.log";
 Log::Log()
 {}
 
-bool Log::Info(const string text)
+bool Log::info(const string text)
 {
-    ofstream file(path);
+    ofstream file(path, ios::app);
     
-    if ( file )
+    if (file)
     {
 		streambuf *oldCoutBuffer = cout.rdbuf(file.rdbuf());
+		time_t getTime;
+		struct tm* currentTimeUTC;
 
-        time_t result = time(nullptr);
-        cout << "[ " << asctime(localtime(&result)) << " ] : " << text << endl;
+		time(&getTime);
+		currentTimeUTC = gmtime(&getTime);
+
+        cout << "[" << 
+			currentTimeUTC->tm_year+1900 << "-" <<
+			currentTimeUTC->tm_mon << "-" <<
+			currentTimeUTC->tm_mday << " " <<
+			currentTimeUTC->tm_hour << ":" <<
+			currentTimeUTC->tm_min << ":" <<
+			currentTimeUTC->tm_sec	<< "] : " << text << endl;
 
 
         cout.rdbuf(oldCoutBuffer);

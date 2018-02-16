@@ -27,9 +27,10 @@ protected:
 private:
 	const enum searchInterfaceStage
 	{
-		SEARCHING,
-		DISPLAYING,
-		INTERACTING
+		WELCOME,
+		RESULTS,
+		INTERACT,
+		LEAVE
 	};
 	searchInterfaceStage stage;
 	vector<HealthPrint> resultsFromRequest;
@@ -47,7 +48,7 @@ public:
 protected:
 
 	void getInterfaceText();
-	string getAction();
+	void run();
 	void searchHealthPrint(string patientName);
 	bool remove(unsigned int printNumber);
 private:
