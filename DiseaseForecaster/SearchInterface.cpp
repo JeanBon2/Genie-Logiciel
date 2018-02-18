@@ -8,13 +8,11 @@ using namespace std;
 // Constants
 
 // Constructors
-SearchInterface::SearchInterface()
+SearchInterface::SearchInterface():stage(WELCOME)
 {
 #ifdef DEBUG
 	cout << "SearchInterface constructor call" << endl;
 #endif // DEBUG
-	stage = SEARCHING;
-	getInterfaceText();
 }
 
 // Destructor
@@ -34,29 +32,66 @@ void SearchInterface::getInterfaceText()
 	string interfaceText="";
 	switch (stage)
 	{
-	case SEARCHING:
-		interfaceText = getText("SearchInterface_Search");
-		stage = DISPLAYING;
-		break;
-	case DISPLAYING:
-		interfaceText += getText("SearchInterface_ResultList")+"\n";
-		interfaceText += getText("SearchInterface_SearchNumber");
-		stage = INTERACTING;
-		break;
-	case INTERACTING:
-		interfaceText += getText("SearchInterface_Delete");
-		interfaceText += getText("Interface_Previous") + "\n";
-		stage = SEARCHING;
-		break;
-	default:
-		interfaceText += getText("Unknown_Command") + "\n";
-		break;
+		case WELCOME:
+			interfaceText = getText("SearchInterface_Search");
+			break;
+		case RESULTS:
+			interfaceText = getText("SearchInterface_ResultList")+"\n";
+			interfaceText += getText("SearchInterface_SearchNumber");
+			break;
+		case INTERACT:
+			interfaceText = getText("SearchInterface_Delete");
+			interfaceText += getText("Interface_Previous") + "\n";
+			break;
+
+		default:
+			interfaceText = getText("Unknown_Command") + "\n";
+			break;
 	}
 	cout << interfaceText << endl;
 }
-string SearchInterface::getAction()
+
+void SearchInterface::run()
 {
-	return "";
+	string inputValue;
+	while (true)
+	{
+		getInterfaceText();
+		inputValue = getAction();
+		while (stage != LEAVE)
+		{
+			switch (stage)
+			{
+			case WELCOME:
+				//chercher dans la Database
+				stage = RESULTS;
+				break;
+
+			case RESULTS:
+				//afficher les résultats de la database
+				stage = INTERACT;
+				break;
+
+			case INTERACT:
+				//supprimer ou revenir à la recherche
+				if (inputValue == "1")
+				{
+					stage = WELCOME;
+				}
+				else if (inputValue == "0")
+				{
+					stage = LEAVE;
+				}
+				break;
+
+			default:
+				stage = LEAVE;
+				break;
+			}
+		}
+		
+	}
+	
 }
 void SearchInterface::searchHealthPrint(string patientName)
 {}

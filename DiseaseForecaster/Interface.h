@@ -46,17 +46,20 @@ public:
 
 	// Others
 	static bool loadMap(const string path);
+	static void start();
+	
 	
 protected:
 	void previous();
 
 	string getText(string keyMessage);
-	
+	static void createInterface(const interfaceList interfaceID);
 	virtual void getInterfaceText()=0;
 
-	virtual string getAction()=0;
+	string getAction();
+	virtual void run()=0;
 
-	void createInterface(const interfaceList interfaceID);
+	
 
 private:
 };

@@ -36,8 +36,7 @@ public:
 
 protected:
 	void getInterfaceText();
-
-	string getAction();
+	void run();
 
 private:
 

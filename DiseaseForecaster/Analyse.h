@@ -17,7 +17,7 @@ class Analyse
 	// Attributes
 private:
 	HealthPrint healthPrint;
-	vector<PotentialDisease> diseaess;
+	vector<PotentialDisease> diseases;
 
 	// Methods
 public:

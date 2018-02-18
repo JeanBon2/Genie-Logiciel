@@ -8,7 +8,7 @@ using namespace std;
 // Constants
 
 // Constructors
-Analyse::Analyse(HealthPrint healthPrint, vector<PotentialDisease> diseases) : healthPrint(healthPrint), diseaess(diseases)
+Analyse::Analyse(HealthPrint healthPrint, vector<PotentialDisease> diseases) : healthPrint(healthPrint), diseases(diseases)
 {
 	#ifdef DEBUG
 		cout << "Analyse constructor call" << endl;

@@ -19,7 +19,6 @@ MenuInterface::MenuInterface()
 #ifdef DEBUG
 	cout << "MenuInterface constructor call" << endl;
 #endif // DEBUG
-	getAction();
 }
 
 MenuInterface::MenuInterface(const MenuInterface* x)
@@ -61,21 +60,24 @@ void MenuInterface::getInterfaceText()
 	cout << menuContent;
 }
 
-string MenuInterface::getAction()
+
+void MenuInterface::run()
 {
-	string returnValue="";
-	string choiceMenu = "0";
+	string choiceMenu="";
 	int actionToDo;
+	
+	
 
 	while (choiceMenu != "5")
 	{
+		system("cls");
 		getInterfaceText();
-		getline(cin, choiceMenu);
+		choiceMenu = getAction();
 		try
 		{
 			actionToDo = stoi(choiceMenu);
 		}
-		catch(invalid_argument& i)
+		catch (invalid_argument& i)
 		{
 			actionToDo = 0;
 		}
@@ -83,7 +85,6 @@ string MenuInterface::getAction()
 		{
 			actionToDo = 0;
 		}
-
 		switch (actionToDo)
 		{
 			case ANALYSE_INTERFACE:
@@ -108,19 +109,10 @@ string MenuInterface::getAction()
 			case 6:
 				//HELP
 
-			//string command = "iexplore";
-			//GetCurrentDirectoryA(sizeof(working_directory), working_directory); // **** win32 specific ****
-			//command.append(working_directory)
-
-			break;
-		default:
-			system("cls");
-			cout << getText("Unknown_Command") << endl;
-			break;
+				break;
+			default:
+				cout << getText("Unknown_Command") << endl;
+				break;
 		}
 	}
-	returnValue += choiceMenu;
-
-	return returnValue;
-
 }
