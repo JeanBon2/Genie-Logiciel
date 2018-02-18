@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QVariant>
 #include <QSqlRecord>
+#include <QDebug>
 using namespace std;
 
 // Personnal include
@@ -47,7 +48,6 @@ bool DbManager::insertIntoDatabase(const vector<Disease>& diseases)
 	}
 	return true;
 }
-
 vector<Disease> DbManager::getDiseases()
 {
 	vector<Disease> diseases;
@@ -60,7 +60,7 @@ vector<Disease> DbManager::getDiseases()
 		while (query.next())
 		{
 			const int diseaseId = query.value(indexId).toInt();
-			const string diseaseName = query.value(indexName).toString().toStdString();
+			const string diseaseName = query.value(indexName).toString().toUtf8().constData();
 			diseases.emplace_back(diseaseId, diseaseName, getDiscriminantAttributesForDisease(diseaseId));
 		}
 	}
@@ -98,6 +98,10 @@ bool DbManager::insertIntoDatabase(const shared_ptr<Attribute> attribute)
 	query.bindValue(":discrete", attribute->isDiscrete());
 	if (!query.exec())
 	{
+		if (getAttributeForId(attribute->getId()) != nullptr)	// If the attribute is already in the database, it's all right.
+		{
+			return true;
+		}
 		return false;
 	}
 
@@ -190,7 +194,7 @@ shared_ptr<Attribute> DbManager::getAttributeForId(int attributeId)
 		const int indexDiscrete = query.record().indexOf("discrete");
 		if (query.next())
 		{
-			const string name = query.value(indexName).toString().toStdString();
+			const string name = query.value(indexName).toString().toUtf8().constData();
 			const bool discrete = query.value(indexDiscrete).toBool();
 			if (discrete)
 			{
@@ -243,7 +247,7 @@ vector<value> DbManager::getNormalValuesForDiscreteAttribute(int attributeId)
 		while (query.next())
 		{
 			double normalValue = query.value(indexNormalValue).toDouble();
-			string normalValueName = query.value(indexNormalValueName).toString().toStdString();
+			string normalValueName = query.value(indexNormalValueName).toString().toUtf8().constData();
 			normalValues.emplace_back(normalValueName, normalValue);
 		}
 	}

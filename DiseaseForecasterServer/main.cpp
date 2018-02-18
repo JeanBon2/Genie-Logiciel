@@ -2,6 +2,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <set>
 
 #include "CsvParser.h"
 #include "Disease.h"
@@ -23,58 +24,68 @@ bool exportDatabase(vector<Disease>& diseases) {
 	}
 	QJsonDocument jsonDocument;
 	QJsonArray diseaseList;
+	QJsonObject discriminantAttributesJson;
+	QJsonArray discreteAttributes, continuousAttributes;
+	set<int> attributes;
 	for (auto&& disease : diseases)
 	{
 		QJsonObject diseaseJson;
-		QJsonObject discriminantAttributesJson;
-		QJsonArray discreteAttributes, continuousAttributes;
+		QJsonArray discriminantAttributesJsonForDisease;
 		diseaseJson.insert("id", disease.getId());
 		diseaseJson.insert("name", QString::fromStdString(disease.getName()));
 		for (auto&& attribute : disease.getDiscriminantAttributes())
 		{
-			QJsonObject attributeJson;
-			attributeJson.insert("id", attribute->getId());
-			attributeJson.insert("name", QString::fromStdString(attribute->getName()));
-			if (attribute->isDiscrete())
+			if (attributes.find(attribute->getId()) == attributes.end())
 			{
-				QJsonArray normalValuesJson;
-				shared_ptr<DiscreteAttribute> discreteAttribute = dynamic_pointer_cast<DiscreteAttribute>(attribute);
-				
-				for (auto&& normalValue : discreteAttribute->getNormalValues())
+				QJsonObject attributeJson;
+				attributeJson.insert("id", attribute->getId());
+				attributeJson.insert("name", QString::fromStdString(attribute->getName()));
+				if (attribute->isDiscrete())
 				{
-					QJsonObject normalValueJson;
-					normalValueJson.insert("valueName", QString::fromStdString(normalValue.first));
-					normalValueJson.insert("value", normalValue.second);
-					normalValuesJson.push_back(normalValueJson);
+					QJsonArray normalValuesJson;
+					shared_ptr<DiscreteAttribute> discreteAttribute = dynamic_pointer_cast<DiscreteAttribute>(attribute);
+
+					for (auto&& normalValue : discreteAttribute->getNormalValues())
+					{
+						QJsonObject normalValueJson;
+						normalValueJson.insert("valueName", QString::fromStdString(normalValue.first));
+						normalValueJson.insert("value", normalValue.second);
+						normalValuesJson.push_back(normalValueJson);
+					}
+
+					attributeJson.insert("normalValues", normalValuesJson);
+					discreteAttributes.push_back(attributeJson);
 				}
-
-				attributeJson.insert("normalValues", normalValuesJson);
-				discreteAttributes.push_back(attributeJson);
-			}
-			else
-			{
-				QJsonArray normalIntervalsJson;
-				shared_ptr<ContinuousAttribute> continuousAttribute = dynamic_pointer_cast<ContinuousAttribute>(attribute);
-
-				for (auto&& normalInterval : continuousAttribute->getNormalIntervals())
+				else
 				{
-					QJsonObject normalIntervalJson;
-					normalIntervalJson.insert("minimum", normalInterval.first);
-					normalIntervalJson.insert("maximum", normalInterval.second);
-					normalIntervalsJson.push_back(normalIntervalJson);
-				}
+					QJsonArray normalIntervalsJson;
+					shared_ptr<ContinuousAttribute> continuousAttribute = dynamic_pointer_cast<ContinuousAttribute>(attribute);
 
-				attributeJson.insert("normalIntervals", normalIntervalsJson);
-				continuousAttributes.push_back(attributeJson);
+					for (auto&& normalInterval : continuousAttribute->getNormalIntervals())
+					{
+						QJsonObject normalIntervalJson;
+						normalIntervalJson.insert("minimum", normalInterval.first);
+						normalIntervalJson.insert("maximum", normalInterval.second);
+						normalIntervalsJson.push_back(normalIntervalJson);
+					}
+
+					attributeJson.insert("normalIntervals", normalIntervalsJson);
+					continuousAttributes.push_back(attributeJson);
+				}
 			}
+			discriminantAttributesJsonForDisease.push_back(attribute->getId());
 		}
-		discriminantAttributesJson.insert("discreteAttributes", discreteAttributes);
-		discriminantAttributesJson.insert("continuousAttributes", continuousAttributes);
-		diseaseJson.insert("discriminantAttributes", discriminantAttributesJson);
+		diseaseJson.insert("discriminantAttributes", discriminantAttributesJsonForDisease);
 		diseaseList.push_back(diseaseJson);
 	}
+	discriminantAttributesJson.insert("discreteAttributes", discreteAttributes);
+	discriminantAttributesJson.insert("continuousAttributes", continuousAttributes);
 
-	file.write(QJsonDocument(diseaseList).toJson());
+	QJsonObject document;
+	document.insert("diseases", diseaseList);
+	document.insert("discriminantAttributes", discriminantAttributesJson);
+
+	file.write(QJsonDocument(document).toJson());
 
 	return true;
 }
@@ -87,12 +98,14 @@ int main(int argc, char *argv[])
 	QFile measurement(R"(HealthMeasurements.txt)");
 	QFile labels(R"(HealthMeasurementsWithLabels.txt)");
 
-	Disease tetanosDisease(1, "Tétanos");
+	Disease tetanosDisease(1, "Tetanos");
+	Disease rubeoleDisease(2, "Rubeole");
 	DiscreteAttribute discreteAttribute(1, "Yeux");
 	discreteAttribute.addNormalValue({ "Bleu", 1 });
 	discreteAttribute.addNormalValue({ "Rouge", 2 });
 	const shared_ptr<DiscreteAttribute> discreteAttributePtr(&discreteAttribute);
 	tetanosDisease.addDiscriminantAttribute(discreteAttributePtr);
+	rubeoleDisease.addDiscriminantAttribute(discreteAttributePtr);
 
 	DiscreteAttribute discreteAttribute2(3, "Couleur de peau");
 	discreteAttribute2.addNormalValue({ "Blanche", 1 });
@@ -107,6 +120,7 @@ int main(int argc, char *argv[])
 	DbManager db("DiseaseForecasterServer.db");
 	vector<Disease> dl;
 	dl.push_back(tetanosDisease);
+	dl.push_back(rubeoleDisease);
 	db.insertIntoDatabase(dl);
 
 	auto&& diseaseList = db.getDiseases();
