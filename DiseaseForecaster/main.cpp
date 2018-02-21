@@ -1,5 +1,3 @@
-#include <QtCore/QCoreApplication>
-
 #include <iostream>
 #include "Log.h"
 #include "Interface.h"
@@ -16,9 +14,6 @@ int main(int argc, char *argv[])
 		Interface::start();
 		Log::info("ça termine");
 	}
-	
 
-	QCoreApplication a(argc, argv);
-
-	return a.exec();
+	return 0;
 }

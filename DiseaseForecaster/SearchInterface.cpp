@@ -62,7 +62,7 @@ void SearchInterface::run()
 		inputValue = getAction();
 		int displayerCounter = 0;
 
-		while (stage != LEAVE)
+		while (stage != LEAVE)//ca marche PAS
 		{
 			switch (stage)
 			{
