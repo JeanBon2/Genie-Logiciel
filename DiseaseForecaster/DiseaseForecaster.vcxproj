@@ -70,6 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Analyse.cpp" />
+    <ClCompile Include="DbManager.cpp" />
     <ClCompile Include="HealthPrint.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Log.cpp" />
@@ -80,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
+    <ClInclude Include="DbManager.h" />
     <ClInclude Include="HealthPrint.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Log.h" />

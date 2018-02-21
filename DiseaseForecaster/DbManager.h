@@ -7,7 +7,7 @@
 using namespace std;
 
 // Personnal include
-#include "Disease.h"
+#include "Analyse.h"
 
 // Constants
 
@@ -29,23 +29,14 @@ public:
 	~DbManager();
 
 	// Others
-	bool insertIntoDatabase(const vector<Disease>& diseases);
-	vector<Disease> getDiseases();
+	bool insertIntoDatabase(const Analyse& analyse);
+	bool insertIntoDatabase(const vector<Analyse>& diseases);
+	vector<Analyse> getAnalyseResults();
+	
+	void wipeData();
 
 private:
-public:
-	bool insertIntoDatabase(const Disease& disease);
-	bool insertIntoDatabase(const shared_ptr<Attribute> attribute);
-	bool insertIntoDatabase(const DiscreteAttribute& attribute);
-	bool insertIntoDatabase(const ContinuousAttribute& attribute);
-	bool insertIntoDatabase(const int diseaseId, const int attributeId);
 
-	vector<shared_ptr<Attribute>> getDiscriminantAttributesForDisease(int diseaseId);
-	shared_ptr<Attribute> getAttributeForId(int attributeId);
-	vector<interval> getNormalIntervalsForContinuousAttribute(int attributeId);
-	vector<value> getNormalValuesForDiscreteAttribute(int attributeId);
-
-	void wipeData();
 };
 
 #endif // DBMANAGER_H
