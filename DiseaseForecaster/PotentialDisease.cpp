@@ -1,6 +1,7 @@
 // System include
 using namespace std;
 #include <iostream>
+#include <string>
 #include <map>
 
 // Personnal include
@@ -20,4 +21,14 @@ PotentialDisease::~PotentialDisease()
 	#ifdef DEBUG
 		cout << "PotentialDisease destructor call" << endl;
 	#endif // DEBUG
+}
+//Others
+void PotentialDisease::displayContent()
+{
+	cout <<"Disease name : "<< name << endl;
+	cout <<"Matching rate : " << matchingRate<< endl;
+	for (auto const& attribute : attributes)
+	{
+		cout << attribute.first << " "<< attribute.second << endl;
+	}
 }

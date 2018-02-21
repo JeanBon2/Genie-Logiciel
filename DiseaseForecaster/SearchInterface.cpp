@@ -4,6 +4,7 @@
 using namespace std;
 // Personnal include
 #include "SearchInterface.h"
+#include "Analyse.h"
 
 // Constants
 
@@ -54,33 +55,68 @@ void SearchInterface::getInterfaceText()
 void SearchInterface::run()
 {
 	string inputValue;
+	unsigned int analyseSelected;
 	while (true)
 	{
 		getInterfaceText();
 		inputValue = getAction();
+		int displayerCounter = 0;
+
 		while (stage != LEAVE)
 		{
 			switch (stage)
 			{
 			case WELCOME:
 				//chercher dans la Database
+				//resultsFromSearch = fontion de recherche(getAction())
 				stage = RESULTS;
 				break;
 
 			case RESULTS:
 				//afficher les résultats de la database
+				
+				for (Analyse& analyse : resultsFromRequest)
+				{
+					cout << ++displayerCounter << " : ";
+					analyse.displayHeader();
+				}
 				stage = INTERACT;
 				break;
 
 			case INTERACT:
-				//supprimer ou revenir à la recherche
-				if (inputValue == "1")
+				try
+				{
+					analyseSelected = stoi(inputValue);
+					if (analyseSelected >= resultsFromRequest.size())
+					{
+						analyseSelected = 0;
+					}
+				}
+				catch (invalid_argument& i)
+				{
+					analyseSelected = 0;
+				}
+				catch (out_of_range& o)
+				{
+					analyseSelected = 0;
+				}
+				if (analyseSelected != 0)
+				{
+					resultsFromRequest[analyseSelected - 1].displayContent();
+
+					if (inputValue == "1")
+					{
+						remove(analyseSelected - 1);
+						stage = WELCOME;
+					}
+					else if (inputValue == "0")
+					{
+						stage = LEAVE;
+					}
+				}
+				else
 				{
 					stage = WELCOME;
-				}
-				else if (inputValue == "0")
-				{
-					stage = LEAVE;
 				}
 				break;
 
@@ -93,10 +129,13 @@ void SearchInterface::run()
 	}
 	
 }
-void SearchInterface::searchHealthPrint(string patientName)
+void SearchInterface::searchAnalyse(string patientName)
 {}
 bool SearchInterface::remove(unsigned int printNumber)
 {
+	//TO DO
+	//CODE POUR SUPPRIMER DE LA DB
+	cout << getText("Search_Interface_ConfirmDelete") << endl;
 	return true;
 }
 

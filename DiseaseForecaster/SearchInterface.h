@@ -1,4 +1,4 @@
-	#ifndef SEARCHINTERFACE_H
+#ifndef SEARCHINTERFACE_H
 #define SEARCHINTERFACE_H
 
 // System include
@@ -10,6 +10,7 @@ using namespace std;
 // Personnal include
 #include "Interface.h"
 #include "HealthPrint.h"
+#include "Analyse.h"
 
 
 // Constants
@@ -33,7 +34,7 @@ private:
 		LEAVE
 	};
 	searchInterfaceStage stage;
-	vector<HealthPrint> resultsFromRequest;
+	vector<Analyse> resultsFromRequest;
 
 	// Methods
 public:
@@ -49,7 +50,7 @@ protected:
 
 	void getInterfaceText();
 	void run();
-	void searchHealthPrint(string patientName);
+	void searchAnalyse(string patientName);
 	bool remove(unsigned int printNumber);
 private:
 
