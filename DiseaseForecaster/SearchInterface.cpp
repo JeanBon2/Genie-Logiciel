@@ -56,34 +56,40 @@ void SearchInterface::run()
 {
 	string inputValue;
 	unsigned int analyseSelected;
-	while (true)
+	unsigned int displayerCounter = 0;
+
+	while (stage != LEAVE)
 	{
 		getInterfaceText();
 		inputValue = getAction();
-		int displayerCounter = 0;
-
-		while (stage != LEAVE)//ca marche PAS
+		
+		switch (stage)
 		{
-			switch (stage)
-			{
-			case WELCOME:
-				//chercher dans la Database
-				//resultsFromSearch = fontion de recherche(getAction())
-				stage = RESULTS;
-				break;
+		case WELCOME:
+			//chercher dans la Database
+			//resultsFromSearch = fontion de recherche(getAction())
+			stage = RESULTS;
+			break;
 
-			case RESULTS:
-				//afficher les résultats de la database
+		case RESULTS:
+			//afficher les résultats de la database
 				
-				for (Analyse& analyse : resultsFromRequest)
-				{
-					cout << ++displayerCounter << " : ";
-					analyse.displayHeader();
-				}
-				stage = INTERACT;
-				break;
+			for (Analyse& analyse : resultsFromRequest)
+			{
+				cout << ++displayerCounter << " : ";
+				analyse.displayHeader();
+			}
+			stage = INTERACT;
+			break;
 
-			case INTERACT:
+		case INTERACT:
+			if (inputValue == "0")
+			{
+				stage = LEAVE;
+				break;
+			}
+			else if (inputValue == "1")
+			{
 				try
 				{
 					analyseSelected = stoi(inputValue);
@@ -103,29 +109,21 @@ void SearchInterface::run()
 				if (analyseSelected != 0)
 				{
 					resultsFromRequest[analyseSelected - 1].displayContent();
-
-					if (inputValue == "1")
-					{
-						remove(analyseSelected - 1);
-						stage = WELCOME;
-					}
-					else if (inputValue == "0")
-					{
-						stage = LEAVE;
-					}
 				}
 				else
 				{
 					stage = WELCOME;
 				}
-				break;
-
-			default:
-				stage = LEAVE;
-				break;
+				remove(analyseSelected - 1);
+				stage = WELCOME;
 			}
+			
+			break;
+
+		default:
+			stage = LEAVE;
+			break;
 		}
-		
 	}
 	
 }
