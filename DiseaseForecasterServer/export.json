@@ -1,46 +1,74 @@
-[
-    {
-        "discriminantAttributes": {
-            "continuousAttributes": [
-                {
-                    "id": 2,
-                    "name": "Poids",
-                    "normalIntervals": [
-                        {
-                            "maximum": 80,
-                            "minimum": 60
-                        }
-                    ]
-                }
+{
+    "discriminantAttributes": {
+        "continuousAttributes": [
+            {
+                "id": 2,
+                "name": "Poids",
+                "normalIntervals": [
+                    {
+                        "maximum": 80,
+                        "minimum": 60
+                    }
+                ]
+            }
+        ],
+        "discreteAttributes": [
+            {
+                "id": 1,
+                "name": "Yeux",
+                "normalValues": [
+                    {
+                        "value": 1,
+                        "valueName": "Bleu"
+                    },
+                    {
+                        "value": 2,
+                        "valueName": "Rouge"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Couleur de peau",
+                "normalValues": [
+                    {
+                        "value": 1,
+                        "valueName": "Blanche"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "name": "Yeux",
+                "normalValues": [
+                    {
+                        "value": 1,
+                        "valueName": "Bleu"
+                    },
+                    {
+                        "value": 2,
+                        "valueName": "Rouge"
+                    }
+                ]
+            }
+        ]
+    },
+    "diseases": [
+        {
+            "discriminantAttributes": [
+                1,
+                3,
+                2
             ],
-            "discreteAttributes": [
-                {
-                    "id": 1,
-                    "name": "Yeux",
-                    "normalValues": [
-                        {
-                            "value": 1,
-                            "valueName": "Bleu"
-                        },
-                        {
-                            "value": 2,
-                            "valueName": "Rouge"
-                        }
-                    ]
-                },
-                {
-                    "id": 3,
-                    "name": "Couleur de peau",
-                    "normalValues": [
-                        {
-                            "value": 1,
-                            "valueName": "Blanche"
-                        }
-                    ]
-                }
-            ]
+            "id": 1,
+            "name": "Tetanos"
         },
-        "id": 1,
-        "name": "T�tanos"
-    }
-]
+        {
+            "discriminantAttributes": [
+                1
+            ],
+            "id": 2,
+            "name": "Rubeole"
+        }
+    ]
+}

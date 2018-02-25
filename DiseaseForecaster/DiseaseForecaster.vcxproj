@@ -70,6 +70,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Analyse.cpp" />
+    <ClCompile Include="Attribute.cpp" />
+    <ClCompile Include="ContinuousAttribute.cpp" />
+    <ClCompile Include="CsvParser.cpp" />
+    <ClCompile Include="DbManager.cpp" />
+    <ClCompile Include="DiscreteAttribute.cpp" />
+    <ClCompile Include="Disease.cpp" />
     <ClCompile Include="HealthPrint.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Log.cpp" />
@@ -80,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
+    <ClInclude Include="Attribute.h" />
+    <ClInclude Include="ContinuousAttribute.h" />
+    <ClInclude Include="CsvParser.h" />
+    <ClInclude Include="DbManager.h" />
+    <ClInclude Include="DiscreteAttribute.h" />
+    <ClInclude Include="Disease.h" />
     <ClInclude Include="HealthPrint.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Log.h" />
