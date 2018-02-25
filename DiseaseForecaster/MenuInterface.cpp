@@ -100,16 +100,16 @@ void MenuInterface::run()
 				createInterface(SEARCH_INTERFACE);
 				break;
 			case 4:
-				//LOG
+				system("..\\DiseaseForecaster\\forecaster.log");
 				break;
 
 			case 5:
 				cout << getText("Leave_App");
 				break;
 			case 6:
-				//HELP
-
+				system("..\\DiseaseForecaster\\Manuel.pdf");
 				break;
+
 			default:
 				cout << getText("Unknown_Command") << endl;
 				break;

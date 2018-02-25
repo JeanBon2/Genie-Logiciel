@@ -22,9 +22,10 @@
   "SynchroInterface_Fail": "Echec de la synchronisation.",
 
   "SearchInterface_Search": "Indiquez le nom du patient dont vous souhaitez connaitre les resultats d'analyse, puis validez avec la touche Entree.",
-  "SearchInterface_ResultList":"Voici la liste des analyses correspondant au client dont le nom est %s :",
+  "SearchInterface_ResultList":"Voici la liste des analyses correspondant au patient dont le nom est %s :",
   "SearchInterface_SearchNumber": "Indiquez le numero de l'analyse que vous souhaitez consulter",
   "SearchInterface_Delete": "Appuyez sur \"1\" pour supprimer cette analyse",
+  "Search_Interface_ConfirmDelete" : "L'analyse est supprimée",
 
   "Unknown_Command": "L'instruction saisie ne correspond a aucune action",
   "Leave_App": "Au revoir..."

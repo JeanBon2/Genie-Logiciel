@@ -22,10 +22,14 @@ private:
 	// Methods
 public:
 	// Constructors
-	Analyse(HealthPrint healthPrint, vector<PotentialDisease> diseaese);
+	Analyse(HealthPrint healthPrint, vector<PotentialDisease> diseases);
 
 	// Destructors
 	~Analyse();
+
+	//Others
+	void displayContent();
+	void displayHeader();
 
 };
 

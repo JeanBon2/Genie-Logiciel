@@ -22,3 +22,15 @@ Analyse::~Analyse()
 		cout << "Analyse destructor call" << endl;
 	#endif // DEBUG
 }
+void Analyse::displayContent()
+{
+	healthPrint.displayContent();
+	for (PotentialDisease& potentialDisease : diseases)
+	{
+		potentialDisease.displayContent();
+	}
+}
+void Analyse::displayHeader()
+{
+	cout << healthPrint.getPatientName() << " - " << healthPrint.getPrintDate().toString("dd.MM.yyyy").toUtf8().constData() << endl;
+}

@@ -43,6 +43,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtSql;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -70,12 +71,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Analyse.cpp" />
-    <ClCompile Include="Attribute.cpp" />
-    <ClCompile Include="ContinuousAttribute.cpp" />
-    <ClCompile Include="CsvParser.cpp" />
     <ClCompile Include="DbManager.cpp" />
-    <ClCompile Include="DiscreteAttribute.cpp" />
-    <ClCompile Include="Disease.cpp" />
     <ClCompile Include="HealthPrint.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Log.cpp" />
@@ -86,12 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
-    <ClInclude Include="Attribute.h" />
-    <ClInclude Include="ContinuousAttribute.h" />
-    <ClInclude Include="CsvParser.h" />
     <ClInclude Include="DbManager.h" />
-    <ClInclude Include="DiscreteAttribute.h" />
-    <ClInclude Include="Disease.h" />
     <ClInclude Include="HealthPrint.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Log.h" />
@@ -107,7 +98,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="5.10" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="msvc2017_64" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

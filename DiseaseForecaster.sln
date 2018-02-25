@@ -27,5 +27,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DE9CAE7-2CD5-49ED-B5B4-3290C8EA9373}
+		Qt5Version = 5.10.0
 	EndGlobalSection
 EndGlobal

@@ -69,10 +69,11 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 		texts.emplace(key, value);
 	}
 
-	/*for (auto& test : mapLanguage)
+	/*for (auto& test : texts)
 	{
-	cout << test.first << ":" << test.second << endl;
+		cout << test.first << ":" << test.second << endl;
 	}*/
+
 	return true;
 }
 void Interface::start()

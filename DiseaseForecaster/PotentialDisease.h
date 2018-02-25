@@ -26,6 +26,9 @@ public:
 	// Destructors
 	~PotentialDisease();
 
+	//Others
+	void displayContent();
+
 };
 
 #endif // POTENTIALDISEASE_H
