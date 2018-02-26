@@ -13,6 +13,9 @@ using namespace std;
 #include "Interface.h"
 #include "MenuInterface.h"
 #include "SearchInterface.h"
+#include "LogInterface.h"
+#include "LeaveInterface.h"
+#include "HelpInterface.h"
 #include "Log.h"
 // Constants
 unordered_map <string, string> Interface::texts;
@@ -121,6 +124,18 @@ void Interface::createInterface(const interfaceList interfaceID)
 			break;
 
 		case ANALYSE_INTERFACE:
+			break;
+
+		case LOG_INTERFACE:
+			currentInterface = new LogInterface();
+			break;
+		
+		case LEAVE_INTERFACE:
+			currentInterface = new LeaveInterface();
+			break;
+
+		case HELP_INTERFACE:
+			currentInterface = new HelpInterface();
 			break;
 
 		default:

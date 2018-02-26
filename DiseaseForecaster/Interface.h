@@ -27,7 +27,10 @@ protected:
 		MENU_INTERFACE,
 		ANALYSE_INTERFACE,
 		UPDATE_INTERFACE,
-		SEARCH_INTERFACE
+		SEARCH_INTERFACE,
+		LOG_INTERFACE,
+		LEAVE_INTERFACE,
+		HELP_INTERFACE
 	};
 	static unordered_map< string,  string> texts;
 	static stack<interfaceList> stackInterface;

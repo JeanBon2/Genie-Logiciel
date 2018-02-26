@@ -24,68 +24,97 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Resource Files\Language">
-      <UniqueIdentifier>{85297e57-d025-4854-b419-6bf9561f46c4}</UniqueIdentifier>
+    <Filter Include="Source Files\Header">
+      <UniqueIdentifier>{317d214c-98bc-4ce2-bbbc-136826fce819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sources">
+      <UniqueIdentifier>{6ec47b0a-e931-4225-ba73-6059e086c32e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PotentialDisease.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Analyse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthPrint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Interface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SearchInterface.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Sources</Filter>
     </ClCompile>
     <ClCompile Include="DbManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPrint.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuInterface.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PotentialDisease.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchInterface.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LogInterface.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpInterface.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LeaveInterface.cpp">
+      <Filter>Source Files\Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PotentialDisease.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="SearchInterface.h">
+      <Filter>Source Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="Analyse.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthPrint.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interface.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Log.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuInterface.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SearchInterface.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="DbManager.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthPrint.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInterface.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PotentialDisease.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="LogInterface.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpInterface.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaveInterface.h">
+      <Filter>Source Files\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Language\FR_fr.lng">
-      <Filter>Resource Files\Language</Filter>
+    <Text Include="Ressources\forecaster.log">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\FR_fr.lng">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Ressources\Manuel.pdf">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>

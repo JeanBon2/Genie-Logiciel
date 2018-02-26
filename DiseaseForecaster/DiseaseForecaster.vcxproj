@@ -73,8 +73,11 @@
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="DbManager.cpp" />
     <ClCompile Include="HealthPrint.cpp" />
+    <ClCompile Include="HelpInterface.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="LeaveInterface.cpp" />
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="LogInterface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuInterface.cpp" />
     <ClCompile Include="PotentialDisease.cpp" />
@@ -84,14 +87,21 @@
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="DbManager.h" />
     <ClInclude Include="HealthPrint.h" />
+    <ClInclude Include="HelpInterface.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="LeaveInterface.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="LogInterface.h" />
     <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
     <ClInclude Include="SearchInterface.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Language\FR_fr.lng" />
+    <Text Include="Ressources\forecaster.log" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\FR_fr.lng" />
+    <None Include="Ressources\Manuel.pdf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
