@@ -1,10 +1,7 @@
-#ifndef MENUINTERFACE_H
-#define MENUINTERFACE_H
+#ifndef LOGINTERFACE_H
+#define LOGINTERFACE_H
 //MenuInt.h
 // System include
-using namespace std;
-#include <iostream>
-#include <string>
 
 // Personnal include
 #include "Interface.h"
@@ -14,7 +11,7 @@ using namespace std;
 // Types
 
 // Class
-class MenuInterface : public Interface
+class LogInterface : public Interface
 {
 	// Attributes
 public:
@@ -26,11 +23,11 @@ private:
 	// Methods
 public:
 	// Constructors
-	MenuInterface();
-	MenuInterface(const MenuInterface* x);
+	LogInterface();
+	LogInterface(const LogInterface* x);
 
 	// Destructors
-	~MenuInterface();
+	~LogInterface();
 
 	// Others
 
@@ -42,4 +39,4 @@ private:
 
 };
 
-#endif // XXX_H
+#endif // LOGINTERFACE_H

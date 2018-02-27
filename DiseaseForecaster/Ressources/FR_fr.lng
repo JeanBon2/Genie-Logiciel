@@ -15,11 +15,11 @@
 
   "AnalyseInterface_GetAction":"Indiquez le chemin d'acces au fichier d'empreintes ou au dossier contenant les fichiers d'empreintes que vous souhaitez analyser puis validez avec la touche Entree.",
 
-  "SynchroInterface_Start": "Lancement de la procedure de synchronisation...",
-  "SynchroInterface_Export": "Export des resultats d'analyses a transmettre...",
-  "SynchroInterface_GetModels": "Export des resultats d'analyses a transmettre...",
-  "SynchroInterface_Success": "Synchronisation terminee avec succes.",
-  "SynchroInterface_Fail": "Echec de la synchronisation.",
+  "UpdateInterface_Start": "Lancement de la procedure de synchronisation...",
+  "UpdateInterface_Export": "Export des resultats d'analyses a transmettre...",
+  "UpdateInterface_GetModels": "Export des resultats d'analyses a transmettre...",
+  "UpdateInterface_Success": "Synchronisation terminee avec succes.",
+  "UpdateInterface_Fail": "Echec de la synchronisation.",
 
   "SearchInterface_Search": "Indiquez le nom du patient dont vous souhaitez connaitre les resultats d'analyse, puis validez avec la touche Entree.",
   "SearchInterface_ResultList":"Voici la liste des analyses correspondant au patient dont le nom est %s :",

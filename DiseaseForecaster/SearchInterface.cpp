@@ -28,25 +28,25 @@ SearchInterface::~SearchInterface()
 
 
 // Protected methods
-void SearchInterface::getInterfaceText()
+void SearchInterface::displayInterfaceText()
 {
 	string interfaceText="";
 	switch (stage)
 	{
 		case WELCOME:
-			interfaceText = getText("SearchInterface_Search");
+			interfaceText = getTextFromField("SearchInterface_Search");
 			break;
 		case RESULTS:
-			interfaceText = getText("SearchInterface_ResultList")+"\n";
-			interfaceText += getText("SearchInterface_SearchNumber");
+			interfaceText = getTextFromField("SearchInterface_ResultList")+"\n";
+			interfaceText += getTextFromField("SearchInterface_SearchNumber");
 			break;
 		case INTERACT:
-			interfaceText = getText("SearchInterface_Delete");
-			interfaceText += getText("Interface_Previous") + "\n";
+			interfaceText = getTextFromField("SearchInterface_Delete");
+			interfaceText += getTextFromField("Interface_Previous") + "\n";
 			break;
 
 		default:
-			interfaceText = getText("Unknown_Command") + "\n";
+			interfaceText = getTextFromField("Unknown_Command") + "\n";
 			break;
 	}
 	cout << interfaceText << endl;
@@ -60,7 +60,7 @@ void SearchInterface::run()
 
 	while (stage != LEAVE)
 	{
-		getInterfaceText();
+		displayInterfaceText();
 		inputValue = getAction();
 		
 		switch (stage)
@@ -133,7 +133,7 @@ bool SearchInterface::remove(unsigned int printNumber)
 {
 	//TO DO
 	//CODE POUR SUPPRIMER DE LA DB
-	cout << getText("Search_Interface_ConfirmDelete") << endl;
+	cout << getTextFromField("Search_Interface_ConfirmDelete") << endl;
 	return true;
 }
 

@@ -13,6 +13,9 @@ using namespace std;
 #include "Interface.h"
 #include "MenuInterface.h"
 #include "SearchInterface.h"
+#include "LogInterface.h"
+#include "LeaveInterface.h"
+#include "HelpInterface.h"
 #include "Log.h"
 // Constants
 unordered_map <string, string> Interface::texts;
@@ -38,7 +41,7 @@ Interface::~Interface()
 // Public methods
 bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 {
-	const QString defaultpath = R"(.\Language\Fr_fr.lng)";
+	const QString defaultpath = R"(.\Ressources\Fr_fr.lng)";
 	string key, value;
 	QFile languageFile(QString::fromStdString(path));
 
@@ -89,7 +92,7 @@ void Interface::previous()
 	createInterface(stackInterface.top());	
 }
 
-string Interface::getText(const string keyMessage)
+string Interface::getTextFromField(const string keyMessage)
 {
 	unordered_map< string, string>:: const_iterator  valueMessage = Interface::texts.find(keyMessage);
 	if (valueMessage != texts.end())
@@ -121,6 +124,18 @@ void Interface::createInterface(const interfaceList interfaceID)
 			break;
 
 		case ANALYSE_INTERFACE:
+			break;
+
+		case LOG_INTERFACE:
+			currentInterface = new LogInterface();
+			break;
+		
+		case LEAVE_INTERFACE:
+			currentInterface = new LeaveInterface();
+			break;
+
+		case HELP_INTERFACE:
+			currentInterface = new HelpInterface();
 			break;
 
 		default:

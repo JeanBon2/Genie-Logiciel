@@ -48,7 +48,7 @@ public:
 
 protected:
 
-	void getInterfaceText();
+	void displayInterfaceText();
 	void run();
 	void searchAnalyse(string patientName);
 	bool remove(unsigned int printNumber);

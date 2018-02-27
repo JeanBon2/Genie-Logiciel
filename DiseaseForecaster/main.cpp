@@ -1,14 +1,9 @@
-#include <iostream>
 #include "Log.h"
 #include "Interface.h"
-#include "SearchInterface.h"
-#include "MenuInterface.h"
-
-using namespace std;
 
 int main(int argc, char *argv[])
 {
-	if (Interface::loadMap(R"(.\Language\Fr_fr.lng)"))
+	if (Interface::loadMap(R"(.\Ressources\Fr_fr.lng)"))
 	{
 		Log::info("ça démarre");
 		Interface::start();

@@ -6,7 +6,7 @@ using namespace std;
 #include <vector>
 #include <string>
 #include <stdlib.h>
-#define DEBUG
+
 // Personnal include
 #include "MenuInterface.h"
 #include "Log.h"
@@ -40,22 +40,22 @@ MenuInterface::~MenuInterface()
 // Public methods
 
 // Protected methods
-void MenuInterface::getInterfaceText()
+void MenuInterface::displayInterfaceText()
 {
 	string menuContent = "";
 	string lastUpdateDate = "";
-	menuContent += getText("LastUpdate") + lastUpdateDate + "\n";
-	menuContent += getText("ProductName") + " Version " + getText("Version") + "\n";
+	menuContent += getTextFromField("LastUpdate") + lastUpdateDate + "\n";
+	menuContent += getTextFromField("ProductName") + " Version " + getTextFromField("Version") + "\n";
 	menuContent += '\n';
-	menuContent += "1: " + getText("MenuInterface_AnalysePrint") + "\n";
-	menuContent += "2: " + getText("MenuInterface_Synchronisation") + "\n";
-	menuContent += "3: " + getText("MenuInterface_Search") + "\n";
+	menuContent += to_string(ANALYSE_INTERFACE) + " : " + getTextFromField("MenuInterface_AnalysePrint") + "\n";
+	menuContent += to_string(UPDATE_INTERFACE) + " : " + getTextFromField("MenuInterface_Synchronisation") + "\n";
+	menuContent += to_string(SEARCH_INTERFACE) + " : " + getTextFromField("MenuInterface_Search") + "\n";
 	menuContent += "\n";
-	menuContent += "4: " + getText("MenuInterface_Log") + "\n";
-	menuContent += "5: " + getText("MenuInterface_Leave") + "\n";
-	menuContent += "6: " + getText("MenuInterface_Help") + "\n";
+	menuContent += to_string(LOG_INTERFACE) + " : " + getTextFromField("MenuInterface_Log") + "\n";
+	menuContent += to_string(LEAVE_INTERFACE) + " : " + getTextFromField("MenuInterface_Leave") + "\n";
+	menuContent += to_string(HELP_INTERFACE) + " : " + getTextFromField("MenuInterface_Help") + "\n";
 	menuContent += "\n";
-	menuContent += getText("MenuInterface_GetAction") + "\n";
+	menuContent += getTextFromField("MenuInterface_GetAction") + "\n";
 
 	cout << menuContent;
 }
@@ -65,13 +65,13 @@ void MenuInterface::run()
 {
 	string choiceMenu="";
 	int actionToDo;
-	
+	bool leave = false;
 	
 
-	while (choiceMenu != "5")
+	while (!leave)
 	{
 		system("cls");
-		getInterfaceText();
+		displayInterfaceText();
 		choiceMenu = getAction();
 		try
 		{
@@ -99,19 +99,21 @@ void MenuInterface::run()
 				//Search
 				createInterface(SEARCH_INTERFACE);
 				break;
-			case 4:
-				system("..\\DiseaseForecaster\\forecaster.log");
+			case LOG_INTERFACE:
+				createInterface(LOG_INTERFACE);
 				break;
 
-			case 5:
-				cout << getText("Leave_App");
+			case LEAVE_INTERFACE:
+				createInterface(LEAVE_INTERFACE);
+				leave = true;
 				break;
-			case 6:
-				system("..\\DiseaseForecaster\\Manuel.pdf");
+
+			case HELP_INTERFACE:
+				createInterface(HELP_INTERFACE);
 				break;
 
 			default:
-				cout << getText("Unknown_Command") << endl;
+				cout << getTextFromField("Unknown_Command") << endl;
 				break;
 		}
 	}

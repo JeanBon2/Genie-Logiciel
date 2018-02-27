@@ -1,10 +1,7 @@
-#ifndef MENUINTERFACE_H
-#define MENUINTERFACE_H
+#ifndef LEAVEINTERFACE_H
+#define LEAVEINTERFACE_H
 //MenuInt.h
 // System include
-using namespace std;
-#include <iostream>
-#include <string>
 
 // Personnal include
 #include "Interface.h"
@@ -14,7 +11,7 @@ using namespace std;
 // Types
 
 // Class
-class MenuInterface : public Interface
+class LeaveInterface : public Interface
 {
 	// Attributes
 public:
@@ -26,11 +23,11 @@ private:
 	// Methods
 public:
 	// Constructors
-	MenuInterface();
-	MenuInterface(const MenuInterface* x);
+	LeaveInterface();
+	LeaveInterface(const LeaveInterface* x);
 
 	// Destructors
-	~MenuInterface();
+	~LeaveInterface();
 
 	// Others
 
@@ -42,4 +39,4 @@ private:
 
 };
 
-#endif // XXX_H
+#endif // LEAVEINTERFACE_H
