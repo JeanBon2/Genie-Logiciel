@@ -92,7 +92,7 @@ void Interface::previous()
 	createInterface(stackInterface.top());	
 }
 
-string Interface::getText(const string keyMessage)
+string Interface::getTextFromField(const string keyMessage)
 {
 	unordered_map< string, string>:: const_iterator  valueMessage = Interface::texts.find(keyMessage);
 	if (valueMessage != texts.end())

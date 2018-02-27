@@ -35,13 +35,13 @@ LeaveInterface::~LeaveInterface()
 // Public methods
 
 // Protected methods
-void LeaveInterface::getInterfaceText()
+void LeaveInterface::displayInterfaceText()
 {
-	cout << getText("Leave_App");
+	cout << getTextFromField("Leave_App");
 }
 
 
 void LeaveInterface::run()
 {
-	getInterfaceText();
+	displayInterfaceText();
 }

@@ -40,22 +40,22 @@ MenuInterface::~MenuInterface()
 // Public methods
 
 // Protected methods
-void MenuInterface::getInterfaceText()
+void MenuInterface::displayInterfaceText()
 {
 	string menuContent = "";
 	string lastUpdateDate = "";
-	menuContent += getText("LastUpdate") + lastUpdateDate + "\n";
-	menuContent += getText("ProductName") + " Version " + getText("Version") + "\n";
+	menuContent += getTextFromField("LastUpdate") + lastUpdateDate + "\n";
+	menuContent += getTextFromField("ProductName") + " Version " + getTextFromField("Version") + "\n";
 	menuContent += '\n';
-	menuContent += to_string(ANALYSE_INTERFACE) + " : " + getText("MenuInterface_AnalysePrint") + "\n";
-	menuContent += to_string(UPDATE_INTERFACE) + " : " + getText("MenuInterface_Synchronisation") + "\n";
-	menuContent += to_string(SEARCH_INTERFACE) + " : " + getText("MenuInterface_Search") + "\n";
+	menuContent += to_string(ANALYSE_INTERFACE) + " : " + getTextFromField("MenuInterface_AnalysePrint") + "\n";
+	menuContent += to_string(UPDATE_INTERFACE) + " : " + getTextFromField("MenuInterface_Synchronisation") + "\n";
+	menuContent += to_string(SEARCH_INTERFACE) + " : " + getTextFromField("MenuInterface_Search") + "\n";
 	menuContent += "\n";
-	menuContent += to_string(LOG_INTERFACE) + " : " + getText("MenuInterface_Log") + "\n";
-	menuContent += to_string(LEAVE_INTERFACE) + " : " + getText("MenuInterface_Leave") + "\n";
-	menuContent += to_string(HELP_INTERFACE) + " : " + getText("MenuInterface_Help") + "\n";
+	menuContent += to_string(LOG_INTERFACE) + " : " + getTextFromField("MenuInterface_Log") + "\n";
+	menuContent += to_string(LEAVE_INTERFACE) + " : " + getTextFromField("MenuInterface_Leave") + "\n";
+	menuContent += to_string(HELP_INTERFACE) + " : " + getTextFromField("MenuInterface_Help") + "\n";
 	menuContent += "\n";
-	menuContent += getText("MenuInterface_GetAction") + "\n";
+	menuContent += getTextFromField("MenuInterface_GetAction") + "\n";
 
 	cout << menuContent;
 }
@@ -71,7 +71,7 @@ void MenuInterface::run()
 	while (!leave)
 	{
 		system("cls");
-		getInterfaceText();
+		displayInterfaceText();
 		choiceMenu = getAction();
 		try
 		{
@@ -113,7 +113,7 @@ void MenuInterface::run()
 				break;
 
 			default:
-				cout << getText("Unknown_Command") << endl;
+				cout << getTextFromField("Unknown_Command") << endl;
 				break;
 		}
 	}

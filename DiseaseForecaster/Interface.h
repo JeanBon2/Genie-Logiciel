@@ -55,9 +55,9 @@ public:
 protected:
 	void previous();
 
-	string getText(string keyMessage);
+	string getTextFromField(string keyMessage);
 	static void createInterface(const interfaceList interfaceID);
-	virtual void getInterfaceText()=0;
+	virtual void displayInterfaceText()=0;
 
 	string getAction();
 	virtual void run()=0;

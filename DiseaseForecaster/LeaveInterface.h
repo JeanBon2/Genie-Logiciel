@@ -32,7 +32,7 @@ public:
 	// Others
 
 protected:
-	void getInterfaceText();
+	void displayInterfaceText();
 	void run();
 
 private:

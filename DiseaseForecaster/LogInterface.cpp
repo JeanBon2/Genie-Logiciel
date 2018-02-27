@@ -35,7 +35,7 @@ LogInterface::~LogInterface()
 // Public methods
 
 // Protected methods
-void LogInterface::getInterfaceText()
+void LogInterface::displayInterfaceText()
 {}
 
 

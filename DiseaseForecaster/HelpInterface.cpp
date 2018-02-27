@@ -35,7 +35,7 @@ HelpInterface::~HelpInterface()
 // Public methods
 
 // Protected methods
-void HelpInterface::getInterfaceText()
+void HelpInterface::displayInterfaceText()
 {}
 
 
