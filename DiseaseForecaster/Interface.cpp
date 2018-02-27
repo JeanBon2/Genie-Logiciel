@@ -41,7 +41,7 @@ Interface::~Interface()
 // Public methods
 bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 {
-	const QString defaultpath = R"(.\Language\Fr_fr.lng)";
+	const QString defaultpath = R"(.\Ressources\Fr_fr.lng)";
 	string key, value;
 	QFile languageFile(QString::fromStdString(path));
 

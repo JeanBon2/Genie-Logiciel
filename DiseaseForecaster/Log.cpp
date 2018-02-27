@@ -2,10 +2,11 @@
 #include <fstream>
 #include <ctime>
 #include <string>
+#include <iomanip> 
 
 #include "Log.h"
 
-const string Log::path = "forecaster.log";
+const string Log::path = ".\\Ressources\\forecaster.log";
 
 Log::Log()
 {}
@@ -22,14 +23,14 @@ bool Log::info(const string text)
 
 		time(&getTime);
 		currentTimeUTC = gmtime(&getTime);
-
+		
         cout << "[" << 
 			currentTimeUTC->tm_year+1900 << "-" <<
-			currentTimeUTC->tm_mon << "-" <<
-			currentTimeUTC->tm_mday << " " <<
-			currentTimeUTC->tm_hour << ":" <<
-			currentTimeUTC->tm_min << ":" <<
-			currentTimeUTC->tm_sec	<< "] : " << text << endl;
+			setfill('0') << setw(2) << currentTimeUTC->tm_mon << "-" <<// A rendre plus propre
+			setfill('0') << setw(2) << currentTimeUTC->tm_mday << " " <<
+			setfill('0') << setw(2) << currentTimeUTC->tm_hour << ":" <<
+			setfill('0') << setw(2) << currentTimeUTC->tm_min << ":" <<
+			setfill('0') << setw(2) << currentTimeUTC->tm_sec	<< "] : " << text << endl;
 
 
         cout.rdbuf(oldCoutBuffer);
