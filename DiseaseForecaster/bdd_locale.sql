@@ -38,10 +38,10 @@ CREATE TABLE ContinuousNormalValues (
 );
 
 CREATE TABLE DiscreteNormalValues (
-	DiscreteNormalValues integer primary key autoincrement,
+	discreteNormalValues integer primary key autoincrement,
 	attributeId integer NOT NULL,
 	normalValue real NOT NULL,
-	normalValueName text NOT NULL,
+	normalValueName text,
 	FOREIGN KEY(attributeId) REFERENCES Attributes(attributeId)
 );
 
@@ -58,7 +58,8 @@ CREATE TABLE HealthPrintAttributeValues (
 	healthPrintAttributeValuesId integer primary key autoincrement,
 	healthPrintId integer NOT NULL,
 	attributeId integer NOT NULL,
-	attributeValue double NOT NULL,
+	attributeValue real,
+	valueName text,
 	FOREIGN KEY(healthPrintId) REFERENCES HealthPrints(healthPrintId),
 	FOREIGN KEY(attributeId) REFERENCES Attributes(attributeId)
 );
