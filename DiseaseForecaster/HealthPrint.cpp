@@ -1,11 +1,14 @@
 // System include
 #include <iostream>
 #include <iterator>
+#include <string>
 #include <QDate>
+#include <vector>
 using namespace std;
 
 // Personnal include
 #include "HealthPrint.h"
+#include "PotentialDisease.h"
 
 // Constants
 
@@ -52,5 +55,16 @@ QDate HealthPrint::getPrintDate()
 // Protected methods
 void HealthPrint::analyse()
 {
+	// Pour chaque maladie dans la base de données faire
 
+	// SELECT A FAIRE
+	// select potentialDiseaseId, analyseId, diseaseId, matchingRate from PotentialDiseases
+	// select potentialDiseasesAndLinkedAttributesId, potentialDiseaseId from AbnormalAttributes
+
+	/*
+	for (PotentialDisease&& diseaese : collection_to_loop)
+	{
+		// Mettre nombre d’attributs anormaux à 0
+
+	}*/
 }

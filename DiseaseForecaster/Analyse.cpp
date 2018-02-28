@@ -1,5 +1,6 @@
 // System include
 #include <iostream>
+#include <string>
 using namespace std;
 
 // Personnal include

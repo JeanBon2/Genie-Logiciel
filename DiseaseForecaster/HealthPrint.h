@@ -7,6 +7,10 @@ using namespace std;
 #include <iostream>
 #include <map>
 #include <QDate>
+#include <vector>
+
+// Personnal include
+#include "PotentialDisease.h"
 
 // Class
 class HealthPrint
