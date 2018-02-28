@@ -3,6 +3,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <set>
+#include <algorithm>
 
 #include "CsvParser.h"
 #include "Disease.h"
@@ -86,6 +87,36 @@ bool exportDatabase(vector<Disease>& diseases) {
 	document.insert("discriminantAttributes", discriminantAttributesJson);
 
 	file.write(QJsonDocument(document).toJson());
+
+	return true;
+}
+bool importModel(const string& descriptionPath, const string& healtphrintsPath)
+{
+	QFile descriptionFile(QString::fromStdString(descriptionPath));
+	vector<vector<string>> attributes = CsvParser::staticParse(descriptionPath);
+	if (attributes.empty())
+	{
+		// LOG
+		return false;
+	}
+	vector<string>& descriptions = attributes[0];
+	if (descriptions.size() != 2)
+	{
+		// LOG
+		return false;
+	}
+
+	string& attributeNameString = descriptions[0];
+	string attributeTypeString = descriptions[1];
+	std::transform(attributeNameString.begin(), attributeNameString.end(), attributeNameString.begin(), ::tolower);
+	std::transform(attributeTypeString.begin(), attributeTypeString.end(), attributeTypeString.begin(), ::tolower);
+	if (attributeNameString != "AttributeName" || attributeTypeString != "AttributeType")
+	{
+		// LOG
+		return false;
+	}
+
+
 
 	return true;
 }
