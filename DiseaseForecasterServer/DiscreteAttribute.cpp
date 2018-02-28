@@ -8,7 +8,7 @@ using namespace std;
 // Constants
 
 // Constructors
-DiscreteAttribute::DiscreteAttribute(const int id, const string& name, const vector<value>&& normalValues) : Attribute(id, name, true), normalValues(normalValues)
+DiscreteAttribute::DiscreteAttribute(const int id, const string& name, const vector<string>&& normalValues) : Attribute(id, name, true), normalValues(normalValues)
 {
 #ifdef DEBUG
 	cout << "DiscreteAttribute constructor call" << endl;
@@ -24,15 +24,15 @@ DiscreteAttribute::~DiscreteAttribute()
 }
 
 // Public methods
-void DiscreteAttribute::addNormalValue(const value& normalValue)
+void DiscreteAttribute::addNormalValue(const string& normalValue)
 {
 	normalValues.push_back(normalValue);
 }
-bool DiscreteAttribute::isInNormalValues(const value& value)
+bool DiscreteAttribute::isInNormalValues(const string& value)
 {
 	for (auto&& normalValue : normalValues)
 	{
-		if (normalValue.first == value.first && normalValue.second == value.second)
+		if (normalValue == value)
 		{
 			return true;
 		}

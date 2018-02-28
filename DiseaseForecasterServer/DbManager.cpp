@@ -119,12 +119,11 @@ bool DbManager::insertIntoDatabase(const shared_ptr<Attribute> attribute)
 bool DbManager::insertIntoDatabase(const DiscreteAttribute& attribute)
 {
 	QSqlQuery query;
-	query.prepare("INSERT INTO DiscreteNormalValues (attributeId, normalValue, normalValueName) VALUES (:id, :value, :valueName)");
+	query.prepare("INSERT INTO DiscreteNormalValues (attributeId, normalValue) VALUES (:id, :value)");
 	for (auto&& normalValue : attribute.getNormalValues())
 	{
 		query.bindValue(":id", QString::number(attribute.getId()));
-		query.bindValue(":valueName", QString::fromStdString(normalValue.first));
-		query.bindValue(":value", QString::number(normalValue.second));
+		query.bindValue(":value", QString::fromStdString(normalValue));
 		if (!query.exec())
 		{
 			return false;
@@ -232,26 +231,56 @@ vector<interval> DbManager::getNormalIntervalsForContinuousAttribute(int attribu
 	}
 	return normalIntervals;
 }
-vector<value> DbManager::getNormalValuesForDiscreteAttribute(int attributeId)
+vector<string> DbManager::getNormalValuesForDiscreteAttribute(int attributeId)
 {
-	vector<value> normalValues;
+	vector<string> normalValues;
 
 	QSqlQuery query;
-	query.prepare("SELECT normalValue, normalValueName FROM DiscreteNormalValues WHERE attributeId = :attributeId");
+	query.prepare("SELECT normalValue FROM DiscreteNormalValues WHERE attributeId = :attributeId");
 	query.bindValue(":attributeId", attributeId);
 	if (query.exec())
 	{
 		QSqlRecord record = query.record();
 		const int indexNormalValue = record.indexOf("normalValue");
-		const int indexNormalValueName = record.indexOf("normalValueName");
 		while (query.next())
 		{
-			double normalValue = query.value(indexNormalValue).toDouble();
-			string normalValueName = query.value(indexNormalValueName).toString().toUtf8().constData();
-			normalValues.emplace_back(normalValueName, normalValue);
+			string normalValue = query.value(indexNormalValue).toString().toUtf8().constData();
+			normalValues.emplace_back(normalValue);
 		}
 	}
 	return normalValues;
+}
+
+vector<shared_ptr<Attribute>> DbManager::getAttributes()
+{
+	vector<shared_ptr<Attribute>> attributes;
+
+	QSqlQuery query;
+	query.prepare("SELECT attributeId, name, discrete FROM Attributes;");
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		const int indexAttributeId = query.record().indexOf("attributeId");
+		const int indexName = query.record().indexOf("name");
+		const int indexDiscrete = query.record().indexOf("discrete");
+		while (query.next())
+		{
+			const int attributeId = query.value(indexAttributeId).toInt();
+			const string name = query.value(indexName).toString().toUtf8().constData();
+			const bool discrete = query.value(indexDiscrete).toBool();
+			if (discrete)
+			{
+				attributes.emplace_back(std::static_pointer_cast<Attribute>(
+					std::make_shared<DiscreteAttribute>(attributeId, name, getNormalValuesForDiscreteAttribute(attributeId))));
+			}
+			else
+			{
+				attributes.emplace_back(std::static_pointer_cast<Attribute>(
+					std::make_shared<ContinuousAttribute>(attributeId, name, getNormalIntervalsForContinuousAttribute(attributeId))));
+			}
+		}
+	}
+	return attributes;
 }
 
 void DbManager::wipeData()

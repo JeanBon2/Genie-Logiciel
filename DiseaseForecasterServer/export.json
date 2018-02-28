@@ -1,5 +1,5 @@
 {
-    "discriminantAttributes": {
+    "attributes": {
         "continuousAttributes": [
             {
                 "id": 2,
@@ -17,38 +17,15 @@
                 "id": 1,
                 "name": "Yeux",
                 "normalValues": [
-                    {
-                        "value": 1,
-                        "valueName": "Bleu"
-                    },
-                    {
-                        "value": 2,
-                        "valueName": "Rouge"
-                    }
+                    "Bleu",
+                    "Rouge"
                 ]
             },
             {
                 "id": 3,
                 "name": "Couleur de peau",
                 "normalValues": [
-                    {
-                        "value": 1,
-                        "valueName": "Blanche"
-                    }
-                ]
-            },
-            {
-                "id": 1,
-                "name": "Yeux",
-                "normalValues": [
-                    {
-                        "value": 1,
-                        "valueName": "Bleu"
-                    },
-                    {
-                        "value": 2,
-                        "valueName": "Rouge"
-                    }
+                    "Blanche"
                 ]
             }
         ]
