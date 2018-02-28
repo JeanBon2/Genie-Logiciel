@@ -12,6 +12,7 @@ using namespace std;
 // Personnal include
 #include "Interface.h"
 #include "MenuInterface.h"
+#include "UpdateInterface.h"
 #include "SearchInterface.h"
 #include "LogInterface.h"
 #include "LeaveInterface.h"
@@ -121,6 +122,7 @@ void Interface::createInterface(const interfaceList interfaceID)
 			break;
 
 		case UPDATE_INTERFACE:
+			currentInterface = new UpdateInterface();
 			break;
 
 		case ANALYSE_INTERFACE:

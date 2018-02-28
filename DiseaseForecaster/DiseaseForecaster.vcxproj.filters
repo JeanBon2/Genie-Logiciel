@@ -68,6 +68,9 @@
     <ClCompile Include="LeaveInterface.cpp">
       <Filter>Source Files\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="UpdateInterface.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SearchInterface.h">
@@ -105,6 +108,9 @@
     </ClInclude>
     <ClInclude Include="tests\catch.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateInterface.h">
+      <Filter>Source Files\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
