@@ -2,7 +2,6 @@
 #define DBMANAGER_H
 
 // System include
-#include <iostream>
 #include <QSqlDatabase>
 using namespace std;
 
