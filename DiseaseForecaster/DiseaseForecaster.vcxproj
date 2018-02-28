@@ -95,6 +95,7 @@
     <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
     <ClInclude Include="SearchInterface.h" />
+    <ClInclude Include="tests\catch.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Ressources\forecaster.log" />

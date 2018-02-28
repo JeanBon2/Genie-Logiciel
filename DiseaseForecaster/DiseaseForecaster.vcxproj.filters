@@ -24,11 +24,11 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Source Files\Header">
-      <UniqueIdentifier>{317d214c-98bc-4ce2-bbbc-136826fce819}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Sources">
       <UniqueIdentifier>{6ec47b0a-e931-4225-ba73-6059e086c32e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Header">
+      <UniqueIdentifier>{317d214c-98bc-4ce2-bbbc-136826fce819}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,37 +71,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SearchInterface.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="Analyse.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="DbManager.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="HealthPrint.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="Interface.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="Log.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="MenuInterface.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="PotentialDisease.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="LogInterface.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="HelpInterface.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="LeaveInterface.h">
-      <Filter>Source Files\Header</Filter>
+      <Filter>Header Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\catch.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

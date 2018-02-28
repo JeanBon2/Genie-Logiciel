@@ -3,6 +3,7 @@
 
 // System include
 #include <QSqlDatabase>
+#include <string>
 using namespace std;
 
 // Personnal include
@@ -30,7 +31,7 @@ public:
 	// Others
 	bool insertIntoDatabase(const Analyse& analyse);
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
-	vector<Analyse> getAnalyseResults();
+	vector<Analyse> getAnalyseResults(string patientName);
 	
 	void wipeData();
 
