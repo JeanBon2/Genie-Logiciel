@@ -4,7 +4,6 @@
 
 // System include
 using namespace std;
-#include <iostream>
 #include <map>
 
 // Class
@@ -13,7 +12,8 @@ class PotentialDisease
 	// Attributes
 private:
 	//double privateAttribute;
-	map<string, double> attributes;
+	map<string, double> continuousAttributesValues;
+	map<string, string> discreteAttributesValues;
 	string name;
 	double matchingRate;
 
@@ -21,7 +21,7 @@ private:
 	// Methods
 public:
 	// Constructors
-	PotentialDisease( string name, double matchingRate, map<string, double> attriutes);
+	PotentialDisease(string name, double matchingRate, map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues);
 
 	// Destructors
 	~PotentialDisease();
