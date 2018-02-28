@@ -82,6 +82,7 @@
     <ClCompile Include="MenuInterface.cpp" />
     <ClCompile Include="PotentialDisease.cpp" />
     <ClCompile Include="SearchInterface.cpp" />
+    <ClCompile Include="UpdateInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
     <ClInclude Include="SearchInterface.h" />
+    <ClInclude Include="UpdateInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Ressources\forecaster.log" />
