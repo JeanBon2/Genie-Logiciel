@@ -1,7 +1,9 @@
 // System include
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <QDate>
+
 using namespace std;
 
 // Personnal include
@@ -10,8 +12,10 @@ using namespace std;
 // Constants
 
 // Constructors
-HealthPrint::HealthPrint(map<string, double> attributes, string patientName, string doctorName, string printDate, int sensorId) : 
-	attributes(attributes), patientName(patientName), doctorName(doctorName), sensorId(sensorId)
+HealthPrint::HealthPrint(map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues,
+	string patientName, string doctorName, string printDate, int sensorId) :
+	continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues), 
+	patientName(patientName), doctorName(doctorName), sensorId(sensorId)
 {
 	#ifdef DEBUG
 		cout << "HealthPrint constructor call" << endl;
@@ -34,9 +38,13 @@ void HealthPrint::displayContent()
 	cout << "Doctor name :" << doctorName << endl;
 	cout << "Patient name : " << patientName << endl;
 	
-	for (auto const& attribute : attributes)
+	for (auto const& continuousAttributeValue : continuousAttributesValues)
 	{
-		cout << attribute.first << " : " << attribute.second << endl;
+		cout << continuousAttributeValue.first << " : " << continuousAttributeValue.second << endl;
+	}
+	for (auto const& discreteAttributeValue : discreteAttributesValues)
+	{
+		cout << discreteAttributeValue.first << " : " << discreteAttributeValue.second << endl;
 	}
 }
 
