@@ -1,20 +1,21 @@
 // System include
 #include <iostream>
 #include <iterator>
-#include <string>
+#include <map>
 #include <QDate>
-#include <vector>
+
 using namespace std;
 
 // Personnal include
 #include "HealthPrint.h"
-#include "PotentialDisease.h"
 
 // Constants
 
 // Constructors
-HealthPrint::HealthPrint(map<string, double> attributes, string patientName, string doctorName, string printDate, int sensorId) : 
-	attributes(attributes), patientName(patientName), doctorName(doctorName), sensorId(sensorId)
+HealthPrint::HealthPrint(map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues,
+	string patientName, string doctorName, string printDate, int sensorId) :
+	continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues), 
+	patientName(patientName), doctorName(doctorName), sensorId(sensorId)
 {
 	#ifdef DEBUG
 		cout << "HealthPrint constructor call" << endl;
@@ -37,9 +38,13 @@ void HealthPrint::displayContent()
 	cout << "Doctor name :" << doctorName << endl;
 	cout << "Patient name : " << patientName << endl;
 	
-	for (auto const& attribute : attributes)
+	for (auto const& continuousAttributeValue : continuousAttributesValues)
 	{
-		cout << attribute.first << " : " << attribute.second << endl;
+		cout << continuousAttributeValue.first << " : " << continuousAttributeValue.second << endl;
+	}
+	for (auto const& discreteAttributeValue : discreteAttributesValues)
+	{
+		cout << discreteAttributeValue.first << " : " << discreteAttributeValue.second << endl;
 	}
 }
 
@@ -55,16 +60,5 @@ QDate HealthPrint::getPrintDate()
 // Protected methods
 void HealthPrint::analyse()
 {
-	// Pour chaque maladie dans la base de données faire
 
-	// SELECT A FAIRE
-	// select potentialDiseaseId, analyseId, diseaseId, matchingRate from PotentialDiseases
-	// select potentialDiseasesAndLinkedAttributesId, potentialDiseaseId from AbnormalAttributes
-
-	/*
-	for (PotentialDisease&& diseaese : collection_to_loop)
-	{
-		// Mettre nombre d’attributs anormaux à 0
-
-	}*/
 }

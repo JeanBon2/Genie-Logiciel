@@ -4,7 +4,6 @@
 
 // System include
 using namespace std;
-#include <iostream>
 #include <map>
 #include <QDate>
 #include <vector>
@@ -17,7 +16,8 @@ class HealthPrint
 {
 	// Attributes
 protected:
-	map<string, double> attributes;
+	map<string, double> continuousAttributesValues;
+	map<string, string> discreteAttributesValues;
 	string patientName;
 	string doctorName;
 	QDate printDate;
@@ -26,7 +26,8 @@ protected:
 	// Methods
 public:
 	// Constructors
-	HealthPrint(map<string, double> attributes, string patientName, string doctorName, string printDate, int snesorId);
+	HealthPrint(map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues,
+				string patientName, string doctorName, string printDate, int sensorId);
 
 	// Destructors
 	~HealthPrint();
