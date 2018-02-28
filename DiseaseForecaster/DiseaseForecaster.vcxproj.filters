@@ -68,6 +68,9 @@
     <ClCompile Include="LeaveInterface.cpp">
       <Filter>Source Files\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="UpdateInterface.cpp">
+      <Filter>Source Files\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SearchInterface.h">
@@ -101,6 +104,9 @@
       <Filter>Source Files\Header</Filter>
     </ClInclude>
     <ClInclude Include="LeaveInterface.h">
+      <Filter>Source Files\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateInterface.h">
       <Filter>Source Files\Header</Filter>
     </ClInclude>
   </ItemGroup>
