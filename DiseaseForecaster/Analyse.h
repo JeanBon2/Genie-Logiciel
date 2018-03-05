@@ -16,13 +16,14 @@ class Analyse
 {
 	// Attributes
 private:
+	int id;
 	HealthPrint healthPrint;
 	vector<PotentialDisease> diseases;
 
 	// Methods
 public:
 	// Constructors
-	Analyse(HealthPrint healthPrint, vector<PotentialDisease> diseases);
+	Analyse(int id, HealthPrint healthPrint, vector<PotentialDisease> diseases = vector<PotentialDisease>());
 
 	// Destructors
 	~Analyse();

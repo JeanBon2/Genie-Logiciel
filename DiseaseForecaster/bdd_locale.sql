@@ -1,25 +1,3 @@
-schema_bdd_locale.sql
-M
-A
-Type
-SQL
-Taille
-3 Ko (2 730 octets)
-Espace de stockage utilisé
-0 octetVous n'êtes pas le propriétaire
-Emplacement
-Code
-Propriétaire
-Maxence Cornaton
-Modifié
-le 11:31 par Maxence Cornaton
-Ouvert
-le 11:32 par moi
-Créé le
-14 févr. 2018
-Ajouter une description
-Les lecteurs peuvent télécharger
-
 DROP TABLE IF EXISTS AbnormalAttributes;
 DROP TABLE IF EXISTS HealthPrintAttributeValues;
 DROP TABLE IF EXISTS DiscreteNormalValues;

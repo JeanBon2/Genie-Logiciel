@@ -51,20 +51,26 @@ bool DbManager::insertIntoDatabase(const vector<Analyse>& analyses)
 }
 vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 {
+	//const QString sqlQuery = "SELECT a.analyseId,\
+	//	h.patientName, h.doctorName, h.printDate,\
+	//	p.matchingRate,\
+	//	d.diseaseName,\
+	//	hpav.attributeValue, hpav.valueName,\
+	//	att.name, att.discrete\
+	//	FROM Analyses a INNER JOIN HealthPrints h ON a.healthPrintId = h.healthPrintId\
+	//	INNER JOIN PotentialDiseases p ON a.analyseId = p.analyseId\
+	//	INNER JOIN Diseases d ON p.diseaseId = d.diseaseId\
+	//	INNER JOIN AbnormalAttributes abatt ON p.potentialDiseaseId = abatt.potentialDiseaseId\
+	//	INNER JOIN HealthPrintAttributeValues hpav ON abatt.healthPrintAttributeValuesId = hpav.healthPrintAttributeValuesId\
+	//	INNER JOIN Attributes att ON hpav.attributeId = att.attributeId\
+	//	WHERE h.patientName = :patientName\
+	//	ORDER BY a.analyseId, p.potentialDiseaseId, h.printDate;";
+
+	// Without patientName, for tests
 	const QString sqlQuery = "SELECT a.analyseId,\
-		h.patientName, h.doctorName, h.printDate,\
-		p.matchingRate,\
-		d.diseaseName,\
-		hpav.attributeValue, hpav.valueName,\
-		att.name, att.discrete\
+		h.healthPrintId, h.patientName, h.doctorName, h.printDate,h.sensorId\
 		FROM Analyses a INNER JOIN HealthPrints h ON a.healthPrintId = h.healthPrintId\
-		INNER JOIN PotentialDiseases p ON a.analyseId = p.analyseId\
-		INNER JOIN Diseases d ON p.diseaseId = d.diseaseId\
-		INNER JOIN AbnormalAttributes abatt ON p.potentialDiseaseId = abatt.potentialDiseaseId\
-		INNER JOIN HealthPrintAttributeValues hpav ON abatt.healthPrintAttributeValuesId = hpav.healthPrintAttributeValuesId\
-		INNER JOIN Attributes att ON hpav.attributeId = att.attributeId\
-		WHERE h.patientName = :patientName\
-		ORDER BY a.analyseId, p.potentialDiseaseId, h.printDate;";
+		ORDER BY a.analyseId, h.printDate;";
 	vector<Analyse> analysesLists;
 	map<string, double> continuousAttributesValues;
 	map<string, string> discreteAttributesValues;
@@ -77,35 +83,27 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 	{
 		QSqlRecord record = query.record();
 		//empreintes
-		const unsigned int indexAnalyseId = record.indexOf("a.analyseId");
-		const unsigned int indexPatientName = record.indexOf("h.patientName");
-		const unsigned int indexDoctorName = record.indexOf("h.doctorName");
-		const unsigned int indexPrintDate = record.indexOf("h.printDate");
-		//
-		const unsigned int indexMatchingRate = record.indexOf("p.matchingRate");
-		const unsigned int indexDiseaseName = record.indexOf("d.diseaseName");
-		const unsigned int indexDiscreteAttribute = record.indexOf("att.discrete");
-		const unsigned int indexAttributeValue = record.indexOf("hpav.attributeValue");
-		const unsigned int indexValueName = record.indexOf("hpav.valueName");
-		const unsigned int indexAttributeName = record.indexOf("att.name");
+		const unsigned int indexAnalyseId = record.indexOf("analyseId");
+		const unsigned int indexHealthPrintId = record.indexOf("healthPrintId");
+		const unsigned int indexPatientName = record.indexOf("patientName");
+		const unsigned int indexDoctorName = record.indexOf("doctorName");
+		const unsigned int indexPrintDate = record.indexOf("printDate");
+		const unsigned int indexSensorId = record.indexOf("sensorId");
 		
 		while (query.next())
 		{
 
-			const unsigned int anlayseIdValue = query.value(indexAnalyseId).toInt();
+			const unsigned int analyseIdValue = query.value(indexAnalyseId).toInt();
+			const unsigned int healthPrintIdValue = query.value(indexAnalyseId).toInt();
 			const string patientNameValue = query.value(indexPatientName).toString().toStdString();
 			const string doctorNameValue = query.value(indexDoctorName).toString().toStdString();
 			const string printDateValue = query.value(indexPrintDate).toString().toStdString();
+			const unsigned int sensorIdValue = query.value(indexSensorId).toInt();
 
-			const double matchingRateValue = query.value(indexMatchingRate).toDouble();
-			const string diseaseNameValue = query.value(indexDiseaseName).toString().toStdString();
+			const HealthPrint healthPrint(healthPrintIdValue, patientNameValue, doctorNameValue, printDateValue, sensorIdValue);
+			Analyse analyse(analyseIdValue, healthPrint, getPotentialDiseaseForAnalyse(analyseIdValue));
 
-			const bool discreteAttributeValue = query.value(indexDiscreteAttribute).toBool();
-			const string attributeNameValue = query.value(indexAttributeName).toString().toStdString();
-			// à terminer
-			
-
-			//diseases.emplace_back(diseaseId, diseaseName, getDiscriminantAttributesForDisease(diseaseId));
+			analysesLists.emplace_back(analyse);
 		}
 	}
 	return analysesLists;
@@ -123,6 +121,40 @@ bool DbManager::insertIntoDatabase(const Analyse& analyse)
 		return false;
 	}
 	return true;
+}
+
+vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(int analyseId)
+{
+	vector<PotentialDisease> potentialDiseases;
+	const QString sqlQuery = "SELECT potentialDiseaseId, diseaseId, matchingRate, diseaseName \
+	FROM PotentialDiseases p INNER JOIN Analyses a ON p.analyseId = a.analyseId \
+	WHERE analyseId = :analyseId";
+	QSqlQuery query;
+
+	query.prepare(sqlQuery);
+	query.bindValue(":analyseId", analyseId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		//empreintes
+		const unsigned int indexPotentialDiseaseId = record.indexOf("potentialDiseaseId");
+		const unsigned int indexMatchingRate = record.indexOf("matchingRate");
+		const unsigned int indexDiseaseName = record.indexOf("diseaseName");
+
+		while (query.next())
+		{
+
+			const unsigned int potentialDiseaseIdValue = query.value(indexPotentialDiseaseId).toInt();
+			const double matchingRateValue = query.value(indexMatchingRate).toDouble();
+			const string diseaseNameValue = query.value(indexDiseaseName).toString().toStdString();
+
+			/* TODO : récupérer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insérer en paramètres dans emplace_back
+			 * Nécessite d'utiliser `potentialDiseaseId` avec une méthode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
+			*/
+
+			potentialDiseases.emplace_back(potentialDiseaseIdValue, diseaseNameValue, matchingRateValue);
+		}
+	}
 }
 
 void DbManager::wipeData()

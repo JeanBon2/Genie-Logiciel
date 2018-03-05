@@ -12,10 +12,10 @@ using namespace std;
 // Constants
 
 // Constructors
-HealthPrint::HealthPrint(map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues,
-	string patientName, string doctorName, string printDate, int sensorId) :
-	continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues), 
-	patientName(patientName), doctorName(doctorName), sensorId(sensorId)
+HealthPrint::HealthPrint(int id, string patientName, string doctorName, string printDate, int sensorId,
+	map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues) :
+	id(id),patientName(patientName), doctorName(doctorName), sensorId(sensorId),
+continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues)
 {
 	#ifdef DEBUG
 		cout << "HealthPrint constructor call" << endl;

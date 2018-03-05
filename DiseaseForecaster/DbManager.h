@@ -32,11 +32,11 @@ public:
 	bool insertIntoDatabase(const Analyse& analyse);
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
 	vector<Analyse> getAnalyseResults(string patientName);
-	
-	void wipeData();
 
 private:
+	vector<PotentialDisease> getPotentialDiseaseForAnalyse(int analyseId);
 
+	void wipeData();
 };
 
 #endif // DBMANAGER_H

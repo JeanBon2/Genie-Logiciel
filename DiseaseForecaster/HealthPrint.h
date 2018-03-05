@@ -14,6 +14,7 @@ class HealthPrint
 protected:
 	map<string, double> continuousAttributesValues;
 	map<string, string> discreteAttributesValues;
+	int id;
 	string patientName;
 	string doctorName;
 	QDate printDate;
@@ -22,8 +23,8 @@ protected:
 	// Methods
 public:
 	// Constructors
-	HealthPrint(map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues,
-				string patientName, string doctorName, string printDate, int sensorId);
+	HealthPrint(int id, string patientName, string doctorName, string printDate, int sensorId, 
+		map<string, double> continuousAttributesValues = map<string, double>(), map<string, string> discreteAttributesValues = map<string, string>());
 
 	// Destructors
 	~HealthPrint();
