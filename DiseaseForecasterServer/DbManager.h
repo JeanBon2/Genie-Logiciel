@@ -43,7 +43,8 @@ public:
 	vector<shared_ptr<Attribute>> getDiscriminantAttributesForDisease(int diseaseId);
 	shared_ptr<Attribute> getAttributeForId(int attributeId);
 	vector<interval> getNormalIntervalsForContinuousAttribute(int attributeId);
-	vector<value> getNormalValuesForDiscreteAttribute(int attributeId);
+	vector<string> getNormalValuesForDiscreteAttribute(int attributeId);
+	vector<shared_ptr<Attribute>> getAttributes();
 
 	void wipeData();
 };

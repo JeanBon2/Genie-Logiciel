@@ -1,5 +1,5 @@
+DROP TABLE IF EXISTS AbnormalAttributes;
 DROP TABLE IF EXISTS HealthPrintAttributeValues;
-DROP TABLE IF EXISTS PotentialDiseasesAndLinkedAttributes;
 DROP TABLE IF EXISTS DiscreteNormalValues;
 DROP TABLE IF EXISTS ContinuousNormalValues;
 DROP TABLE IF EXISTS DiscriminantAttributes;
@@ -40,8 +40,7 @@ CREATE TABLE ContinuousNormalValues (
 CREATE TABLE DiscreteNormalValues (
 	discreteNormalValues integer primary key autoincrement,
 	attributeId integer NOT NULL,
-	normalValue real NOT NULL,
-	normalValueName text,
+	normalValue text NOT NULL,
 	FOREIGN KEY(attributeId) REFERENCES Attributes(attributeId)
 );
 
@@ -81,9 +80,7 @@ CREATE TABLE PotentialDiseases (
 
 CREATE TABLE AbnormalAttributes (
 	potentialDiseasesAndLinkedAttributesId integer primary key NOT NULL,
-	analyseId integer NOT NULL,
 	potentialDiseaseId integer NOT NULL,
 	healthPrintAttributeValuesId integer NOT NULL,
-	FOREIGN KEY(analyseId) REFERENCES Analyses(analyseId),
 	FOREIGN KEY(potentialDiseaseId) REFERENCES PotentialDiseases(potentialDiseaseId)
 );

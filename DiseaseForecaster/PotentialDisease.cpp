@@ -8,8 +8,8 @@ using namespace std;
 #include "PotentialDisease.h"
 
 // Constructors
-PotentialDisease::PotentialDisease(string name, double matchingRate, map<string, double> continuousAttributesValues, map<string,string> discreteAttributesValues) 
-	: name(name), matchingRate(matchingRate), continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues)
+PotentialDisease::PotentialDisease(int id, string name, double matchingRate, map<string, double> continuousAttributesValues, map<string,string> discreteAttributesValues) 
+	: id(id), name(name), matchingRate(matchingRate), continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues)
 {
 	#ifdef DEBUG
 		cout << "PotentialDisease constructor call" << endl;

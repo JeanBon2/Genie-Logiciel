@@ -11,7 +11,7 @@ class PotentialDisease
 {
 	// Attributes
 private:
-	//double privateAttribute;
+	int id;
 	map<string, double> continuousAttributesValues;
 	map<string, string> discreteAttributesValues;
 	string name;
@@ -21,7 +21,7 @@ private:
 	// Methods
 public:
 	// Constructors
-	PotentialDisease(string name, double matchingRate, map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues);
+	PotentialDisease(int id, string name, double matchingRate, map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues);
 
 	// Destructors
 	~PotentialDisease();

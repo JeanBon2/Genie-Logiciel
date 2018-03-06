@@ -3,6 +3,7 @@
 
 // System include
 #include <QSqlDatabase>
+#include <string>
 using namespace std;
 
 // Personnal include
@@ -30,12 +31,12 @@ public:
 	// Others
 	bool insertIntoDatabase(const Analyse& analyse);
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
-	vector<Analyse> getAnalyseResults();
-	
-	void wipeData();
+	vector<Analyse> getAnalyseResults(string patientName);
 
 private:
+	vector<PotentialDisease> getPotentialDiseaseForAnalyse(int analyseId);
 
+	void wipeData();
 };
 
 #endif // DBMANAGER_H
