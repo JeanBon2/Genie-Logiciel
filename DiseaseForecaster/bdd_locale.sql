@@ -82,5 +82,6 @@ CREATE TABLE AbnormalAttributes (
 	potentialDiseasesAndLinkedAttributesId integer primary key NOT NULL,
 	potentialDiseaseId integer NOT NULL,
 	healthPrintAttributeValuesId integer NOT NULL,
-	FOREIGN KEY(potentialDiseaseId) REFERENCES PotentialDiseases(potentialDiseaseId)
+	FOREIGN KEY(potentialDiseaseId) REFERENCES PotentialDiseases(potentialDiseaseId),
+	FOREIGN KEY(healthPrintAttributeValuesId) REFERENCES HealthPrintAttributeValues(healthPrintAttributeValuesId)
 );
