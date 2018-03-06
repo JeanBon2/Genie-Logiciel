@@ -20,13 +20,13 @@ private:
 
 	// Methods
 public:
-	// Constructors
+	// Constructor
 	PotentialDisease(int id, string name, double matchingRate, map<string, double> continuousAttributesValues, map<string, string> discreteAttributesValues);
 
-	// Destructors
+	// Destructor
 	~PotentialDisease();
 
-	//Others
+	//Other
 	void displayContent();
 
 };

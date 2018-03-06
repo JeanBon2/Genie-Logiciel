@@ -32,9 +32,6 @@
     <ClCompile Include="tests\AbstractTest.cpp">
       <Filter>tests</Filter>
     </ClCompile>
-    <ClCompile Include="TAnalyse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Analyse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,13 +71,13 @@
     <ClCompile Include="UpdateInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PotentialDiseaseTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tests\AbstractTest.h">
       <Filter>tests</Filter>
-    </ClInclude>
-    <ClInclude Include="TAnalyse.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UpdateInterface.h">
       <Filter>Header Files</Filter>
@@ -116,6 +113,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SearchInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PotentialDiseaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

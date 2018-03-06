@@ -4,7 +4,6 @@
 
 // System include
 using namespace std;
-#include <iostream>
 #include <vector>
 
 // Personnal include
@@ -22,10 +21,10 @@ private:
 
 	// Methods
 public:
-	// Constructors
+	// Constructor
 	Analyse(int id, HealthPrint healthPrint, vector<PotentialDisease> diseases = vector<PotentialDisease>());
 
-	// Destructors
+	// Destructor
 	~Analyse();
 
 	//Others
