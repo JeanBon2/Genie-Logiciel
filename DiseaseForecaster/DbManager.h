@@ -40,8 +40,8 @@ private:
 	map<string, string> getAbnormalDiscreteAttributesForPotentialDisease(const int diseaseId, const int analyseId);
 
 	//HealthPrint getHealthprint(const string patientName);
-	map<string, double> DbManager::getContinuousAttributeForHealthPrint(const int HealthprintId);
-	map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int HealthprintId);
+	map<string, double> getContinuousAttributeForHealthPrint(const int HealthprintId);
+	map<string, string> getDiscreteAttributeForHealthPrint(const int HealthprintId);
 
 
 	void wipeData();
