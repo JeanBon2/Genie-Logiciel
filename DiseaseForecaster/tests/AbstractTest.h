@@ -2,12 +2,12 @@
 #define ABSTRACTTEST_H
 
 // System include
-#include <functional>
 #include <iostream>
 #include <vector>
 using namespace std;
 
 // Personnal include
+#include "MethodTest.h"
 
 // Constants
 
@@ -19,17 +19,47 @@ class AbstractTest
 public:
   AbstractTest();
 
+  /*
+    Executed method before all tests
+  */
   virtual void beforeClass();
+
+  /*
+    Executed method after all tests
+  */
   virtual void afterClass();
+
+  /*
+    Executed method before each test
+  */
   virtual void beforeEachTest();
+
+  /*
+    Executed method after each test
+  */
   virtual void afterEachTest();
 
-  virtual void run();
+  /*
+    In this method, you should use addTest()
+    to save all your tests methods.
+    Required for the run() method.
+  */
+  virtual void init() = 0;
+
+  /*
+    Execute all tests
+  */
+  void run();
+
+  /*
+    Add a methodTest class in the test launcher
+  */
+  void addTest(MethodTest *method);
 
   ~AbstractTest();
 
-private:
-  vector<function<void()>> testsFunctions;
+protected:
+  vector<MethodTest*> testsMethods;
 
 };
 
