@@ -24,8 +24,14 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="tests">
+      <UniqueIdentifier>{2d7d6c43-fd11-41ec-bc1c-d373b27719af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tests\AbstractTest.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
     <ClCompile Include="Analyse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -65,8 +71,17 @@
     <ClCompile Include="UpdateInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PotentialDiseaseTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tests\AbstractTest.h">
+      <Filter>tests</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Analyse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -100,7 +115,7 @@
     <ClInclude Include="SearchInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UpdateInterface.h">
+    <ClInclude Include="PotentialDiseaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
