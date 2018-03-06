@@ -10,6 +10,7 @@ using namespace std;
 // Personnal include
 #include "DbManager.h"
 
+
 // Constructors
 DbManager::DbManager(const string& path)
 {
@@ -123,7 +124,7 @@ bool DbManager::insertIntoDatabase(const Analyse& analyse)
 	return true;
 }
 
-vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(int analyseId)
+vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(const int analyseId)
 {
 	vector<PotentialDisease> potentialDiseases;
 	const QString sqlQuery = "SELECT potentialDiseaseId, diseaseId, matchingRate, diseaseName \
@@ -143,19 +144,143 @@ vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(int analyseId)
 
 		while (query.next())
 		{
-
 			const unsigned int potentialDiseaseIdValue = query.value(indexPotentialDiseaseId).toInt();
 			const double matchingRateValue = query.value(indexMatchingRate).toDouble();
 			const string diseaseNameValue = query.value(indexDiseaseName).toString().toStdString();
 
 			/* TODO : récupérer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insérer en paramètres dans emplace_back
 			 * Nécessite d'utiliser `potentialDiseaseId` avec une méthode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
-			*/
+			 */
 
-			potentialDiseases.emplace_back(potentialDiseaseIdValue, diseaseNameValue, matchingRateValue);
+			//potentialDiseases.push_back(PotentialDisease();
 		}
 	}
+	return potentialDiseases;
 }
+
+map<string, double> DbManager::getAbnormalContinuousAttributesForPotentialDisease(const int diseaseId, const int analyseId)
+{
+	map<string,double> abnormalContinuousAttributes;
+	const QString sqlQuery = "SELECT name, attributeValue \
+	FROM HealthPrintAttributeValues hpav INNER JOIN Attributes a ON a.attributeid = hpav.attributeid \
+										 INNER JOIN DiscriminantAttributes da ON da.attributeId = hpav.attributeId \
+										 INNER JOIN Diseases d ON d.diseaseId = da.diseaseId\
+										 INNER JOIN PotentialDiseases pd ON pd.diseaseId = da.diseaseId \
+										 INNER JOIN AbnormalAttributes aa ON aa.healthPrintAttributeValuesId = hpav.healthPrintAttributeValuesId \
+	WHERE diseaseId = :diseaseId AND discrete = 0 AND analyseId = :analyseId \
+	ORDER BY :diseaseId";
+
+	QSqlQuery query;
+	query.prepare(sqlQuery);
+	query.bindValue(":diseaseId", diseaseId);
+	query.bindValue(":analyseId", analyseId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		
+		const unsigned int indexAttributeName = record.indexOf("name");
+		const unsigned int indexAttributeValue = record.indexOf("attributeValue");
+
+		while (query.next())
+		{
+			const string AttributeNameValue = query.value(indexAttributeName).toString().toStdString();
+			const double AttributeValueValue = query.value(indexAttributeValue).toDouble();
+			abnormalContinuousAttributes.emplace(AttributeNameValue, AttributeValueValue);
+		}
+	}
+	return abnormalContinuousAttributes;
+}
+map<string, string> DbManager::getAbnormalDiscreteAttributesForPotentialDisease(const int diseaseId, const int analyseId)
+{
+	map<string, string> abnormalDiscreteAttributes;
+	const QString sqlQuery = "SELECT name, valueName \
+	FROM HealthPrintAttributeValues hpav INNER JOIN Attributes a ON a.attributeid = hpav.attributeid \
+										 INNER JOIN DiscriminantAttributes da ON da.attributeId = hpav.attributeId \
+										 INNER JOIN Diseases d ON d.diseaseId = da.diseaseId\
+										 INNER JOIN PotentialDiseases pd ON pd.diseaseId = da.diseaseId \
+										 INNER JOIN AbnormalAttributes aa ON aa.healthPrintAttributeValuesId = hpav.healthPrintAttributeValuesId \
+	WHERE diseaseId = :diseaseId AND discrete <> 0 AND analyseId = :analyseId \
+	ORDER BY :diseaseId";
+
+	QSqlQuery query;
+	query.prepare(sqlQuery);
+	query.bindValue(":diseaseId", diseaseId);
+	query.bindValue(":analyseId", analyseId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+
+		const unsigned int indexAttributeName = record.indexOf("name");
+		const unsigned int indexAttributeValueName = record.indexOf("valueName");
+
+		while (query.next())
+		{
+			const string AttributeNameValue = query.value(indexAttributeName).toString().toStdString();
+			const string AttributeValueValue = query.value(indexAttributeValueName).toString().toStdString();
+
+			abnormalDiscreteAttributes.emplace(AttributeNameValue, AttributeValueValue);
+		}
+	}
+	return abnormalDiscreteAttributes;
+}
+
+map<string, double> DbManager::getContinuousAttributeForHealthPrint(const int HealthprintId)
+{
+	map<string, double> continuousAttributes;
+	const QString sqlQuery = "SELECT name, attributeValue \
+	FROM HealthPrints hp INNER JOIN HealthPrintAttributesValues hpav ON hpav.attributeid = hp.attributeId \
+										 INNER JOIN Attributes a ON a.attributeId = hpav.attributeId \
+	WHERE healthPrintId = :HealthprintId AND discrete = 0";
+
+	QSqlQuery query;
+	query.prepare(sqlQuery);
+	query.bindValue(":HealthprintId", HealthprintId);;
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+
+		const unsigned int indexAttributeName = record.indexOf("name");
+		const unsigned int indexAttributeValue = record.indexOf("attributeValue");
+
+		while (query.next())
+		{
+			const string AttributeNameValue = query.value(indexAttributeName).toString().toStdString();
+			const double AttributeValueValue = query.value(indexAttributeValue).toDouble();
+			continuousAttributes.emplace(AttributeNameValue, AttributeValueValue);
+		}
+	}
+	return continuousAttributes;
+}
+map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int HealthprintId)
+{
+	map<string, string> discreteAttributes;
+	const QString sqlQuery = "SELECT name, attributeValue \
+	FROM HealthPrints hp INNER JOIN HealthPrintAttributesValues hpav ON hpav.attributeid = hp.attributeId \
+										 INNER JOIN Attributes a ON a.attributeId = hpav.attributeId \
+	WHERE healthPrintId = :HealthprintId AND discrete <> 0";
+
+	QSqlQuery query;
+	query.prepare(sqlQuery);
+	query.bindValue(":HealthprintId", HealthprintId);;
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+
+		const unsigned int indexAttributeName = record.indexOf("name");
+		const unsigned int indexAttributeValue = record.indexOf("attributeValue");
+
+		while (query.next())
+		{
+			const string AttributeNameValue = query.value(indexAttributeName).toString().toStdString();
+			const string AttributeValueValue = query.value(indexAttributeValue).toString().toStdString();
+			discreteAttributes.emplace(AttributeNameValue, AttributeValueValue);
+		}
+	}
+	return discreteAttributes;
+}
+
+/*HealthPrint DbManager::getHealthprint(const string patientName)
+{}*/
 
 void DbManager::wipeData()
 {
