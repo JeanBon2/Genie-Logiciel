@@ -1,5 +1,5 @@
 #include "AbstractTest.h"
-
+#include <string>
 void AbstractTest::beforeClass()
 {
   #ifdef DEBUG
