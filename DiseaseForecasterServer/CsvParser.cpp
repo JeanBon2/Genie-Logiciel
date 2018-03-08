@@ -56,6 +56,7 @@ vector<vector<string>> CsvParser::parse()
 		string word;
 		while(getline(wordIss, word, ';'))
 		{
+			if (word.find("\r") != string::npos) word.pop_back();
 			parsedLine.push_back(word);
 		}
 		parsedContent.push_back(parsedLine);

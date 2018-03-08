@@ -1,4 +1,0 @@
-A1;A2;A3;A4;AZ51;PatientName;DoctorName;PrintDate;SensorId
-True;2.12;13;3.156;1236;John Doe;Peter Capaldi;27/11/2017;123
-False;1.1;14.3;13.2;2367;Jon Skeet;Matt Smith;08/01/2018;456
-None;12;145;12.1;11;Balus C.;David Tennant;12/12/2012;789

@@ -27,7 +27,7 @@ private:
 	// Methods
 public:
 	// Constructors
-	Disease(const int id, const string& name, const vector<shared_ptr<Attribute>>&& discriminantAttributes = vector<shared_ptr<Attribute>>());
+	Disease(const int id, string name, vector<shared_ptr<Attribute>> discriminantAttributes = vector<shared_ptr<Attribute>>());
 
 	// Destructors
 	~Disease();
@@ -39,6 +39,8 @@ public:
 	vector<shared_ptr<Attribute>> getDiscriminantAttributes() const { return discriminantAttributes; }
 	void addDiscriminantAttribute(shared_ptr<Attribute> attribute);
 	bool isDiscriminant(shared_ptr<Attribute> attribute);
+
+	static Disease* diseaseWithNameFromVector(string name, vector<Disease>& vec);
 };
 
 #endif // DISEASE_H

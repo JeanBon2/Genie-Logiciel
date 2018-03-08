@@ -10,6 +10,7 @@
 #include "DiscreteAttribute.h"
 #include "ContinuousAttribute.h"
 #include "DbManager.h"
+#include "ModelImporter.h"
 
 using namespace std;
 
@@ -148,9 +149,7 @@ bool importModel(const string& descriptionPath, const string& healtphrintsPath)
 
 int main(int argc, char *argv[])
 {
-	QCoreApplication a(argc, argv);
-
-	QFile description(R"(HealthMeasurementDescription.txt)");
+	/*QFile description(R"(HealthMeasurementDescription.txt)");
 	QFile measurement(R"(HealthMeasurements.txt)");
 	QFile labels(R"(HealthMeasurementsWithLabels.txt)");
 
@@ -181,7 +180,16 @@ int main(int argc, char *argv[])
 
 	auto&& diseaseList = db.getDiseases();
 	auto&& attributeList = db.getAttributes();
-	exportDatabase(diseaseList, attributeList);
+	exportDatabase(diseaseList, attributeList);*/
 
-	return a.exec();
+	ModelImporter m("HealthMeasurementDescription.txt", "HealthMeasurementsWithLabels.txt");
+	if (m.importModel())
+	{
+		cout << "Ca plante pas tout de suite !" << endl;
+	} else
+	{
+		cout << "Ah ben si..." << endl;
+	}
+
+	return EXIT_SUCCESS;
 }

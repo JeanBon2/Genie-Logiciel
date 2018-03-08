@@ -152,9 +152,10 @@ vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(int analyseId)
 			 * Nécessite d'utiliser `potentialDiseaseId` avec une méthode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
 			*/
 
-			potentialDiseases.emplace_back(potentialDiseaseIdValue, diseaseNameValue, matchingRateValue);
+			//potentialDiseases.emplace_back(potentialDiseaseIdValue, diseaseNameValue, matchingRateValue);
 		}
 	}
+	return potentialDiseases;
 }
 
 void DbManager::wipeData()
