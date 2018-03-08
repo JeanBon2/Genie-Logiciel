@@ -81,6 +81,7 @@
     <ClCompile Include="DbManager.cpp" />
     <ClCompile Include="DiscreteAttribute.cpp" />
     <ClCompile Include="Disease.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelImporter.cpp" />
   </ItemGroup>
@@ -91,6 +92,7 @@
     <ClInclude Include="DbManager.h" />
     <ClInclude Include="DiscreteAttribute.h" />
     <ClInclude Include="Disease.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="ModelImporter.h" />
   </ItemGroup>
   <ItemGroup>
@@ -106,7 +108,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="msvc2017_64" MocOptions="" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="5.10" MocOptions="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

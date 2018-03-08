@@ -10,6 +10,7 @@ using namespace std;
 #include "ContinuousAttribute.h"
 #include "Disease.h"
 #include "DbManager.h"
+#include "Log.h"
 
 // Constants
 
@@ -35,12 +36,12 @@ bool ModelImporter::importModel()
 {
 	if (!importAttributeNames())
 	{
-		// LOG
+		Log::info("Attributes haven't been imported.");
 		return false;
 	}
 	if (!importAttributeValues())
 	{
-		// LOG
+		Log::info("Attributes values haven't been imported.");
 		return false;
 	}
 	return true;
@@ -53,7 +54,9 @@ bool ModelImporter::importAttributeNames()
 	vector<vector<string>> lines = CsvParser::staticParse(descriptionFile);
 	if (lines.empty())
 	{
-		// LOG
+		QString message("Empty file : ");
+		message += QString::fromStdString(pathToDescriptionFile);
+		Log::info(message.toStdString());
 		return false;
 	}
 	vector<string>& headers = lines[0];
@@ -62,7 +65,7 @@ bool ModelImporter::importAttributeNames()
 	lines.erase(lines.begin());
 	if (headers.size() != 2)
 	{
-		// LOG
+		Log::info("Error while reading headers.");
 		return false;
 	}
 
@@ -70,15 +73,19 @@ bool ModelImporter::importAttributeNames()
 	std::transform(attributeTypeHeader.begin(), attributeTypeHeader.end(), attributeTypeHeader.begin(), ::tolower);
 	if (attributeNameHeader != "attributename" || attributeTypeHeader != "attributetype")
 	{
-		// LOG
+		Log::info("Error while reading headers.");
 		return false;
 	}
-
+	
+	unsigned int i = 0;
 	for (auto&& line : lines)
 	{
+		++i;
 		if (line.size() != 2)
 		{
-			// LOG
+			QString message("Line ");
+			message += QString::number(i) + QString::fromStdString(" is malformed.");
+			Log::info(message.toStdString());
 			return false;
 		}
 
@@ -107,11 +114,13 @@ bool ModelImporter::importAttributeValues()
 	vector<vector<string>> lines = CsvParser::staticParse(valueFile);
 	if (lines.empty())
 	{
-		// LOG
+		QString message("Empty file : ");
+		message += QString::fromStdString(pathToValuesFile);
+		Log::info(message.toStdString());
 		return false;
 	}
 
-	vector<string>& headers = lines[0];
+	vector<string> headers = lines[0];
 	lines.erase(lines.begin());
 	unsigned int headersSize = 0;
 	bool diseaseFound = false;
@@ -124,21 +133,23 @@ bool ModelImporter::importAttributeValues()
 			break;
 		}
 		if (continuousAttributes.find(header) == continuousAttributes.end()
-			|| discreteAttributes.find(header) == discreteAttributes.end())
+			&& discreteAttributes.find(header) == discreteAttributes.end())
 		{
-			// LOG
+			QString message("Attribute ");
+			message += QString::fromStdString(header) + QString::fromStdString(" is not defined in ") + QString::fromStdString(pathToDescriptionFile);
+			Log::info(message.toStdString());
 			return false;
 		}
 		++headersSize;
 	}
 	if (!diseaseFound)
 	{
-		// LOG
+		Log::info("Error while reading headers : 'Disease' not found.");
 		return false;
 	}
 	if (headersSize != continuousAttributes.size() + discreteAttributes.size())
 	{
-		// LOG
+		Log::info("Error while reading headers : attribute number mismatches.");
 		return false;
 	}
 
@@ -174,23 +185,27 @@ bool ModelImporter::importAttributeValues()
 					try
 					{
 						double value = stod(line[i]);
-						//data.emplace_back(value);
+						data.emplace_back(value);
 					}
 					catch (invalid_argument)
 					{
-						// LOG
+						QString message("Value ");
+						message += QString::fromStdString(line[i]) + QString(" is not a number.");
+						Log::info(message.toStdString());
 						return false;
 					}
 				}
 				else
 				{
-					auto&& attribute = healthyDiscreteAttributes.find(headers[i]);
-					if (attribute == healthyDiscreteAttributes.end())
+					auto&& discreteAttribute = healthyDiscreteAttributes.find(headers[i]);
+					if (discreteAttribute == healthyDiscreteAttributes.end())
 					{
-						// LOG
+						QString message("No header found for ");
+						message += QString::fromStdString(headers[i]);
+						Log::info(message.toStdString());
 						return false;
 					}
-					auto&& data = attribute->second;
+					auto&& data = discreteAttribute->second;
 					data.emplace_back(line[i]);
 
 					map<string, unsigned int> numberOfPersonsWithValue;
@@ -230,7 +245,7 @@ bool ModelImporter::importAttributeValues()
 
 			for (unsigned int i = 0; i < headersSize; ++i)
 			{
-				auto&& attribute = continuousAttributes.find(line[i]);
+				auto&& attribute = continuousAttributes.find(headers[i]);
 				if (attribute != continuousAttributes.end())
 				{
 					try
@@ -248,16 +263,20 @@ bool ModelImporter::importAttributeValues()
 					}
 					catch (invalid_argument)
 					{
-						// LOG
+						QString message("Value ");
+						message += QString::fromStdString(line[i]) + QString(" is not a number.");
+						Log::info(message.toStdString());
 						return false;
 					}
 				}
 				else
 				{
-					auto&& attribute = discreteAttributes.find(line[i]);
+					auto&& attribute = discreteAttributes.find(headers[i]);
 					if (attribute == discreteAttributes.end())
 					{
-						// LOG
+						QString message("No header found for ");
+						message += QString::fromStdString(headers[i]);
+						Log::info(message.toStdString());
 						return false;
 					}
 					auto&& valuesIterator = illDiscreteAttribute.find(headers[i]);
@@ -296,8 +315,15 @@ bool ModelImporter::importAttributeValues()
 	unsigned int attributeId = 1;
 	for (auto&& continuousAttribute : healthyContinuousAttributes)
 	{
-		double sum = 0, average, standardDeviation;
+		double sum = 0, average = 0, standardDeviation = 0;
 		unsigned int dataNumber = continuousAttribute.second.size();
+		if (dataNumber == 0)
+		{
+			QString message("No data for attribute ");
+			message += QString::fromStdString(continuousAttribute.first);
+			Log::info(message.toStdString());
+			return false;
+		}
 		for (auto&& value : continuousAttribute.second)
 		{
 			sum += value;
@@ -325,7 +351,9 @@ bool ModelImporter::importAttributeValues()
 			auto&& normalAttribute = continuousNormalIntervals.find(attribute.first);
 			if (normalAttribute == continuousNormalIntervals.end())
 			{
-				// LOG
+				QString message("No header found for ");
+				message += QString::fromStdString(attribute.first);
+				Log::info(message.toStdString());
 				return false;
 			}
 			double abnormalNumber(0);
@@ -362,7 +390,7 @@ bool ModelImporter::importAttributeValues()
 			map<string, unsigned int> valueNumber;
 			for (auto&& value : attribute.second)
 			{
-				unsigned int number(0);
+				unsigned int number(1);
 				auto&& iterator = valueNumber.find(value);
 				if (iterator != valueNumber.end())
 				{
@@ -374,29 +402,34 @@ bool ModelImporter::importAttributeValues()
 			auto&& totalValueNumberIterator = numberOfPersonWithValueOfDiscreteAttribute.find(attribute.first);
 			if (totalValueNumberIterator == numberOfPersonWithValueOfDiscreteAttribute.end())
 			{
-				// LOG
+				QString message("No total value number found for disease ");
+				message += QString::fromStdString(attribute.first);
+				Log::info(message.toStdString());
 				return false;
 			}
 			map <string, unsigned int> totalValueNumber = totalValueNumberIterator->second;
 
-			for (auto&& valueNumberIterator = valueNumber.begin(); valueNumberIterator != valueNumber.end(); ++valueNumberIterator)
+			for (auto&& valueNumberIterator = valueNumber.begin(); valueNumberIterator != valueNumber.end();)
 			{
 				if (valueNumberIterator->second < 10)
 				{
-					valueNumber.erase(valueNumberIterator);
+					valueNumber.erase(valueNumberIterator++);
 					continue;
 				}
 				
 				auto&& totalValueNumberForAttributeIterator = totalValueNumber.find(valueNumberIterator->first);
 				if (totalValueNumberForAttributeIterator == totalValueNumber.end())
 				{
-					// LOG
+					QString message("No total value number found for disease ");
+					message += QString::fromStdString(attribute.first) + QString::fromStdString(" and attribute ") + QString::fromStdString(valueNumberIterator->first);
+					Log::info(message.toStdString());
 					return false;
 				}
 				if (static_cast<double>(valueNumberIterator->second) / static_cast<double>(totalValueNumberForAttributeIterator->second) >= 0.9)
 				{
 					discriminantAttributes.push_back(static_pointer_cast<Attribute>(make_shared<DiscreteAttribute>(attributeId, attribute.first)));
 				}
+				valueNumberIterator++;
 			}
 		}
 
