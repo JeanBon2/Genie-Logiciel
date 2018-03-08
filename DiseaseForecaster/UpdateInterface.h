@@ -4,6 +4,9 @@
 // System include
 #include <iostream>
 #include <string>
+#include <QJsonObject>
+#include <vector>
+#include <map>
 using namespace std;
 
 // Personnal include
@@ -17,10 +20,10 @@ class UpdateInterface : public Interface
 {
 	// Attributes
 public:
-	
+
 
 protected:
-	
+
 
 private:
 	const enum updateState
@@ -33,6 +36,35 @@ private:
 	};
 	updateState state;
 
+	struct attributeContent {
+		int id;
+		string name;
+		int discrete;
+	};
+	struct diseaseContent {
+		int id;
+		string name;
+	};
+	struct discriminantAttributesContent {
+		int diseaseId;
+		int attributeId;
+	};
+	struct continuousValuesContent {
+		int attributeId;
+		double minimumValue;
+		double maximumValue;
+	};
+	struct discretesValuesContent {
+		int attributeId;
+		string normalValue;
+	};
+
+	vector<attributeContent*> attributesData;
+	vector<diseaseContent*> diseasesData;
+	vector<discriminantAttributesContent*> discriminantDiseasesData;
+	vector<continuousValuesContent*> continuousValuesData;
+	vector<discretesValuesContent*> discretesValuesData;
+
 	// Methods
 public:
 	// Constructors
@@ -43,7 +75,7 @@ public:
 	~UpdateInterface();
 
 	// Others
-	
+
 
 protected:
 	void displayInterfaceText();
@@ -53,6 +85,10 @@ protected:
 
 private:
 	void run();
+	QJsonObject getJsonContent();
+	void getAttributeContent(QJsonObject jsonObject);
+	void getDiseasesContent(QJsonObject jsonObject);
+	void getAttributesValues(QJsonObject jsonObject);
 };
 
 #endif // UPDATEINTERFACE_H

@@ -8,6 +8,7 @@ using namespace std;
 
 // Personnal include
 #include "Analyse.h"
+#include "HealthPrint.h"
 
 // Constants
 
@@ -35,6 +36,14 @@ public:
 
 private:
 	vector<PotentialDisease> getPotentialDiseaseForAnalyse(int analyseId);
+	map<string, double> getAbnormalContinuousAttributesForPotentialDisease(const int diseaseId, const int analyseId);
+	map<string, string> getAbnormalDiscreteAttributesForPotentialDisease(const int diseaseId, const int analyseId);
+
+	map<string, double> getContinuousAttributeForHealthPrint(const int healthPrintId);
+	map<string, string> getDiscreteAttributeForHealthPrint(const int healthPrintId);
+
+	HealthPrint getHealthprint(const int healthPrintId);
+
 
 	void wipeData();
 };

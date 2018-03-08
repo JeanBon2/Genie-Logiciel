@@ -1,13 +1,12 @@
 // System include
 #include <iostream>
+#include <string>
 using namespace std;
 
 // Personnal include
 #include "Analyse.h"
 
-// Constants
-
-// Constructors
+// Constructor
 Analyse::Analyse(int id, HealthPrint healthPrint, vector<PotentialDisease> diseases) : 
 	id(id), healthPrint(healthPrint), diseases(diseases)
 {
@@ -23,6 +22,8 @@ Analyse::~Analyse()
 		cout << "Analyse destructor call" << endl;
 	#endif // DEBUG
 }
+
+// Others
 void Analyse::displayContent()
 {
 	healthPrint.displayContent();
@@ -31,6 +32,7 @@ void Analyse::displayContent()
 		potentialDisease.displayContent();
 	}
 }
+
 void Analyse::displayHeader()
 {
 	cout << healthPrint.getPatientName() << " - " << healthPrint.getPrintDate().toString("dd.MM.yyyy").toUtf8().constData() << endl;

@@ -20,7 +20,7 @@ continuousAttributesValues(continuousAttributesValues), discreteAttributesValues
 	#ifdef DEBUG
 		cout << "HealthPrint constructor call" << endl;
 	#endif // DEBUG
-		this->printDate = QDate::fromString(QString::fromStdString(printDate), "dd/MM/yyyy");
+		this->printDate = QDate::fromString(QString::fromStdString(printDate), "dd/MM/yyyy");//pas sur que ca fonctioone ^^
 }
 
 // Destructor

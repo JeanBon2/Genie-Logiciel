@@ -7,7 +7,7 @@ using namespace std;
 // Personnal include
 #include "PotentialDisease.h"
 
-// Constructors
+// Constructor
 PotentialDisease::PotentialDisease(int id, string name, double matchingRate, map<string, double> continuousAttributesValues, map<string,string> discreteAttributesValues) 
 	: id(id), name(name), matchingRate(matchingRate), continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues)
 {
@@ -23,13 +23,18 @@ PotentialDisease::~PotentialDisease()
 		cout << "PotentialDisease destructor call" << endl;
 	#endif // DEBUG
 }
-//Others
+
+//Other
 void PotentialDisease::displayContent()
 {
 	cout <<"Disease name : "<< name << endl;
-	cout <<"Matching rate : " << matchingRate<< endl;
+	cout <<"Matching rate : " << matchingRate << endl;
 	for (auto const& continuousAttributeValue : continuousAttributesValues)
 	{
 		cout << continuousAttributeValue.first << " "<< continuousAttributeValue.second << endl;
+	}
+	for (auto const& discreteAttributesValue : discreteAttributesValues)
+	{
+		cout << discreteAttributesValue.first << " " << discreteAttributesValue.second << endl;
 	}
 }
