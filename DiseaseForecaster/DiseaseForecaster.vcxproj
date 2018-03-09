@@ -185,11 +185,7 @@
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-<<<<<<< HEAD
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="msvc_2017" MocOptions="" />
-=======
       <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_x64="msvc2017_64" />
->>>>>>> f48d4a0af2964b1954bd3bf8169383313805ce31
     </VisualStudio>
   </ProjectExtensions>
 </Project>
