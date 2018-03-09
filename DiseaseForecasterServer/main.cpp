@@ -12,6 +12,7 @@
 #include "DbManager.h"
 #include "ModelImporter.h"
 #include "../DiseaseForecaster/Log.h"
+#include "Interface.h"
 
 using namespace std;
 
@@ -150,17 +151,10 @@ bool importModel(const string& descriptionPath, const string& healtphrintsPath)
 
 int main(int argc, char *argv[])
 {
-	ModelImporter m("HealthMeasurementDescription.txt", "HealthMeasurementsWithLabels.txt");
-	if (m.importModel())
+	if (Interface::loadMap(R"(.\Resources\Fr_fr.lng)"))
 	{
-		cout << "Ca plante pas tout de suite !" << endl;
-	} else
-	{
-		cout << "Ah ben si..." << endl;
+		Interface::start();
 	}
-
-	QCoreApplication a(argc, argv);
-	a.exec();
 
 	return EXIT_SUCCESS;
 }
