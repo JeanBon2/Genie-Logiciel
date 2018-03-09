@@ -1,0 +1,20 @@
+﻿{
+  "LastUpdate": "Derniere synchronisation : ",
+  "ProductName": "DiseaseForecaster",
+  "Version":"1.0",
+
+  "Interface_Previous": "Appuyez sur \"0\" et validez avec la touche Entree pour retourner a la page d'accueil.",
+
+  "MenuInterface_Update": "Generer les modeles de maladie",
+  "MenuInterface_Export": "Exporter la base de donnee",
+  "MenuInterface_Leave":"Quitter l'application",
+  "MenuInterface_GetAction":"Indiquez le numero de l'action que vous souhaitez realiser puis validez avec la touche Entree.",
+
+  "UpdateInterface_StartUpdate": "Indiquer les fichiers de description et de label que vous souhaitez utiliser. Valider chaque fichier en appuyant sur la touche Entree",
+  "UpdateInterface_StartAnalysis": "Lancement de la mise a jour des modeles de maladie",
+  "UpdateInterface_EndAnalysis": "Mise a jour des modeles de maladie terminee",
+
+
+  "Unknown_Command": "L'instruction saisie ne correspond a aucune action",
+  "Leave_App": "Au revoir..."
+}

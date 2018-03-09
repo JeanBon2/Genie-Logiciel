@@ -1,0 +1,41 @@
+{
+   "LastUpdate": "Ultima sincronizare : ",
+   "ProductName": "DiseaseForecaster",
+   "Version":"1.0",
+
+   "Interface_Previous": "Apasati pe \"0\" si validati cu tasta Enter
+pentru a reveni la pagina de garda.",
+
+   "MenuInterface_AnalysePrint": "Analizeaza una sau mai multe amprente",
+   "MenuInterface_Synchronisation": "Sincronizeaza cu Centrul National",
+   "MenuInterface_Search": "Acceseaza rezultatele amprentelor analizate",
+   "MenuInterface_Log": "Acceseaza la log-ul aplicatiei",
+   "MenuInterface_Leave":"Opreste aplicatia",
+   "MenuInterface_Help": "Ajutor",
+   "MenuInterface_GetAction":"Indicati numarul actiunii pe care doriti
+sa o realizati si validati cu tasta Enter.",
+
+   "AnalyseInterface_GetAction":"Indicati calea spre fisierul cu
+amprente sau directorul continant fisierele de amprente pe care doriti
+sa le analizati, apoi validati cu tasta Enter.",
+
+   "UpdateInterface_Start": "Lansarea procedurii de sincronizare...",
+   "UpdateInterface_Export": "Exportul rezultatelor de analiza...",
+   "UpdateInterface_GetModels": "Exportul rezultatelor de analiza...",
+   "UpdateInterface_Success": "Sincronizare terminata cu succes.",
+   "UpdateInterface_Fail": "Esec la sincronizare.",
+
+   "SearchInterface_Search": "Indicati numele pacientului pentru a afla
+rezultaatele anaalizei, validati cu tasta Enter.",
+   "SearchInterface_ResultList":"Lista cu analizele coresponzand
+pacientului ",
+   "SearchInterface_SearchNumber": "Indicati numarul analizei pe care
+doriti sa o consultati",
+   "SearchInterface_Delete": "Apasati pe \"1\" pentru a sterge aceasta
+analiza",
+   "Search_Interface_ConfirmDelete" : "Analiza a fost stearsa",
+
+   "Unknown_Command": "Comanda introdusa nu corespunde la nici o actiune
+cunoscuta",
+   "Leave_App": "La revedere..."
+}
