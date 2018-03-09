@@ -8,6 +8,7 @@ using namespace std;
 // Personnal include
 #include "UpdateInterface.h"
 #include "Interface.h"
+#include "DbManager.h"
 // Constants
 
 // Constructors
@@ -67,21 +68,10 @@ void UpdateInterface::run()
 	displayInterfaceText();
 	state = START_IMPORT_MODEL;
 	displayInterfaceText();
+	getAttributeContent(getJsonContent());
+	DbManager::insertAttributes(attributesData);
 	state = EXPORT_SUCCESS;
 	displayInterfaceText();
-
-	/*
-	QJsonObject test = getJsonContent();
-	getAttributesValues(test);
-
-	for (auto &i : discretesValuesData) {
-	cout << "------------------------"<<endl;
-	cout << i->attributeId << endl;
-	cout << i->normalValue << endl;
-	cout << "------------------------";
-	}
-	*/
-
 	system("pause");
 
 }

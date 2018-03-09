@@ -20,22 +20,6 @@ class UpdateInterface : public Interface
 {
 	// Attributes
 public:
-
-
-protected:
-
-
-private:
-	const enum updateState
-	{
-		START_UPDATE,
-		START_EXPORT_ANALYSIS,
-		START_IMPORT_MODEL,
-		EXPORT_SUCCESS,
-		EXPORT_FAIL
-	};
-	updateState state;
-
 	struct attributeContent {
 		int id;
 		string name;
@@ -59,6 +43,22 @@ private:
 		string normalValue;
 	};
 
+
+protected:
+
+
+private:
+	const enum updateState
+	{
+		START_UPDATE,
+		START_EXPORT_ANALYSIS,
+		START_IMPORT_MODEL,
+		EXPORT_SUCCESS,
+		EXPORT_FAIL
+	};
+	updateState state;
+
+
 	vector<attributeContent*> attributesData;
 	vector<diseaseContent*> diseasesData;
 	vector<discriminantAttributesContent*> discriminantDiseasesData;
@@ -75,7 +75,10 @@ public:
 	~UpdateInterface();
 
 	// Others
-
+	vector<attributeContent*> getAttributeContent()
+	{
+		return attributesData;
+	}
 
 protected:
 	void displayInterfaceText();

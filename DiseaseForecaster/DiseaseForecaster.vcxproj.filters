@@ -115,8 +115,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
+    <None Include="Ressources\FR_fr.lng" />
+    <None Include="Ressources\Manuel.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Ressources\forecaster.log" />
   </ItemGroup>
 </Project>
