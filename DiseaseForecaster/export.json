@@ -1,0 +1,51 @@
+{
+    "attributes": {
+        "continuousAttributes": [
+            {
+                "id": 2,
+                "name": "Poids",
+                "normalIntervals": [
+                    {
+                        "maximum": 80,
+                        "minimum": 60
+                    }
+                ]
+            }
+        ],
+        "discreteAttributes": [
+            {
+                "id": 1,
+                "name": "Yeux",
+                "normalValues": [
+                    "Bleu",
+                    "Rouge"
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Couleur de peau",
+                "normalValues": [
+                    "Blanche"
+                ]
+            }
+        ]
+    },
+    "diseases": [
+        {
+            "discriminantAttributes": [
+                1,
+                3,
+                2
+            ],
+            "id": 1,
+            "name": "Tetanos"
+        },
+        {
+            "discriminantAttributes": [
+                1
+            ],
+            "id": 2,
+            "name": "Rubeole"
+        }
+    ]
+}

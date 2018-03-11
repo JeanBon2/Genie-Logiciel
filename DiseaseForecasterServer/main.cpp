@@ -10,6 +10,9 @@
 #include "DiscreteAttribute.h"
 #include "ContinuousAttribute.h"
 #include "DbManager.h"
+#include "ModelImporter.h"
+#include "../DiseaseForecaster/Log.h"
+#include "Interface.h"
 
 using namespace std;
 
@@ -19,7 +22,7 @@ bool exportDatabase(vector<Disease>& diseases, vector<shared_ptr<Attribute>> att
 	QFile file(QString::fromStdString(filePath));
 	if (!file.open(QIODevice::WriteOnly))
 	{
-		// LOG
+		Log::info("Error while exporting database : file isn't writable.");
 		return false;
 	}
 	QJsonDocument jsonDocument;
@@ -148,40 +151,10 @@ bool importModel(const string& descriptionPath, const string& healtphrintsPath)
 
 int main(int argc, char *argv[])
 {
-	QCoreApplication a(argc, argv);
+	if (Interface::loadMap(R"(.\Resources\Fr_fr.lng)"))
+	{
+		Interface::start();
+	}
 
-	QFile description(R"(HealthMeasurementDescription.txt)");
-	QFile measurement(R"(HealthMeasurements.txt)");
-	QFile labels(R"(HealthMeasurementsWithLabels.txt)");
-
-	Disease tetanosDisease(1, "Tetanos");
-	Disease rubeoleDisease(2, "Rubeole");
-	DiscreteAttribute discreteAttribute(1, "Yeux");
-	discreteAttribute.addNormalValue("Bleu");
-	discreteAttribute.addNormalValue("Rouge");
-	const shared_ptr<DiscreteAttribute> discreteAttributePtr(&discreteAttribute);
-	tetanosDisease.addDiscriminantAttribute(discreteAttributePtr);
-	rubeoleDisease.addDiscriminantAttribute(discreteAttributePtr);
-
-	DiscreteAttribute discreteAttribute2(3, "Couleur de peau");
-	discreteAttribute2.addNormalValue("Blanche");
-	const shared_ptr<DiscreteAttribute> discreteAttributePtr2(&discreteAttribute2);
-	tetanosDisease.addDiscriminantAttribute(discreteAttributePtr2);
-
-	ContinuousAttribute continuousAttribute(2, "Poids");
-	continuousAttribute.addNormalInterval({ 60, 80 });
-	const shared_ptr<ContinuousAttribute> continuousAttributePtr(&continuousAttribute);
-	tetanosDisease.addDiscriminantAttribute(continuousAttributePtr);
-
-	DbManager db("DiseaseForecasterServer.db");
-	vector<Disease> dl;
-	dl.push_back(tetanosDisease);
-	dl.push_back(rubeoleDisease);
-	db.insertIntoDatabase(dl);
-
-	auto&& diseaseList = db.getDiseases();
-	auto&& attributeList = db.getAttributes();
-	exportDatabase(diseaseList, attributeList);
-
-	return a.exec();
+	return EXIT_SUCCESS;
 }

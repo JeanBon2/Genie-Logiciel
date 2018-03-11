@@ -9,6 +9,8 @@ using namespace std;
 // Personnal include
 #include "Analyse.h"
 #include "HealthPrint.h"
+#include "UpdateInterface.h"
+
 
 // Constants
 
@@ -32,6 +34,7 @@ public:
 	// Others
 	bool insertIntoDatabase(const Analyse& analyse);
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
+	static bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
 	vector<Analyse> getAnalyseResults(string patientName);
 
 private:
@@ -39,9 +42,10 @@ private:
 	map<string, double> getAbnormalContinuousAttributesForPotentialDisease(const int diseaseId, const int analyseId);
 	map<string, string> getAbnormalDiscreteAttributesForPotentialDisease(const int diseaseId, const int analyseId);
 
-	//HealthPrint getHealthprint(const string patientName);
-	map<string, double> getContinuousAttributeForHealthPrint(const int HealthprintId);
-	map<string, string> getDiscreteAttributeForHealthPrint(const int HealthprintId);
+	map<string, double> getContinuousAttributeForHealthPrint(const int healthPrintId);
+	map<string, string> getDiscreteAttributeForHealthPrint(const int healthPrintId);
+
+	HealthPrint getHealthprint(const int healthPrintId);
 
 
 	void wipeData();

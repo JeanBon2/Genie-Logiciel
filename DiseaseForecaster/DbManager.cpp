@@ -9,7 +9,7 @@ using namespace std;
 
 // Personnal include
 #include "DbManager.h"
-
+#include "UpdateInterface.h"
 
 // Constructors
 DbManager::DbManager(const string& path)
@@ -124,6 +124,24 @@ bool DbManager::insertIntoDatabase(const Analyse& analyse)
 	return true;
 }
 
+bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attributesData)
+{
+	
+	for (auto && attr : attributesData)
+	{
+		QSqlQuery query;
+		query.prepare("INSERT INTO Attributes (AttributeId, name, discrete) VALUES (:id, :name, :discrete)");
+		query.bindValue(":id", QString::number(attr->id));
+		query.bindValue(":name", QString::fromStdString(attr->name));
+		query.bindValue(":discrete", QString::number(attr->discrete));
+		if (!query.exec())
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(const int analyseId)
 {
 	vector<PotentialDisease> potentialDiseases;
@@ -224,7 +242,7 @@ map<string, string> DbManager::getAbnormalDiscreteAttributesForPotentialDisease(
 	return abnormalDiscreteAttributes;
 }
 
-map<string, double> DbManager::getContinuousAttributeForHealthPrint(const int HealthprintId)
+map<string, double> DbManager::getContinuousAttributeForHealthPrint(const int healthPrintId)
 {
 	map<string, double> continuousAttributes;
 	const QString sqlQuery = "SELECT name, attributeValue \
@@ -234,7 +252,7 @@ map<string, double> DbManager::getContinuousAttributeForHealthPrint(const int He
 
 	QSqlQuery query;
 	query.prepare(sqlQuery);
-	query.bindValue(":HealthprintId", HealthprintId);;
+	query.bindValue(":HealthprintId", healthPrintId);
 	if (query.exec())
 	{
 		QSqlRecord record = query.record();
@@ -251,7 +269,7 @@ map<string, double> DbManager::getContinuousAttributeForHealthPrint(const int He
 	}
 	return continuousAttributes;
 }
-map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int HealthprintId)
+map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int healthPrintId)
 {
 	map<string, string> discreteAttributes;
 	const QString sqlQuery = "SELECT name, attributeValue \
@@ -261,7 +279,7 @@ map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int Heal
 
 	QSqlQuery query;
 	query.prepare(sqlQuery);
-	query.bindValue(":HealthprintId", HealthprintId);;
+	query.bindValue(":HealthprintId", healthPrintId);
 	if (query.exec())
 	{
 		QSqlRecord record = query.record();
@@ -279,8 +297,51 @@ map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int Heal
 	return discreteAttributes;
 }
 
-/*HealthPrint DbManager::getHealthprint(const string patientName)
-{}*/
+
+HealthPrint DbManager::getHealthprint(const int healthPrintId)
+{
+	string patientName;
+	string doctorName;
+	string printDate;
+	int sensorId;
+	int analyseId;
+
+	const QString sqlQuery = "SELECT patientName, doctorName, printDate, sensorId, analyseId \
+	FROM HealthPrints hp INNER JOIN Analyses a ON a.healthPrintId = hp.healthPrintId\
+	WHERE HealthprintId = :HealthprintId";
+
+	QSqlQuery query;
+	query.prepare(sqlQuery);
+	query.bindValue(":HealthprintId", healthPrintId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+
+		const unsigned int indexPatientName = record.indexOf("patientName");
+		const unsigned int indexDoctorName = record.indexOf("doctorName");
+		const unsigned int indexPrintDate = record.indexOf("printDate");
+		const unsigned int indexSensorId = record.indexOf("sensorId");
+		const unsigned int indexAnalyseId = record.indexOf("analyseId");
+
+		if (query.next())
+		{
+			const string patientNameValue = query.value(indexPatientName).toString().toStdString();
+			const string doctorNameValue = query.value(indexDoctorName).toString().toStdString();
+			const string printDateValue = query.value(indexPrintDate).toString().toStdString();
+			const int sensorIdValue = query.value(indexSensorId).toInt();
+			const int analyseIdValue = query.value(indexAnalyseId).toInt();
+
+			HealthPrint foundHealthprint = HealthPrint(healthPrintId, patientNameValue, doctorNameValue, printDateValue, sensorIdValue, getContinuousAttributeForHealthPrint(healthPrintId), getDiscreteAttributeForHealthPrint(healthPrintId));
+			return foundHealthprint;
+		}
+		else
+		{
+			HealthPrint foundHealthprint = HealthPrint(0, "", "", "", 0, getContinuousAttributeForHealthPrint(healthPrintId), getDiscreteAttributeForHealthPrint(healthPrintId));
+			return foundHealthprint; ;
+		}
+	}
+	
+}
 
 void DbManager::wipeData()
 {

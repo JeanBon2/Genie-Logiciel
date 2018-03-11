@@ -9,6 +9,7 @@ using namespace std;
 
 // Personnal include
 #include "DbManager.h"
+#include "Log.h"
 
 // Constructors
 DbManager::DbManager(const string& path)
@@ -21,7 +22,7 @@ DbManager::DbManager(const string& path)
 
 	if (!database.open())
 	{
-		// Log
+		Log::info("Error while opening database.");
 		return;
 	}
 	wipeData();

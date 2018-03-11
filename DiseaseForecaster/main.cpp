@@ -2,7 +2,8 @@
 #include "Interface.h"
 #include "DbManager.h"
 
-int main(int argc, char *argv[])
+
+int main()
 {
 	DbManager db("DiseaseForecaster.db");
 	db.getAnalyseResults("");
