@@ -153,6 +153,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TAnalyse.h" />
     <ClInclude Include="tests\AbstractTest.h" />
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="DbManager.h" />
@@ -164,8 +165,9 @@
     <ClInclude Include="LogInterface.h" />
     <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
-    <ClInclude Include="PotentialDiseaseTest.h" />
     <ClInclude Include="SearchInterface.h" />
+    <ClInclude Include="THealthPrint.h" />
+    <ClInclude Include="TPotentialDisease.h" />
     <ClInclude Include="UpdateInterface.h" />
   </ItemGroup>
   <ItemGroup>
