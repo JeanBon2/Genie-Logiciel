@@ -118,6 +118,9 @@
     <ClInclude Include="PotentialDiseaseTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TAnalyse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Ressources\forecaster.log">

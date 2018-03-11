@@ -99,6 +99,7 @@
     <ClInclude Include="PotentialDisease.h" />
     <ClInclude Include="PotentialDiseaseTest.h" />
     <ClInclude Include="SearchInterface.h" />
+    <ClInclude Include="TAnalyse.h" />
     <ClInclude Include="tests\AbstractTest.h" />
     <ClInclude Include="UpdateInterface.h" />
   </ItemGroup>

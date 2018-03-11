@@ -6,8 +6,8 @@
 using namespace std;
 
 // Personnal include
-#include "AbstractTest.h"
-#include "MethodTest.h"
+#include "c:\Users\asduc.INSA-LYON\Documents\Génie logiciel\Genie-Logiciel\DiseaseForecaster\tests\AbstractTest.h"
+#include "c:\Users\asduc.INSA-LYON\Documents\Génie logiciel\Genie-Logiciel\DiseaseForecaster\tests\MethodTest.h"
 #include "Analyse.h"
 
 // Constants
