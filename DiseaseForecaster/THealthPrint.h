@@ -77,6 +77,9 @@ public:
 		   cout << "Saisir une date de saisie de l'empreinte : ";
 		   cin >> printDateTest;
 
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
@@ -97,6 +100,9 @@ public:
 
 		   cout << "Saisir une date de saisie de l'empreinte : ";
 		   cin >> printDateTest;
+
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
 
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -119,6 +125,9 @@ public:
 		   cout << "Saisir une date de saisie de l'empreinte impossible : ";
 		   cin >> printDateTest;
 
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
@@ -140,11 +149,38 @@ public:
 		   cout << "Saisir une date de saisie de l'empreinte avec des lettres : ";
 		   cin >> printDateTest;
 
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   HealthPrint healthPrint4(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
+			   continuousAttributesValuesTest, discreteAttributesValuesTest);
+
+
+		   // Test de création d'un objet HealthPrint avec un id de capteur inexistant
+		   cout << "Saisir un id d'empreinte : ";
+		   cin >> idTest;
+
+		   cout << "Saisir un nom de patient : ";
+		   cin >> patientNameTest;
+
+		   cout << "Saisir un nom de docteur : ";
+		   cin >> doctorNameTest;
+
+		   cout << "Saisir une date de saisie de l'empreinte avec des lettres : ";
+		   cin >> printDateTest;
+
+		   cout << "Saisir un id de capteur inexistant : ";
+		   cin >> sensorIdTest;
+
+		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
+
+		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
+
+		   HealthPrint healthPrint5(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
 			   continuousAttributesValuesTest, discreteAttributesValuesTest);
 
            return testResult;
@@ -180,6 +216,9 @@ public:
 		   cout << "Saisir une date de saisie de l'empreinte : ";
 		   cin >> printDateTest;
 
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
@@ -200,6 +239,9 @@ public:
 
 		   cout << "Saisir une date de saisie de l'empreinte : ";
 		   cin >> printDateTest;
+
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
 
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -249,6 +291,9 @@ public:
 		   cout << "Saisir une date de saisie de l'empreinte : ";
 		   cin >> printDateTest;
 
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
@@ -294,6 +339,9 @@ public:
 		   cout << "Saisir une date de saisie de l'empreinte : ";
 		   cin >> printDateTest;
 
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
@@ -338,6 +386,9 @@ public:
 
 		   cout << "Saisir une date de saisie de l'empreinte : ";
 		   cin >> printDateTest;
+
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
 
 		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
