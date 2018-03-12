@@ -61,14 +61,9 @@ public:
 		   map<string, string> discreteAttributesValuesTest;
 
 		   // Test de création d'un objet PotentialDisease avec des paramètres corrects
-		   cout << "Saisir un id de maladie : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de maladie : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance : ";
-		   cin >> matchingRateTest;
+		   idTest = 1;
+		   nameTest = "Coléra";
+		   matchingRateTest = 50;
 
 		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -78,14 +73,9 @@ public:
 
 
 		   // Test de création d'un objet PotentialDisease avec un id de maladie déjà existant
-		   cout << "Saisir un id de maladie existant : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de maladie : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance : ";
-		   cin >> matchingRateTest;
+		   idTest = 1;
+		   nameTest = "Peste";
+		   matchingRateTest = 50;
 
 		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -95,14 +85,9 @@ public:
 
 
 		   // Test de création d'un objet PotentialDisease avec un nom de maladie existant
-		   cout << "Saisir un id de maladie : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de maladie existant : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance : ";
-		   cin >> matchingRateTest;
+		   idTest = 2;
+		   nameTest = "Coléra";
+		   matchingRateTest = 50;
 
 		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -112,14 +97,9 @@ public:
 
 
 		   // Test de création d'un objet PotentialDisease avec un taux de correspondance impossible ici < 0
-		   cout << "Saisir un id de maladie : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de maladie : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance inférieur à 0 : ";
-		   cin >> matchingRateTest;
+		   idTest = 3;
+		   nameTest = "Angine";
+		   matchingRateTest = -20;
 
 		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -129,37 +109,15 @@ public:
 
 
 		   // Test de création d'un objet PotentialDisease avec un taux de correspondance impossible ici > 100
-		   cout << "Saisir un id de maladie : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de maladie : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance supérieur à 100 : ";
-		   cin >> matchingRateTest;
+		   idTest = 4;
+		   nameTest = "Bronchite";
+		   matchingRateTest = 120;
 
 		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
 
 		   PotentialDisease potentialD5(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet PotentialDisease avec des lettres dans le taux de correspondance
-		   cout << "Saisir un id de maladie : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de maladie : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance contenant une ou des lettres : ";
-		   cin >> matchingRateTest;
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD6(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
 
            return testResult;
         }
@@ -181,14 +139,10 @@ public:
 		   map<string, string> discreteAttributesValuesTest;
 
 		   // Création d'un objet PotentialDisease avec des paramètres corrects
-		   cout << "Saisir un id de maladie : ";
-		   cin >> idTest;
+		   idTest = 5;
+		   nameTest = "Gastro";
+		   matchingRateTest = 50;
 
-		   cout << "Saisir un nom de maladie : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance : ";
-		   cin >> matchingRateTest;
 
 		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -198,14 +152,9 @@ public:
 
 
 		   // Création d'un objet PotentialDisease avec un id de maladie déjà existant
-		   cout << "Saisir un id de maladie existant : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de maladie : ";
-		   cin >> nameTest;
-
-		   cout << "Saisir un taux de correspondance : ";
-		   cin >> matchingRateTest;
+		   idTest = 5;
+		   nameTest = "Cancer des poumons";
+		   matchingRateTest = 50;
 
 		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
 
@@ -214,10 +163,12 @@ public:
 		   PotentialDisease potentialD2(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
 		   
 
-		   // Test d'affichage d'un objet PotentialDisease avec des paramètres corrects 
+		   // Test d'affichage d'un objet PotentialDisease avec des paramètres corrects
+		   // TODO rediriger le retour vers une variable et non l'écran
 		   potentialD1.displayContent();
 
 		   // Test d'affichage d'un objet PotentialDisease avec un id de maladie déjà éxistant 
+		   // TODO rediriger le retour vers une variable et non l'écran
 		   potentialD2.displayContent();
 
           return testResult;

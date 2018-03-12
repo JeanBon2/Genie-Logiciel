@@ -112,6 +112,54 @@ public:
 			   continuousAttributesValuesTest, discreteAttributesValuesTest);
 
 
+		   // Test de création d'un objet HealthPrint avec un nom de patient incorrect
+		   cout << "Saisir un id d'empreinte : ";
+		   cin >> idTest;
+
+		   cout << "Saisir un nom de patient contenant des chiffres : ";
+		   cin >> patientNameTest;
+
+		   cout << "Saisir un nom de docteur : ";
+		   cin >> doctorNameTest;
+
+		   cout << "Saisir une date de saisie de l'empreinte : ";
+		   cin >> printDateTest;
+
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
+		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
+
+		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
+
+		   HealthPrint healthPrint3(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
+			   continuousAttributesValuesTest, discreteAttributesValuesTest);
+
+
+		   // Test de création d'un objet HealthPrint avec un nom de docteur incorrect
+		   cout << "Saisir un id d'empreinte : ";
+		   cin >> idTest;
+
+		   cout << "Saisir un nom de patient : ";
+		   cin >> patientNameTest;
+
+		   cout << "Saisir un nom de docteur contenant des chiffres : ";
+		   cin >> doctorNameTest;
+
+		   cout << "Saisir une date de saisie de l'empreinte : ";
+		   cin >> printDateTest;
+
+		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
+		   cin >> sensorIdTest;
+
+		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
+
+		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
+
+		   HealthPrint healthPrint4(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
+			   continuousAttributesValuesTest, discreteAttributesValuesTest);
+
+
 		   // Test de création d'un objet HealthPrint avec une date impossible
 		   cout << "Saisir un id d'empreinte : ";
 		   cin >> idTest;
@@ -132,7 +180,7 @@ public:
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
 
-		   HealthPrint healthPrint3(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
+		   HealthPrint healthPrint5(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
 			   continuousAttributesValuesTest, discreteAttributesValuesTest);
 
 
@@ -156,7 +204,7 @@ public:
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
 
-		   HealthPrint healthPrint4(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
+		   HealthPrint healthPrint6(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
 			   continuousAttributesValuesTest, discreteAttributesValuesTest);
 
 
@@ -180,7 +228,7 @@ public:
 
 		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
 
-		   HealthPrint healthPrint5(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
+		   HealthPrint healthPrint7(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
 			   continuousAttributesValuesTest, discreteAttributesValuesTest);
 
            return testResult;
