@@ -166,6 +166,7 @@
     <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
     <ClInclude Include="SearchInterface.h" />
+    <ClInclude Include="tests\TDisease.h" />
     <ClInclude Include="THealthPrint.h" />
     <ClInclude Include="TPotentialDisease.h" />
     <ClInclude Include="UpdateInterface.h" />
