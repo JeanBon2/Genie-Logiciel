@@ -151,6 +151,12 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnalyseInterface.cpp" />
+    <ClCompile Include="Attribute.cpp" />
+    <ClCompile Include="ContinuousAttribute.cpp" />
+    <ClCompile Include="CsvParser.cpp" />
+    <ClCompile Include="DiscreteAttribute.cpp" />
+    <ClCompile Include="Disease.cpp" />
     <ClCompile Include="tests\AbstractTest.cpp" />
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="DbManager.cpp" />
@@ -167,6 +173,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnalyseInterface.h" />
+    <ClInclude Include="Attribute.h" />
+    <ClInclude Include="ContinuousAttribute.h" />
+    <ClInclude Include="CsvParser.h" />
+    <ClInclude Include="DiscreteAttribute.h" />
+    <ClInclude Include="Disease.h" />
+    <ClInclude Include="TAnalyse.h" />
     <ClInclude Include="tests\AbstractTest.h" />
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="DbManager.h" />
@@ -180,6 +193,12 @@
     <ClInclude Include="PotentialDisease.h" />
     <ClInclude Include="PotentialDiseaseTest.h" />
     <ClInclude Include="SearchInterface.h" />
+    <ClInclude Include="tests\MethodTest.h" />
+    <ClInclude Include="tests\TAttribute.h" />
+    <ClInclude Include="tests\TDisease.h" />
+    <ClInclude Include="tests\TExample.h" />
+    <ClInclude Include="THealthPrint.h" />
+    <ClInclude Include="TPotentialDisease.h" />
     <ClInclude Include="UpdateInterface.h" />
   </ItemGroup>
   <ItemGroup>

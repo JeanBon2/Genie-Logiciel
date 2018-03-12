@@ -53,7 +53,9 @@ vector<Analyse> AnalyseInterface::AnalysePrintFile(string filePath)
 
 vector<Analyse> AnalyseInterface::AnalysePrintFolder(string folderPath)
 {
+	vector<Analyse> resultat;
 
+	return resultat;
 }
 
 
