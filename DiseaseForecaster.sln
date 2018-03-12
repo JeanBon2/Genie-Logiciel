@@ -1,16 +1,10 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecaster", "DiseaseForecaster\DiseaseForecaster.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecaster", "DiseaseForecaster\DiseaseForecaster.vcxproj", "{892F027E-DE4C-3B44-BF6C-BB8F535E9628}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecasterServer", "DiseaseForecasterServer\DiseaseForecasterServer.vcxproj", "{942DD446-0B14-44B4-B0F8-A172EFE4F5EB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{195269BB-460E-4354-A846-E0065EE627F2}"
-	ProjectSection(SolutionItems) = preProject
-		DiseaseForecaster\tests\test.cpp = DiseaseForecaster\tests\test.cpp
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecasterServer", "DiseaseForecasterServer\DiseaseForecasterServer.vcxproj", "{E0AE4537-C629-31F8-85BD-98E171375B50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,20 +12,19 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x64.ActiveCfg = Debug|x64
-		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x64.Build.0 = Debug|x64
-		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|x64
-		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.Build.0 = Release|x64
-		{942DD446-0B14-44B4-B0F8-A172EFE4F5EB}.Debug|x64.ActiveCfg = Debug|x64
-		{942DD446-0B14-44B4-B0F8-A172EFE4F5EB}.Debug|x64.Build.0 = Debug|x64
-		{942DD446-0B14-44B4-B0F8-A172EFE4F5EB}.Release|x64.ActiveCfg = Release|x64
-		{942DD446-0B14-44B4-B0F8-A172EFE4F5EB}.Release|x64.Build.0 = Release|x64
+		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Debug|x64.ActiveCfg = Debug|x64
+		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Debug|x64.Build.0 = Debug|x64
+		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Release|x64.ActiveCfg = Release|x64
+		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Release|x64.Build.0 = Release|x64
+		{E0AE4537-C629-31F8-85BD-98E171375B50}.Debug|x64.ActiveCfg = Debug|x64
+		{E0AE4537-C629-31F8-85BD-98E171375B50}.Debug|x64.Build.0 = Debug|x64
+		{E0AE4537-C629-31F8-85BD-98E171375B50}.Release|x64.ActiveCfg = Release|x64
+		{E0AE4537-C629-31F8-85BD-98E171375B50}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		Qt5Version = msvc2017_64
-		SolutionGuid = {6DE9CAE7-2CD5-49ED-B5B4-3290C8EA9373}
+		SolutionGuid = {09A3B48B-B415-4BA3-A172-65DFEB7F8605}
 	EndGlobalSection
 EndGlobal

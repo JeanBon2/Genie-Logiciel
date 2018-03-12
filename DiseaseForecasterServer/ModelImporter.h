@@ -4,6 +4,7 @@
 // System include
 #include <map>
 #include <vector>
+#include <set>
 using namespace std;
 
 // Personnal include
@@ -20,8 +21,8 @@ private:
 	const string pathToDescriptionFile;
 	const string pathToValuesFile;
 
-	map<string, vector<double>> continuousAttributes;
-	map<string, vector<string>> discreteAttributes;
+	set<string> continuousAttributes;
+	set<string> discreteAttributes;
 
 	// Methods
 public:
@@ -32,8 +33,8 @@ public:
 	~ModelImporter();
 
 	// Others
-	map<string, vector<double>>& getContinuousAttributes() { return continuousAttributes; }
-	map<string, vector<string>>& getDiscreteAttributes() { return discreteAttributes; }
+	set<string>& getContinuousAttributes() { return continuousAttributes; }
+	set<string>& getDiscreteAttributes() { return discreteAttributes; }
 
 	bool importModel();
 

@@ -9,7 +9,7 @@ using namespace std;
 
 // Personnal include
 #include "DbManager.h"
-
+#include "UpdateInterface.h"
 
 // Constructors
 DbManager::DbManager(const string& path)
@@ -120,6 +120,24 @@ bool DbManager::insertIntoDatabase(const Analyse& analyse)
 	if (!query.exec())
 	{
 		return false;
+	}
+	return true;
+}
+
+bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attributesData)
+{
+	
+	for (auto && attr : attributesData)
+	{
+		QSqlQuery query;
+		query.prepare("INSERT INTO Attributes (AttributeId, name, discrete) VALUES (:id, :name, :discrete)");
+		query.bindValue(":id", QString::number(attr->id));
+		query.bindValue(":name", QString::fromStdString(attr->name));
+		query.bindValue(":discrete", QString::number(attr->discrete));
+		if (!query.exec())
+		{
+			return false;
+		}
 	}
 	return true;
 }

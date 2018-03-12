@@ -9,6 +9,8 @@ using namespace std;
 // Personnal include
 #include "Analyse.h"
 #include "HealthPrint.h"
+#include "UpdateInterface.h"
+
 
 // Constants
 
@@ -32,6 +34,7 @@ public:
 	// Others
 	bool insertIntoDatabase(const Analyse& analyse);
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
+	static bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
 	vector<Analyse> getAnalyseResults(string patientName);
 
 private:

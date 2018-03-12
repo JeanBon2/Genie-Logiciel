@@ -1,6 +1,7 @@
 // System include
 #include <iostream>
 #include <string>
+#include <utility>
 using namespace std;
 
 // Personnal include
@@ -9,7 +10,10 @@ using namespace std;
 // Constants
 
 // Constructors
-Disease::Disease(const int id, const string& name, const vector<shared_ptr<Attribute>>&& discriminantAttributes) : id(id), name(name), discriminantAttributes(discriminantAttributes)
+Disease::Disease(const int id, string name, vector<shared_ptr<Attribute>> discriminantAttributes) : id(id), name(
+	                                                                                                    std::move(name)), discriminantAttributes(
+	                                                                                                           std::move(
+		                                                                                                           discriminantAttributes))
 {
 #ifdef DEBUG
 	cout << "Disease constructor call" << endl;
@@ -38,4 +42,16 @@ bool Disease::isDiscriminant(shared_ptr<Attribute> attribute)
 		}
 	}
 	return false;
+}
+
+Disease* Disease::diseaseWithNameFromVector(string name, vector<Disease>& vec)
+{
+	for(auto&& disease : vec)
+	{
+		if (disease.getName() == name)
+		{
+			return &disease;
+		}
+	}
+	return nullptr;
 }
