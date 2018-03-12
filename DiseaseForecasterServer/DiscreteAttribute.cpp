@@ -26,8 +26,24 @@ DiscreteAttribute::~DiscreteAttribute()
 // Public methods
 void DiscreteAttribute::addNormalValue(const string& normalValue)
 {
+	removeNormalValue(normalValue);
 	normalValues.push_back(normalValue);
 }
+
+bool DiscreteAttribute::removeNormalValue(const string& normalValue)
+{
+	for(auto&& valueIterator = normalValues.begin(); valueIterator != normalValues.end();)
+	{
+		if (*valueIterator == normalValue)
+		{
+			normalValues.erase(valueIterator);
+			return true;
+		}
+		++valueIterator;
+	}
+	return false;
+}
+
 bool DiscreteAttribute::isInNormalValues(const string& value)
 {
 	for (auto&& normalValue : normalValues)
@@ -38,4 +54,17 @@ bool DiscreteAttribute::isInNormalValues(const string& value)
 		}
 	}
 	return false;
+}
+
+shared_ptr<DiscreteAttribute> DiscreteAttribute::attributeWithNameFromVector(string name,
+	vector<shared_ptr<DiscreteAttribute>> & vec)
+{
+	for (auto&& attribute : vec)
+	{
+		if (attribute->getName() == name)
+		{
+			return attribute;
+		}
+	}
+	return nullptr;
 }

@@ -2,9 +2,8 @@
 #define DISCRETEATTRIBUTE_H
 
 // System include
-#include <iostream>
 #include <vector>
-#include <utility>
+#include <memory>
 using namespace std;
 
 // Personnal include
@@ -35,7 +34,10 @@ public:
 
 	vector<string> getNormalValues() const { return normalValues; }
 	void addNormalValue(const string& normalValue);
+	bool removeNormalValue(const string& normalValue);
 	bool isInNormalValues(const string& value);
+
+	static shared_ptr<DiscreteAttribute> attributeWithNameFromVector(string name, vector<shared_ptr<DiscreteAttribute>>& vec);
 };
 
 #endif // DISCRETEATTRIBUTE_H

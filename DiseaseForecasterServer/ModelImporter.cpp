@@ -373,6 +373,16 @@ bool ModelImporter::importAttributeValues()
 		++diseaseId;
 	}
 
+	vector<shared_ptr<DiscreteAttribute>> discreteAttributesWithNormalValues;
+	for (auto&& attribute : numberOfPersonWithValueOfDiscreteAttribute)
+	{
+		shared_ptr<DiscreteAttribute> discreteAttribute = make_shared<DiscreteAttribute>(attributeId++, attribute.first);
+		for(auto&& value : attribute.second)
+		{
+			discreteAttribute->addNormalValue(value.first);
+		}
+		discreteAttributesWithNormalValues.push_back(discreteAttribute);
+	}
 	for (auto&& iterator : discreteAttributesForDisease)
 	{
 		string diseaseName = iterator.first;
@@ -425,10 +435,11 @@ bool ModelImporter::importAttributeValues()
 					Log::info(message.toStdString());
 					return false;
 				}
+				shared_ptr<DiscreteAttribute> newAttribute = DiscreteAttribute::attributeWithNameFromVector(attribute.first, discreteAttributesWithNormalValues);
 				if (static_cast<double>(valueNumberIterator->second) / static_cast<double>(totalValueNumberForAttributeIterator->second) >= 0.9)
 				{
-					shared_ptr<Attribute> newAttribute = static_pointer_cast<Attribute>(make_shared<DiscreteAttribute>(attributeId, attribute.first));
 					discriminantAttributes.push_back(newAttribute);
+					newAttribute->removeNormalValue(valueNumberIterator->first);
 					if (disease != nullptr)
 					{
 						disease->addDiscriminantAttribute(newAttribute);
