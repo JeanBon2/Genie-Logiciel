@@ -54,13 +54,32 @@ public:
         {
 		   cout << "Test de création d'un objet Analyse" << endl;
 
-		   HealthPrint healthPrintTest(/*Paramètes corrects*/);
-		   vector<PotentialDisease> diseasesTest(/*Paramètes corrects*/);
+		   int idTestP = 6;
+		   string nameTestP = "Ruhme";
+		   int matchingRateTestP = 50;
+		   map<string, double> continuousAttributesValuesTestP;
+		   map<string, string> discreteAttributesValuesTestP;
+
+		   PotentialDisease potentialDisease(idTestP, nameTestP, matchingRateTestP, continuousAttributesValuesTestP, discreteAttributesValuesTestP);
+		   vector<PotentialDisease> diseasesTest;
+		   diseasesTest[0] = potentialDisease;
+		   
+
+		   int idTestH;
+		   string patientNameTestH;
+		   string doctorNameTestH;
+		   string printDateTestH;
+		   int sensorIdTestH;
+		   map<string, double> continuousAttributesValuesTestH;
+		   map<string, string> discreteAttributesValuesTestH;
+
+		   HealthPrint healthPrintTest(idTestH, patientNameTestH, doctorNameTestH, printDateTestH, sensorIdTestH, continuousAttributesValuesTestH, discreteAttributesValuesTestH);
+
+
 		   int idTest;
 
 		   // Test de création d'un objet Analyse avec des paramètres corrects
-		   cout << "Saisir un id d'analyse : ";
-		   cin >> idTest;
+		   idTest = 1;
 
 		   Analyse analyse1(idTest, healthPrintTest, diseasesTest);
 
