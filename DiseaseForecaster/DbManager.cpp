@@ -90,7 +90,7 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 		const unsigned int indexDoctorName = record.indexOf("doctorName");
 		const unsigned int indexPrintDate = record.indexOf("printDate");
 		const unsigned int indexSensorId = record.indexOf("sensorId");
-		
+
 		while (query.next())
 		{
 
@@ -126,7 +126,7 @@ bool DbManager::insertIntoDatabase(const Analyse& analyse)
 
 bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attributesData)
 {
-	
+
 	for (auto && attr : attributesData)
 	{
 		QSqlQuery query;
@@ -166,8 +166,8 @@ vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(const int anal
 			const double matchingRateValue = query.value(indexMatchingRate).toDouble();
 			const string diseaseNameValue = query.value(indexDiseaseName).toString().toStdString();
 
-			/* TODO : récupérer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insérer en paramètres dans emplace_back
-			 * Nécessite d'utiliser `potentialDiseaseId` avec une méthode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
+			/* TODO : rï¿½cupï¿½rer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insï¿½rer en paramï¿½tres dans emplace_back
+			 * Nï¿½cessite d'utiliser `potentialDiseaseId` avec une mï¿½thode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
 			 */
 
 			//potentialDiseases.push_back(PotentialDisease();
@@ -195,7 +195,7 @@ map<string, double> DbManager::getAbnormalContinuousAttributesForPotentialDiseas
 	if (query.exec())
 	{
 		QSqlRecord record = query.record();
-		
+
 		const unsigned int indexAttributeName = record.indexOf("name");
 		const unsigned int indexAttributeValue = record.indexOf("attributeValue");
 
@@ -297,6 +297,24 @@ map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int heal
 	return discreteAttributes;
 }
 
+vector<Disease> DbManager::getDiseases()
+{
+	vector<Disease> diseases;
+	/*QSqlQuery query("SELECT diseaseId, diseaseName FROM Diseases");
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		const int indexId = record.indexOf("diseaseId");
+		const int indexName = record.indexOf("diseaseName");
+		while (query.next())
+		{
+			const int diseaseId = query.value(indexId).toInt();
+			const string diseaseName = query.value(indexName).toString().toUtf8().constData();
+			diseases.emplace_back(diseaseId, diseaseName, getDiscriminantAttributesForDisease(diseaseId));
+		}
+	}*/
+	return diseases;
+}
 
 HealthPrint DbManager::getHealthprint(const int healthPrintId)
 {
@@ -340,7 +358,107 @@ HealthPrint DbManager::getHealthprint(const int healthPrintId)
 			return foundHealthprint; ;
 		}
 	}
-	
+
+}
+
+
+
+vector<shared_ptr<Attribute>> DbManager::getDiscriminantAttributesForDisease(int diseaseId)
+{
+	vector<shared_ptr<Attribute>> attributes;
+
+	QSqlQuery query;
+	query.prepare("SELECT discriminantAttributeId, attributeId FROM DiscriminantAttributes WHERE diseaseId = :diseaseId ORDER BY discriminantAttributeId ASC");
+	query.bindValue(":diseaseId", diseaseId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		const int indexAttributeId = record.indexOf("attributeId");
+		while (query.next())
+		{
+			int attributeId = query.value(indexAttributeId).toInt();
+
+			shared_ptr<Attribute> attribute = getAttributeForId(attributeId);
+			if (attribute != nullptr)
+			{
+				attributes.emplace_back(attribute);
+			}
+		}
+	}
+	query.finish();
+	return attributes;
+}
+
+shared_ptr<Attribute> DbManager::getAttributeForId(int attributeId)
+{
+	QSqlQuery query;
+	query.prepare("SELECT name, discrete FROM Attributes where attributeId = :attributeId");
+	query.bindValue(":attributeId", attributeId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		const int indexName = query.record().indexOf("name");
+		const int indexDiscrete = query.record().indexOf("discrete");
+		if (query.next())
+		{
+			const string name = query.value(indexName).toString().toUtf8().constData();
+			const bool discrete = query.value(indexDiscrete).toBool();
+			if (discrete)
+			{
+				return std::static_pointer_cast<Attribute>(
+					std::make_shared<DiscreteAttribute>(attributeId, name, getNormalValuesForDiscreteAttribute(attributeId)));
+			}
+			else
+			{
+				return std::static_pointer_cast<Attribute>(
+					std::make_shared<ContinuousAttribute>(attributeId, name, getNormalIntervalsForContinuousAttribute(attributeId)));
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+vector<string> DbManager::getNormalValuesForDiscreteAttribute(int attributeId)
+{
+	vector<string> normalValues;
+
+	QSqlQuery query;
+	query.prepare("SELECT normalValue FROM DiscreteNormalValues WHERE attributeId = :attributeId");
+	query.bindValue(":attributeId", attributeId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		const int indexNormalValue = record.indexOf("normalValue");
+		while (query.next())
+		{
+			string normalValue = query.value(indexNormalValue).toString().toUtf8().constData();
+			normalValues.emplace_back(normalValue);
+		}
+	}
+	return normalValues;
+}
+
+vector<interval> DbManager::getNormalIntervalsForContinuousAttribute(int attributeId)
+{
+	vector<interval> normalIntervals;
+
+	QSqlQuery query;
+	query.prepare("SELECT minimumValue, maximumValue FROM ContinuousNormalValues WHERE attributeId = :attributeId");
+	query.bindValue(":attributeId", attributeId);
+	if (query.exec())
+	{
+		QSqlRecord record = query.record();
+		const int indexMinimum = record.indexOf("minimumValue");
+		const int indexMaximum = record.indexOf("maximumValue");
+		while (query.next())
+		{
+			double minimum = query.value(indexMinimum).toDouble();
+			double maximum = query.value(indexMaximum).toDouble();
+			normalIntervals.emplace_back(minimum, maximum);
+		}
+	}
+	return normalIntervals;
 }
 
 void DbManager::wipeData()

@@ -27,7 +27,7 @@ private:
 	// Methods
 public:
 	// Constructors
-	Disease(const int id, const string& name, const vector<shared_ptr<Attribute>>&& discriminantAttributes = vector<shared_ptr<Attribute>>());
+	Disease(const int id, const string& name, const vector<shared_ptr<Attribute>> discriminantAttributes = vector<shared_ptr<Attribute>>());
 
 	// Destructors
 	~Disease();
