@@ -1,5 +1,5 @@
-#ifndef UPDATEINTERFACE_H
-#define UPDATEINTERFACE_H
+#ifndef EXPORTINTERFACE_H
+#define EXPORTINTERFACE_H
 
 // System include
 #include <iostream>
@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include <vector>
 #include <map>
+#include "Disease.h"
 using namespace std;
 
 // Personnal include
@@ -16,7 +17,7 @@ using namespace std;
 // Types
 
 // Class
-class UpdateInterface : public Interface
+class ExportInterface : public Interface
 {
 	// Attributes
 public:
@@ -26,23 +27,22 @@ protected:
 
 
 private:
-	const enum updateState
+	const enum exportState
 	{
-		START_UPDATE,
-		START_ANALYSIS,
-		END_ANALYSIS
+		START_EXPORT,
+		END_EXPORT,
 	};
-	updateState state;
-
+	exportState state;
+	
 
 	// Methods
 public:
 	// Constructors
-	UpdateInterface();
-	UpdateInterface(const UpdateInterface* x);
+	ExportInterface();
+	ExportInterface(const ExportInterface* x);
 
 	// Destructors
-	~UpdateInterface();
+	~ExportInterface();
 
 	// Others
 
@@ -51,7 +51,8 @@ protected:
 	void displayInterfaceText();
 
 private:
+	bool exportDatabase(vector<Disease>&& diseases, vector<shared_ptr<Attribute>>&& attributes);
 	void run();
 };
 
-#endif // UPDATEINTERFACE_H
+#endif // EXPORTINTERFACE_H

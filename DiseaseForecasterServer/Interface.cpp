@@ -13,6 +13,7 @@ using namespace std;
 #include "Interface.h"
 #include "MenuInterface.h"
 #include "UpdateInterface.h"
+#include "ExportInterface.h"
 #include "LogInterface.h"
 #include "LeaveInterface.h"
 #include "Log.h"
@@ -56,7 +57,7 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 			cout << "Can't access to default language" << endl << endl;
 			return false;
 		}
-		
+
 	}
 	languageFile.open(QIODevice::ReadOnly);
 	byteFile = languageFile.readAll();
@@ -73,7 +74,7 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 
 	/*for (auto& test : texts)
 	{
-		cout << test.first << ":" << test.second << endl;
+	cout << test.first << ":" << test.second << endl;
 	}*/
 
 	return true;
@@ -88,19 +89,19 @@ void Interface::start()
 void Interface::previous()
 {
 	stackInterface.pop();
-	createInterface(stackInterface.top());	
+	createInterface(stackInterface.top());
 }
 
 string Interface::getTextFromField(const string keyMessage)
 {
-	unordered_map< string, string>:: const_iterator  valueMessage = Interface::texts.find(keyMessage);
+	unordered_map< string, string>::const_iterator  valueMessage = Interface::texts.find(keyMessage);
 	if (valueMessage != texts.end())
 	{
 		return valueMessage->second;
 	}
 	else
 	{
-		Log::info("Not able to found : \""+ keyMessage + "\" in languageFile");
+		Log::info("Not able to found : \"" + keyMessage + "\" in languageFile");
 		return "No Message Found";
 	}
 }
@@ -109,24 +110,27 @@ void Interface::createInterface(const interfaceList interfaceID)
 {
 	Interface* currentInterface;
 	stackInterface.push(interfaceID);
-	switch (interfaceID) 
+	switch (interfaceID)
 	{
-		case MENU_INTERFACE :
-			currentInterface= new MenuInterface();
-			break;
+	case MENU_INTERFACE:
+		currentInterface = new MenuInterface();
+		break;
 
+	case UPDATE_INTERFACE:
+		currentInterface = new UpdateInterface();
+		break;
 
-		case UPDATE_INTERFACE:
-			currentInterface = new UpdateInterface();
-			break;
-		
-		case LEAVE_INTERFACE:
-			currentInterface = new LeaveInterface();
-			break;
+	case EXPORT_INTERFACE:
+		currentInterface = new ExportInterface();
+		break;
 
-		default:
-			stackInterface.pop();
-			return;
+	case LEAVE_INTERFACE:
+		currentInterface = new LeaveInterface();
+		break;
+
+	default:
+		stackInterface.pop();
+		return;
 	}
 	currentInterface->run();
 	delete currentInterface;

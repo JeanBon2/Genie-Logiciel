@@ -57,16 +57,19 @@
     <ClCompile Include="Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LeaveInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="LogInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MenuInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LeaveInterface.cpp">
+    <ClCompile Include="UpdateInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UpdateInterface.cpp">
+    <ClCompile Include="ExportInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,22 +101,20 @@
     <ClInclude Include="Interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LeaveInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="LogInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MenuInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LeaveInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UpdateInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
+    <ClInclude Include="ExportInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

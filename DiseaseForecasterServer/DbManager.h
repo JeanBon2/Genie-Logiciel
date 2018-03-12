@@ -18,7 +18,7 @@ class DbManager
 {
 	// Attributes
 private:
-	QSqlDatabase database;
+	static QSqlDatabase database;
 
 	// Methods
 public:
@@ -31,9 +31,9 @@ public:
 	// Others
 	bool insertIntoDatabase(const vector<Disease>& diseases);
 	vector<Disease> getDiseases();
+	vector<shared_ptr<Attribute>> getAttributes();
 
 private:
-public:
 	bool insertIntoDatabase(const Disease& disease);
 	bool insertIntoDatabase(const shared_ptr<Attribute> attribute);
 	bool insertIntoDatabase(const DiscreteAttribute& attribute);
@@ -44,7 +44,6 @@ public:
 	shared_ptr<Attribute> getAttributeForId(int attributeId);
 	vector<interval> getNormalIntervalsForContinuousAttribute(int attributeId);
 	vector<string> getNormalValuesForDiscreteAttribute(int attributeId);
-	vector<shared_ptr<Attribute>> getAttributes();
 
 	void wipeData();
 };

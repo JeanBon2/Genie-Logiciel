@@ -19,8 +19,8 @@ class Interface
 {
 	// Attributes
 public:
-	
-	
+
+
 protected:
 	const enum interfaceList
 	{
@@ -29,12 +29,12 @@ protected:
 		EXPORT_INTERFACE,
 		LEAVE_INTERFACE
 	};
-	static unordered_map< string,  string> texts;
+	static unordered_map< string, string> texts;
 	static stack<interfaceList> stackInterface;
 
-	
+
 private:
-	
+
 
 
 	// Methods
@@ -47,19 +47,19 @@ public:
 	// Others
 	static bool loadMap(const string path);
 	static void start();
-	
-	
+
+
 protected:
 	void previous();
 
 	string getTextFromField(string keyMessage);
 	static void createInterface(const interfaceList interfaceID);
-	virtual void displayInterfaceText()=0;
+	virtual void displayInterfaceText() = 0;
 
 	string getAction();
-	virtual void run()=0;
+	virtual void run() = 0;
 
-	
+
 
 private:
 };

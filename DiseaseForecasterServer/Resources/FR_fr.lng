@@ -14,6 +14,8 @@
   "UpdateInterface_StartAnalysis": "Lancement de la mise a jour des modeles de maladie",
   "UpdateInterface_EndAnalysis": "Mise a jour des modeles de maladie terminee",
 
+  "ExportInterface_ExportDone": "Base de donnees exportée avec succes!",
+  "ExportInterface_ExportFail": "",
 
   "Unknown_Command": "L'instruction saisie ne correspond a aucune action",
   "Leave_App": "Au revoir..."

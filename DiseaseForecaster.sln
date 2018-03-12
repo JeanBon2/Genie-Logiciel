@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecaster", "DiseaseForecaster\DiseaseForecaster.vcxproj", "{892F027E-DE4C-3B44-BF6C-BB8F535E9628}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecaster", "DiseaseForecaster\DiseaseForecaster.vcxproj", "{C52C2683-69E9-376B-A19C-9BB83DC164F5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecasterServer", "DiseaseForecasterServer\DiseaseForecasterServer.vcxproj", "{E0AE4537-C629-31F8-85BD-98E171375B50}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiseaseForecasterServer", "DiseaseForecasterServer\DiseaseForecasterServer.vcxproj", "{2BBCF9AF-2E43-32CD-ACA4-D855D71CE844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,19 +12,20 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Debug|x64.ActiveCfg = Debug|x64
-		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Debug|x64.Build.0 = Debug|x64
-		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Release|x64.ActiveCfg = Release|x64
-		{892F027E-DE4C-3B44-BF6C-BB8F535E9628}.Release|x64.Build.0 = Release|x64
-		{E0AE4537-C629-31F8-85BD-98E171375B50}.Debug|x64.ActiveCfg = Debug|x64
-		{E0AE4537-C629-31F8-85BD-98E171375B50}.Debug|x64.Build.0 = Debug|x64
-		{E0AE4537-C629-31F8-85BD-98E171375B50}.Release|x64.ActiveCfg = Release|x64
-		{E0AE4537-C629-31F8-85BD-98E171375B50}.Release|x64.Build.0 = Release|x64
+		{C52C2683-69E9-376B-A19C-9BB83DC164F5}.Debug|x64.ActiveCfg = Debug|x64
+		{C52C2683-69E9-376B-A19C-9BB83DC164F5}.Debug|x64.Build.0 = Debug|x64
+		{C52C2683-69E9-376B-A19C-9BB83DC164F5}.Release|x64.ActiveCfg = Release|x64
+		{C52C2683-69E9-376B-A19C-9BB83DC164F5}.Release|x64.Build.0 = Release|x64
+		{2BBCF9AF-2E43-32CD-ACA4-D855D71CE844}.Debug|x64.ActiveCfg = Debug|x64
+		{2BBCF9AF-2E43-32CD-ACA4-D855D71CE844}.Debug|x64.Build.0 = Debug|x64
+		{2BBCF9AF-2E43-32CD-ACA4-D855D71CE844}.Release|x64.ActiveCfg = Release|x64
+		{2BBCF9AF-2E43-32CD-ACA4-D855D71CE844}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {09A3B48B-B415-4BA3-A172-65DFEB7F8605}
+		Qt5Version = 5.10
+		SolutionGuid = {D3304A61-7ADC-4017-8481-3F7384D336BF}
 	EndGlobalSection
 EndGlobal

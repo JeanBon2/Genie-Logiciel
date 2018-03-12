@@ -1,0 +1,4 @@
+AttributeName;AttributeType
+A1;double
+A2;double
+A3;string

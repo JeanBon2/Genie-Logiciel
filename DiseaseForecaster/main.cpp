@@ -8,7 +8,7 @@ int main()
 	DbManager db("DiseaseForecaster.db");
 	db.getAnalyseResults("");
 
-	if (Interface::loadMap(R"(.\Ressources\Rr_rr.lng)"))
+	if (Interface::loadMap(R"(.\Ressources\Fr_rr.lng)"))
 	{
 		Log::info("ça démarre");
 		Interface::start();

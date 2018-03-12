@@ -11,21 +11,24 @@ using namespace std;
 #include "DbManager.h"
 #include "Log.h"
 
+QSqlDatabase DbManager::database = QSqlDatabase::addDatabase("QSQLITE");
+
 // Constructors
 DbManager::DbManager(const string& path)
 {
 #ifdef DEBUG
 	cout << "DbManager constructor call" << endl;
 #endif // DEBUG
-	database = QSqlDatabase::addDatabase("QSQLITE");
-	database.setDatabaseName(QString::fromStdString(path));
+	if (!database.isOpen())
+	{
+		database.setDatabaseName(QString::fromStdString(path));
+	}
 
 	if (!database.open())
 	{
 		Log::info("Error while opening database.");
 		return;
 	}
-	wipeData();
 }
 
 // Destructor
@@ -40,6 +43,7 @@ DbManager::~DbManager()
 // Public methods
 bool DbManager::insertIntoDatabase(const vector<Disease>& diseases)
 {
+	wipeData();
 	for (auto&& disease : diseases)
 	{
 		if (!insertIntoDatabase(disease))

@@ -217,11 +217,11 @@ bool ModelImporter::importAttributeValues()
 						auto&& valuesIterator = attributesIterator->second.find(line[i]);
 						if (valuesIterator != attributesIterator->second.end())
 						{
-							number = valuesIterator->second;
+							number = valuesIterator->second + 1;
 						}
 					}
-					numberOfPersonsWithValue.insert({ line[i], number });
-					numberOfPersonWithValueOfDiscreteAttribute.insert({ headers[i], numberOfPersonsWithValue });
+					numberOfPersonsWithValue[line[i]] = number;
+					numberOfPersonWithValueOfDiscreteAttribute[headers[i]] = numberOfPersonsWithValue;
 				}
 			}
 		}
@@ -258,7 +258,7 @@ bool ModelImporter::importAttributeValues()
 						}
 						else
 						{
-							illContinuousAttribute.insert({ headers[i], { value } });
+							illContinuousAttribute[headers[i]] = { value };
 						}
 					}
 					catch (invalid_argument)
@@ -286,7 +286,7 @@ bool ModelImporter::importAttributeValues()
 					}
 					else
 					{
-						illDiscreteAttribute.insert({ headers[i], {line[i] } });
+						illDiscreteAttribute[headers[i]] = {line[i] };
 					}
 
 					map<string, unsigned int> numberOfPersonsWithValue;
@@ -298,15 +298,15 @@ bool ModelImporter::importAttributeValues()
 						auto&& valuesIterator = attributesIterator->second.find(line[i]);
 						if (valuesIterator != attributesIterator->second.end())
 						{
-							number = valuesIterator->second;
+							number = valuesIterator->second + 1;
 						}
 					}
-					numberOfPersonsWithValue.insert({ line[i], number });
-					numberOfPersonWithValueOfDiscreteAttribute.insert({ headers[i], numberOfPersonsWithValue });
+					numberOfPersonsWithValue[line[i]] = number;
+					numberOfPersonWithValueOfDiscreteAttribute[headers[i]] = numberOfPersonsWithValue;
 				}
 			}
-			continuousAttributesForDisease.emplace(disease, illContinuousAttribute);
-			discreteAttributesForDisease.emplace(disease, illDiscreteAttribute);
+			continuousAttributesForDisease[disease] = illContinuousAttribute;
+			discreteAttributesForDisease[disease] = illDiscreteAttribute;
 		}
 	}
 
@@ -334,7 +334,7 @@ bool ModelImporter::importAttributeValues()
 			standardDeviation += pow(value - average, 2);
 		}
 		standardDeviation = sqrt(standardDeviation / dataNumber);
-		continuousNormalIntervals.emplace(continuousAttribute.first, std::make_shared<ContinuousAttribute>(attributeId, continuousAttribute.first, vector<pair<double, double>>{ {average - 2 * standardDeviation, average + 2 * standardDeviation}}));
+		continuousNormalIntervals[continuousAttribute.first] = std::make_shared<ContinuousAttribute>(attributeId, continuousAttribute.first, vector<pair<double, double>>{ {average - 2 * standardDeviation, average + 2 * standardDeviation}});
 		++attributeId;
 	}
 
@@ -394,9 +394,9 @@ bool ModelImporter::importAttributeValues()
 				auto&& iterator = valueNumber.find(value);
 				if (iterator != valueNumber.end())
 				{
-					number = iterator->second;
+					number = iterator->second + 1;
 				}
-				valueNumber.insert({ value, number });
+				valueNumber[value] = number;
 			}
 
 			auto&& totalValueNumberIterator = numberOfPersonWithValueOfDiscreteAttribute.find(attribute.first);
@@ -427,7 +427,12 @@ bool ModelImporter::importAttributeValues()
 				}
 				if (static_cast<double>(valueNumberIterator->second) / static_cast<double>(totalValueNumberForAttributeIterator->second) >= 0.9)
 				{
-					discriminantAttributes.push_back(static_pointer_cast<Attribute>(make_shared<DiscreteAttribute>(attributeId, attribute.first)));
+					shared_ptr<Attribute> newAttribute = static_pointer_cast<Attribute>(make_shared<DiscreteAttribute>(attributeId, attribute.first));
+					discriminantAttributes.push_back(newAttribute);
+					if (disease != nullptr)
+					{
+						disease->addDiscriminantAttribute(newAttribute);
+					}
 				}
 				valueNumberIterator++;
 			}

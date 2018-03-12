@@ -2,30 +2,31 @@
     "attributes": {
         "continuousAttributes": [
             {
-                "id": 2,
-                "name": "Poids",
+                "id": 1,
+                "name": "A1",
                 "normalIntervals": [
                     {
-                        "maximum": 80,
-                        "minimum": 60
+                        "maximum": 21.1432,
+                        "minimum": 9.05682
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "A2",
+                "normalIntervals": [
+                    {
+                        "maximum": 51.1168,
+                        "minimum": 38.5432
                     }
                 ]
             }
         ],
         "discreteAttributes": [
             {
-                "id": 1,
-                "name": "Yeux",
-                "normalValues": [
-                    "Bleu",
-                    "Rouge"
-                ]
-            },
-            {
                 "id": 3,
-                "name": "Couleur de peau",
+                "name": "A3",
                 "normalValues": [
-                    "Blanche"
                 ]
             }
         ]
@@ -34,18 +35,11 @@
         {
             "discriminantAttributes": [
                 1,
-                3,
-                2
+                2,
+                3
             ],
             "id": 1,
-            "name": "Tetanos"
-        },
-        {
-            "discriminantAttributes": [
-                1
-            ],
-            "id": 2,
-            "name": "Rubeole"
+            "name": "Caca"
         }
     ]
 }

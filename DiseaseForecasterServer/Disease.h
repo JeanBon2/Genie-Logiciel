@@ -36,7 +36,7 @@ public:
 	int getId() const { return id; }
 	string getName() const { return name; }
 
-	vector<shared_ptr<Attribute>> getDiscriminantAttributes() const { return discriminantAttributes; }
+	const vector<shared_ptr<Attribute>>& getDiscriminantAttributes() const { return discriminantAttributes; }
 	void addDiscriminantAttribute(shared_ptr<Attribute> attribute);
 	bool isDiscriminant(shared_ptr<Attribute> attribute);
 

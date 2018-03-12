@@ -47,7 +47,7 @@ void UpdateInterface::displayInterfaceText()
 		cout << getTextFromField("UpdateInterface_StartAnalysis") << endl;
 		break;
 	case END_ANALYSIS:
-		cout << getTextFromField("UpdateInterface_EndAnalysis")  << endl;
+		cout << getTextFromField("UpdateInterface_EndAnalysis") << endl;
 		cout << getTextFromField("Interface_Previous") << endl;
 		break;
 
@@ -57,7 +57,7 @@ void UpdateInterface::displayInterfaceText()
 }
 
 void UpdateInterface::run()
-{	
+{
 	state = START_UPDATE;
 	displayInterfaceText();
 	string description = Interface::getAction();
@@ -65,10 +65,10 @@ void UpdateInterface::run()
 
 	state = START_ANALYSIS;
 	displayInterfaceText();
-	ModelImporter m( description,label);
+	ModelImporter m(description, label);
 	m.importModel();
-	
+
 	state = END_ANALYSIS;
 	displayInterfaceText();
-	Interface::getAction();
+	getAction();
 }

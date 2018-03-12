@@ -104,20 +104,14 @@
     <ClInclude Include="PotentialDisease.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PotentialDiseaseTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SearchInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UpdateInterface.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TAnalyse.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TPotentialDisease.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="THealthPrint.h">
-      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

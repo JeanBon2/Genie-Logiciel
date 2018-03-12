@@ -1,22 +1,75 @@
-#include <QtCore/QCoreApplication>
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QJsonObject>
-#include <vector>
-
-#include "CsvParser.h"
-#include "Disease.h"
-#include "DiscreteAttribute.h"
-#include "ContinuousAttribute.h"
-#include "Log.h"
-#include "Interface.h"
-#include "ModelImporter.h"
-
+// System include
+#include <iostream>
+#include <string>
+#include <QFile>
+#include <qjsondocument.h>
+#include <qjsonarray.h>
 using namespace std;
 
-const string filePath = "export.json";
+// Personnal include
+#include "ExportInterface.h"
+#include "Interface.h"
+#include "DbManager.h"
+#include "Log.h"
+// Constants
 
-bool exportDatabase(vector<Disease>& diseases, vector<shared_ptr<Attribute>> attributes) {
+// Constructors
+ExportInterface::ExportInterface()
+{
+
+}
+
+
+ExportInterface::ExportInterface(const ExportInterface*)
+{
+#ifdef DEBUG
+	cout << "UpdateInterface copy constructor call" << endl;
+#endif // DEBUG
+}
+
+// Destructor
+ExportInterface::~ExportInterface()
+{
+#ifdef DEBUG
+	cout << "UpdateInterface destructor call" << endl;
+#endif // DEBUG
+}
+
+// Public methods
+
+// Protected methods
+void ExportInterface::displayInterfaceText()
+{
+	switch (state)
+	{
+	case START_EXPORT:
+		cout << getTextFromField("ExportInterface_ExportDone") << endl;
+		break;
+
+	case END_EXPORT:
+		cout << getTextFromField("Interface_Previous") << endl;
+		break;
+	default:
+		break;
+	}
+	
+}
+
+void ExportInterface::run()
+{	
+	state = START_EXPORT;
+	DbManager db("DiseaseForecasterServer.db");
+	exportDatabase(db.getDiseases(), db.getAttributes());
+	displayInterfaceText();
+
+	state = END_EXPORT;
+	displayInterfaceText();
+	getAction();
+}
+//private Methods
+bool ExportInterface::exportDatabase(vector<Disease>&& diseases, vector<shared_ptr<Attribute>>&& attributes) 
+{
+	const string filePath = "export.json";
 	QFile file(QString::fromStdString(filePath));
 	if (!file.open(QIODevice::WriteOnly))
 	{
@@ -88,14 +141,4 @@ bool exportDatabase(vector<Disease>& diseases, vector<shared_ptr<Attribute>> att
 	file.write(QJsonDocument(document).toJson());
 
 	return true;
-}
-
-int main(int argc, char *argv[])
-{
-	if (Interface::loadMap(R"(.\Resources\Fr_fr.lng)"))
-	{
-		Interface::start();
-	}
-
-	return EXIT_SUCCESS;
 }
