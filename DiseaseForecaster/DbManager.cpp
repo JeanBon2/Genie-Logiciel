@@ -300,7 +300,7 @@ map<string, string> DbManager::getDiscreteAttributeForHealthPrint(const int heal
 vector<Disease> DbManager::getDiseases()
 {
 	vector<Disease> diseases;
-	/*QSqlQuery query("SELECT diseaseId, diseaseName FROM Diseases");
+	QSqlQuery query("SELECT diseaseId, diseaseName FROM Diseases");
 	if (query.exec())
 	{
 		QSqlRecord record = query.record();
@@ -312,7 +312,7 @@ vector<Disease> DbManager::getDiseases()
 			const string diseaseName = query.value(indexName).toString().toUtf8().constData();
 			diseases.emplace_back(diseaseId, diseaseName, getDiscriminantAttributesForDisease(diseaseId));
 		}
-	}*/
+	}
 	return diseases;
 }
 
