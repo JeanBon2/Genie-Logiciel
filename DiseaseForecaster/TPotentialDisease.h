@@ -30,8 +30,22 @@ public:
 class TPotentialDisease : public AbstractTest
 {
 public:
+	int idTest = 1;
+	string nameTest = "Coléra";
+	double matchingRateTest = 50;
+	map<string, double> continuousAttributesValuesTest;
+	map<string, string> discreteAttributesValuesTest;
+
+	PotentialDisease potentialD1;
+
    // Class constructor
-   TPotentialDisease() {}
+   TPotentialDisease()
+	   : potentialD1(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest)
+   {
+	   continuousAttributesValuesTest.insert(std::pair<string, double>("id", idTest));
+	   discreteAttributesValuesTest.insert(std::pair<string, string>("name", nameTest));
+	   continuousAttributesValuesTest.insert(std::pair<string, double>("matchingRate", matchingRateTest));
+   }
 
    // This Method add every test method in the run engine
    void init ()
@@ -52,72 +66,12 @@ public:
        PotentialDiseaseTest(TPotentialDisease* tmp): TPotentialDiseaseMethod(tmp) { testResult.name = "PotentialDiseaseTest"; }
        TestResult execute()
         {
-		   cout << "Test de création d'un objet PotentialDisease" << endl;
-
-		   int idTest;
-		   string nameTest;
-		   double matchingRateTest;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
-
-		   // Test de création d'un objet PotentialDisease avec des paramètres corrects
-		   idTest = 1;
-		   nameTest = "Coléra";
-		   matchingRateTest = 50;
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD1(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet PotentialDisease avec un id de maladie déjà existant
-		   idTest = 1;
-		   nameTest = "Peste";
-		   matchingRateTest = 50;
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD2(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet PotentialDisease avec un nom de maladie existant
-		   idTest = 2;
-		   nameTest = "Coléra";
-		   matchingRateTest = 50;
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD3(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet PotentialDisease avec un taux de correspondance impossible ici < 0
-		   idTest = 3;
-		   nameTest = "Angine";
-		   matchingRateTest = -20;
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD4(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet PotentialDisease avec un taux de correspondance impossible ici > 100
-		   idTest = 4;
-		   nameTest = "Bronchite";
-		   matchingRateTest = 120;
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD5(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
+		   /*
+		   if (! outter->potentialD1)
+		   {
+		   assert(false);
+		   }*/
+		   assert(false);
 
            return testResult;
         }
@@ -130,46 +84,10 @@ public:
        DisplayContentTest(TPotentialDisease* tmp): TPotentialDiseaseMethod(tmp) { testResult.name = "DisplayContentTest"; }
        TestResult execute()
         {
-		   cout << "Test d'affichage d'un objet PotentialDisease" << endl;
-
-		   int idTest;
-		   string nameTest;
-		   double matchingRateTest;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
-
-		   // Création d'un objet PotentialDisease avec des paramètres corrects
-		   idTest = 5;
-		   nameTest = "Gastro";
-		   matchingRateTest = 50;
-
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD1(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Création d'un objet PotentialDisease avec un id de maladie déjà existant
-		   idTest = 5;
-		   nameTest = "Cancer des poumons";
-		   matchingRateTest = 50;
-
-		   continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   PotentialDisease potentialD2(idTest, nameTest, matchingRateTest, continuousAttributesValuesTest, discreteAttributesValuesTest);
-		   
-
-		   // Test d'affichage d'un objet PotentialDisease avec des paramètres corrects
 		   // TODO rediriger le retour vers une variable et non l'écran
-		   potentialD1.displayContent();
+		   outter->potentialD1.displayContent();
 
-		   // Test d'affichage d'un objet PotentialDisease avec un id de maladie déjà éxistant 
-		   // TODO rediriger le retour vers une variable et non l'écran
-		   potentialD2.displayContent();
+		   assert(false);
 
           return testResult;
         }
