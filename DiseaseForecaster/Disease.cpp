@@ -9,7 +9,7 @@ using namespace std;
 // Constants
 
 // Constructors
-Disease::Disease(const int id, const string& name, const vector<shared_ptr<Attribute>>&& discriminantAttributes) : id(id), name(name), discriminantAttributes(discriminantAttributes)
+Disease::Disease(const int id, const string& name, const vector<shared_ptr<Attribute>> discriminantAttributes) : id(id), name(name), discriminantAttributes(discriminantAttributes)
 {
 #ifdef DEBUG
 	cout << "Disease constructor call" << endl;

@@ -10,6 +10,7 @@ using namespace std;
 #include "Analyse.h"
 #include "HealthPrint.h"
 #include "UpdateInterface.h"
+#include "Disease.h"
 
 
 // Constants
@@ -35,8 +36,15 @@ public:
 	bool insertIntoDatabase(const Analyse& analyse);
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
 	static bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
+	static bool insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData);
+
 	vector<Analyse> getAnalyseResults(string patientName);
 
+	vector<shared_ptr<Attribute>> getDiscriminantAttributesForDisease(int diseaseId);
+	vector<Disease> getDiseases();
+	shared_ptr<Attribute> getAttributeForId(int attributeId);
+	vector<interval> getNormalIntervalsForContinuousAttribute(int attributeId);
+	vector<string> getNormalValuesForDiscreteAttribute(int attributeId);
 private:
 	vector<PotentialDisease> getPotentialDiseaseForAnalyse(int analyseId);
 	map<string, double> getAbnormalContinuousAttributesForPotentialDisease(const int diseaseId, const int analyseId);

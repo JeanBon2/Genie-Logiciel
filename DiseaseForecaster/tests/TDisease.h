@@ -44,13 +44,14 @@ public:
   //
   Disease d1;
   Disease d2;
+  string name1 = "Ebola", name2 = "VIH";
   shared_ptr<Attribute> attribute1, attribute2, attribute3;
   vector<shared_ptr<Attribute>> attributes;
 
   TDisease()
   :
-  d1(0, "Ebola"), // TODO Set attributes
-  d2(1, "VIH"),
+  d1(0, name1), // TODO Set attributes
+  d2(1, name2, attributes),
   attribute1(new Attribute(0, "Attribute1", false)),
   attribute2(new Attribute(1, "Attribute2", false)),
   attribute3(new Attribute(2, "Attribute3", false))
@@ -69,7 +70,14 @@ public:
 
     TestResult execute()
     {
-      outter->d1.getId();
+      assert(outter->d1.getId() == 0);
+      //assert(outter->d1.getName().compare(name1) == 0);
+
+
+      assert(outter->d2.getId() == 0);
+      //assert(outter->d2.getName().compare(name2) == 0);
+      assert(outter->d2.getDiscriminantAttributes() == outter->attributes);
+
       return testResult;
     }
   };
