@@ -9,7 +9,8 @@ using namespace std;
 // Constants
 
 // Constructors
-Disease::Disease(const int id, const string& name, const vector<shared_ptr<Attribute>>&& discriminantAttributes) : id(id), name(name), discriminantAttributes(discriminantAttributes)
+Disease::Disease(const int id, const string& newName, const vector<shared_ptr<Attribute>> discriminantAttributes)
+: id(id), name(newName), discriminantAttributes(discriminantAttributes)
 {
 #ifdef DEBUG
 	cout << "Disease constructor call" << endl;
@@ -28,6 +29,7 @@ void Disease::addDiscriminantAttribute(shared_ptr<Attribute> attribute)
 {
 	discriminantAttributes.push_back(attribute);
 }
+
 bool Disease::isDiscriminant(shared_ptr<Attribute> attribute)
 {
 	for(auto&& discriminantAttribute : discriminantAttributes)

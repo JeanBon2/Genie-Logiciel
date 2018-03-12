@@ -4,6 +4,7 @@
 // System include
 #include <iostream>
 #include <vector>
+#include <memory>
 using namespace std;
 
 // Personnal include
@@ -44,6 +45,7 @@ public:
   //
   Disease d1;
   Disease d2;
+  string name1 = "Ebola", name2 = "VIH";
   shared_ptr<Attribute> attribute1, attribute2, attribute3;
   vector<shared_ptr<Attribute>> attributes;
 
@@ -60,7 +62,6 @@ public:
     attributes.push_back(attribute3);
   }
 
-
   // Begin of tests methods
   class DiseaseTest : public TDiseaseMethod
   {
@@ -69,7 +70,12 @@ public:
 
     TestResult execute()
     {
-      outter->d1.getId();
+      assert(outter->d1.getId() == 0);
+      assert(outter->d1.getName().compare(outter->name1) == 0);
+
+      assert(outter->d2.getId() == 1);
+      assert(outter->d2.getName().compare(outter->name2) == 0);
+
       return testResult;
     }
   };
@@ -81,6 +87,9 @@ public:
 
     TestResult execute()
     {
+      assert(outter->d1.getId() == 0);
+      assert(outter->d2.getId() == 1);
+
       return testResult;
     }
   };
@@ -92,6 +101,13 @@ public:
 
     TestResult execute()
     {
+      assert(outter->d1.getName().compare(outter->name1) == 0);
+      assert(outter->d2.getName().compare(outter->name2) == 0);
+
+      outter->d1.addDiscriminantAttribute(outter->attributes[0]);
+      outter->d1.addDiscriminantAttribute(outter->attributes[1]);
+      outter->d1.addDiscriminantAttribute(outter->attributes[2]);
+
       return testResult;
     }
   };
@@ -103,6 +119,11 @@ public:
 
     TestResult execute()
     {
+      vector<shared_ptr<Attribute>> attributes = outter->d1.getDiscriminantAttributes();
+
+      assert(attributes[0]->getId() == outter->attributes[0]->getId());
+      assert(attributes[2]->getId() == outter->attributes[2]->getId());
+
       return testResult;
     }
   };
@@ -114,6 +135,11 @@ public:
 
     TestResult execute()
     {
+      vector<shared_ptr<Attribute>> attributes = outter->d1.getDiscriminantAttributes();
+
+      assert(attributes[0]->getId() == outter->attributes[0]->getId());
+      assert(attributes[1]->getId() == outter->attributes[1]->getId());
+
       return testResult;
     }
   };
@@ -125,6 +151,10 @@ public:
 
     TestResult execute()
     {
+      shared_ptr<Attribute> newAttribute = make_shared<Attribute>(Attribute(3, "Attribute4", false));
+      assert(outter->d1.isDiscriminant(outter->attributes[1]) == true);
+      assert(outter->d1.isDiscriminant(newAttribute) == false);
+
       return testResult;
     }
   };

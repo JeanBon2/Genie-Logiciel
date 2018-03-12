@@ -29,8 +29,27 @@ public:
 class THealthPrint : public AbstractTest
 {
 public:
+	double idTest = 1;
+	string patientNameTest = "Dupont";
+	string doctorNameTest = "Durand";
+	string printDateTest = "25/04/2016";
+	double sensorIdTest = 1;
+	map<string, double> continuousAttributesValuesTest;
+	map<string, string> discreteAttributesValuesTest;
+	HealthPrint healthPrint1;
+
    // Class constructor
-   THealthPrint() {}
+   THealthPrint()
+	   : healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest,
+		   sensorIdTest, continuousAttributesValuesTest, discreteAttributesValuesTest)
+   {
+	   // Création d'un objet HealthPrint avec des paramètres corrects
+	   continuousAttributesValuesTest.insert(std::pair<string, double>("id", idTest));
+	   discreteAttributesValuesTest.insert(std::pair<string, string>("patientName", patientNameTest));
+	   discreteAttributesValuesTest.insert(std::pair<string, string>("doctorName", doctorNameTest));
+	   discreteAttributesValuesTest.insert(std::pair<string, string>("printDate", printDateTest));
+	   continuousAttributesValuesTest.insert(std::pair<string, double>("sensorId", sensorIdTest));
+   }
 
    // This Method add every test method in the run engine
    void init ()
@@ -41,6 +60,7 @@ public:
        addTest(new getPrintDateTest(this));
        addTest(new analyseTest(this));
    }
+
 
    /*
    Here you can add one event method to handle your tests variables and objects.
@@ -54,135 +74,13 @@ public:
        HealthPrintTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "HealthPrintTest"; }
        TestResult execute()
         {
-		   cout << "Test de création d'un objet HealthPrint" << endl;
+		   /*
+		   if (! outter->healthPrint1)
+		   {
+			   assert(false);
+		   }*/
+		   assert(false);
 		   
-		   int idTest;
-		   string patientNameTest;
-		   string doctorNameTest;
-		   string printDateTest;
-		   int sensorIdTest;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
-
-		   //Test de création d'un objet HealthPrint avec des paramètres corrects
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet HealthPrint avec un id d'empreinte déjà existant
-		   cout << "Saisir un id d'empreinte existant : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint2(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet HealthPrint avec une date impossible
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte impossible : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint3(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet HealthPrint avec une date contenant des lettres
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte avec des lettres : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint4(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de création d'un objet HealthPrint avec un id de capteur inexistant
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte avec des lettres : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur inexistant : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint5(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
            return testResult;
         }
    };
@@ -194,69 +92,11 @@ public:
        displayContentTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "displayContentTest"; }
        TestResult execute()
         {
-		   cout << "Test d'affichage du contenu d'un objet HealthPrint" << endl;
-		   int idTest;
-		   string patientNameTest;
-		   string doctorNameTest;
-		   string printDateTest;
-		   int sensorIdTest;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
+		   // TODO rediriger l'affichage vers une variable afin
+		   outter->healthPrint1.displayContent();
 
-		   // Création d'un objet HealthPrint avec des paramètres corrects
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Création d'un objet HealthPrint avec un id d'empreinte déjà existant
-		   cout << "Saisir un id d'empreinte existant : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint2(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test d'affichage d'un objet HealthPrint avec des paramètres corrects
-		   healthPrint1.displayContent();
-
-		   // Test d'affichage d'un objet HealthPrint avec des apramètres incorrects
-		   healthPrint2.displayContent();
-
+		   assert(false);
+		   
            return testResult;
         }
    };
@@ -268,42 +108,15 @@ public:
        getPatientNameTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "getPatientNameTest"; }
        TestResult execute()
         {
-		   cout << "Test de récupération du nom du patient d'un objet HealthPrint" << endl;
-
-		   int idTest;
-		   string patientNameTest;
-		   string doctorNameTest;
-		   string printDateTest;
-		   int sensorIdTest;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
-
-		   // Création d'un objet HealthPrint avec des paramètres corrects
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
+		   string patientNameRetour;
 
 		   // Test de récupération du nom du patient
-		   healthPrint1.getPatientName();
+		   patientNameRetour = outter->healthPrint1.getPatientName();
+
+		   if (outter->patientNameTest != patientNameRetour)
+		   {
+			   assert(false);
+		   }
 
            return testResult;
         }
@@ -316,42 +129,17 @@ public:
        getPrintDateTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "getPrintDateTest"; }
        TestResult execute()
         {
-		   cout << "Test de récupération de la date d'un objet HealthPrint" << endl;
-
-		   int idTest;
-		   string patientNameTest;
-		   string doctorNameTest;
-		   string printDateTest;
-		   int sensorIdTest;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
-
-		   // Création d'un objet HealthPrint avec des paramètres corrects
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
+		   QDate dateRetour;
+		   string dateR;
 
 		   // Test de récupération de la date de l'empreinte
-		   healthPrint1.getPrintDate();
+		   dateRetour = outter->healthPrint1.getPrintDate();
+		   dateR = dateRetour.toString("dd.MM.yyyy").toUtf8().constData();
+
+		   if (dateR != outter->printDateTest)
+		   {
+			   assert(false);
+		   }
 
            return testResult;
         }
@@ -364,43 +152,10 @@ public:
        analyseTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "analyseTest"; }
        TestResult execute()
         {
-		   cout << "Test de la fonction Analyse d'un objet HealthPrint" << endl;
-
-		   int idTest;
-		   string patientNameTest;
-		   string doctorNameTest;
-		   string printDateTest;
-		   int sensorIdTest;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
-
-		   // Création d'un objet HealthPrint avec des paramètres corrects
-		   cout << "Saisir un id d'empreinte : ";
-		   cin >> idTest;
-
-		   cout << "Saisir un nom de patient : ";
-		   cin >> patientNameTest;
-
-		   cout << "Saisir un nom de docteur : ";
-		   cin >> doctorNameTest;
-
-		   cout << "Saisir une date de saisie de l'empreinte : ";
-		   cin >> printDateTest;
-
-		   cout << "Saisir un id de capteur réalisant l'empreinte : ";
-		   cin >> sensorIdTest;
-
-		   // continuousAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   // discreteAttributesValuesTest[nameTest] = matchingRateTest;
-
-		   HealthPrint healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest, sensorIdTest,
-			   continuousAttributesValuesTest, discreteAttributesValuesTest);
-
-
-		   // Test de la focntion Analyse d'un objet HealthPrint
-
-
+		   //outter->healthPrint1.analyse();
+		   
+		   assert(false);
+		   
            return testResult;
         }
    };

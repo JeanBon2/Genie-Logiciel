@@ -20,12 +20,12 @@ class DiscreteAttribute : public Attribute
 {
 	// Attributes
 private:
-	vector<value> normalValues;
+	vector<string> normalValues;
 
 	// Methods
 public:
 	// Constructors
-	DiscreteAttribute(const int id, const string& name, const vector<value>&& normalValues = vector<value>());
+	DiscreteAttribute(const int id, const string& name, const vector<string>&& normalValues = vector<string>());
 
 	// Destructors
 	~DiscreteAttribute() override;
@@ -34,9 +34,9 @@ public:
 	int getId() const { return id; }
 	string getName() const { return name; }
 
-	vector<value> getNormalValues() const { return normalValues; }
-	void addNormalValue(const value& normalValue);
-	bool isInNormalValues(const value& value);
+	vector<string> getNormalValues() const { return normalValues; }
+	void addNormalValue(const string& normalValue);
+	bool isInNormalValues(const string& value);
 };
 
 #endif // DISCRETEATTRIBUTE_H
