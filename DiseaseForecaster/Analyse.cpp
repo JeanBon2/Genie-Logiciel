@@ -37,3 +37,16 @@ void Analyse::displayHeader()
 {
 	cout << healthPrint.getPatientName() << " - " << healthPrint.getPrintDate().toString("dd.MM.yyyy").toUtf8().constData() << endl;
 }
+
+int Analyse::getId()
+{
+	return id;
+}
+HealthPrint Analyse::getHealthPrint()
+{
+	return healthPrint;
+}
+vector<PotentialDisease> Analyse::getDiseases()
+{
+	return diseases;
+}

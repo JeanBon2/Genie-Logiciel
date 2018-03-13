@@ -34,6 +34,9 @@ public:
 	//Others
 	void displayContent();
 	void displayHeader();
+	int getId();
+	HealthPrint getHealthPrint();
+	vector<PotentialDisease> getDiseases();
 
 };
 
