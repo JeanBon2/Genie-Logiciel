@@ -64,9 +64,19 @@ QDate HealthPrint::getPrintDate()
 {
 	return printDate;
 }
-
-// Protected methods
-void HealthPrint::analyse()
+map<string, double> HealthPrint::getContinuousAttributesValues()
 {
-
+	return continuousAttributesValues;
+}
+map<string, string> HealthPrint::getDiscreteAttributesValues()
+{
+	return discreteAttributesValues;
+}
+int HealthPrint::getId()
+{
+	return id;
+}
+int HealthPrint::getSensorId()
+{
+	return sensorId;
 }

@@ -33,15 +33,14 @@ public:
 	// Destructors
 	~HealthPrint();
 
-	int getId() { return id; }
-
 	//Others
 	string displayContent(bool printOnScreen = true);
 	string getPatientName();
 	QDate getPrintDate();
-
-protected:
-	void analyse();
+	map<string, double> getContinuousAttributesValues();
+	map<string, string> getDiscreteAttributesValues();
+	int getId();
+	int getSensorId();
 };
 
 #endif // HEALTHPRINT_H
