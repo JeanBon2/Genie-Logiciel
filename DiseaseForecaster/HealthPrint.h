@@ -36,6 +36,7 @@ public:
 	//Others
 	string displayContent(bool printOnScreen = true);
 	string getPatientName();
+	string getDoctorName();
 	QDate getPrintDate();
 	map<string, double> getContinuousAttributesValues();
 	map<string, string> getDiscreteAttributesValues();

@@ -56,9 +56,17 @@ string HealthPrint::displayContent(bool printOnScreen)
 	return message;
 }
 
+int HealthPrint::getId()
+{
+	return id;
+}
 string HealthPrint::getPatientName()
 {
 	return patientName;
+}
+string HealthPrint::getDoctorName()
+{
+	return doctorName;
 }
 QDate HealthPrint::getPrintDate()
 {
@@ -71,10 +79,6 @@ map<string, double> HealthPrint::getContinuousAttributesValues()
 map<string, string> HealthPrint::getDiscreteAttributesValues()
 {
 	return discreteAttributesValues;
-}
-int HealthPrint::getId()
-{
-	return id;
 }
 int HealthPrint::getSensorId()
 {

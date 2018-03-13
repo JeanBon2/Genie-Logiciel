@@ -58,6 +58,7 @@ public:
        addTest(new HealthPrintTest(this));
        addTest(new displayContentTest(this));
        addTest(new getPatientNameTest(this));
+	   addTest(new getDoctorNameTest(this));
        addTest(new getPrintDateTest(this));
 	   addTest(new getContinuousAttributesValuesTest(this));
 	   addTest(new getDiscreteAttributesValuesTest(this));
@@ -78,10 +79,21 @@ public:
        HealthPrintTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "HealthPrintTest"; }
        TestResult execute()
         {
+		   double idTest = 1;
+		   string patientNameTest = "Dupont";
+		   string doctorNameTest = "Durand";
+		   string printDateTest = "25/04/2016";
+		   double sensorIdTest = 1;
+		   map<string, double> continuousAttributesValuesTest;
+		   map<string, string> discreteAttributesValuesTest;
 
-				assert(outter->healthPrint1.getId() == outter->idTest);
+		   assert(outter->healthPrint1.getId() == outter->idTest);
            assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
+		   assert(outter->healthPrint1.getDoctorName().compare(outter->doctorNameTest) == 0);
            assert(outter->healthPrint1.getPrintDate().toString("dd/MM/yyyy").toStdString().compare(outter->printDateTest) == 0);
+		   assert(outter->healthPrint1.getSensorId() == outter->sensorIdTest);
+		   assert(outter->healthPrint1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
+		   assert(outter->healthPrint1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
 
            return testResult;
         }
@@ -120,6 +132,19 @@ public:
 
            return testResult;
         }
+   };
+
+   // Test class for the method getDoctorName of class HealthPrint
+   class getDoctorNameTest : public THealthPrintMethod
+   {
+   public:
+	   getDoctorNameTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getPatientNameTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->healthPrint1.getDoctorName().compare(outter->doctorNameTest) == 0);
+
+		   return testResult;
+	   }
    };
 
    // Test class for the method getPrintDate of class HealthPrint
