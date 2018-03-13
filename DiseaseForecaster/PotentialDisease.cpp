@@ -38,3 +38,24 @@ void PotentialDisease::displayContent()
 		cout << discreteAttributesValue.first << " " << discreteAttributesValue.second << endl;
 	}
 }
+
+int PotentialDisease::getId()
+{
+	return id;
+}
+map<string, double> PotentialDisease::getContinuousAttributesValues()
+{
+	return continuousAttributesValues;
+}
+map<string, string> PotentialDisease::getDiscreteAttributesValues()
+{
+	return discreteAttributesValues;
+}
+string PotentialDisease::getName()
+{
+	return name;
+}
+double PotentialDisease::getMatchingRate()
+{
+	return matchingRate;
+}

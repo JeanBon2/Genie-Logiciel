@@ -28,6 +28,11 @@ public:
 
 	//Other
 	void displayContent();
+	int getId();
+	map<string, double> getContinuousAttributesValues();
+	map<string, string> getDiscreteAttributesValues();
+	string getName();
+	double getMatchingRate();
 
 };
 
