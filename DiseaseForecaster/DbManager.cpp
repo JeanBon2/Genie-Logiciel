@@ -101,7 +101,7 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 			const string printDateValue = query.value(indexPrintDate).toString().toStdString();
 			const unsigned int sensorIdValue = query.value(indexSensorId).toInt();
 
-			const HealthPrint healthPrint(healthPrintIdValue, patientNameValue, doctorNameValue, printDateValue, sensorIdValue);
+			HealthPrint healthPrint(healthPrintIdValue, patientNameValue, doctorNameValue, printDateValue, sensorIdValue);
 			Analyse analyse(analyseIdValue, healthPrint, getPotentialDiseaseForAnalyse(analyseIdValue));
 
 			analysesLists.emplace_back(analyse);

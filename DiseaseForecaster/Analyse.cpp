@@ -7,7 +7,7 @@ using namespace std;
 #include "Analyse.h"
 
 // Constructor
-Analyse::Analyse(int id, HealthPrint healthPrint, vector<PotentialDisease> diseases) : 
+Analyse::Analyse(int id, HealthPrint& healthPrint, vector<PotentialDisease> diseases) :
 	id(id), healthPrint(healthPrint), diseases(diseases)
 {
 	#ifdef DEBUG

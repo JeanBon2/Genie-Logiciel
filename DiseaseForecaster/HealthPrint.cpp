@@ -3,6 +3,7 @@
 #include <iterator>
 #include <map>
 #include <QDate>
+#include <string>
 
 using namespace std;
 
@@ -31,21 +32,28 @@ HealthPrint::~HealthPrint()
 	#endif // DEBUG
 }
 //Others
-void HealthPrint::displayContent()
+string HealthPrint::displayContent(bool printOnScreen)
 {
-	cout << "Sensor ID : " << sensorId << endl;
-	cout << "Print date : " << printDate.toString("dd.MM.yyyy").toUtf8().constData() << endl;
-	cout << "Doctor name :" << doctorName << endl;
-	cout << "Patient name : " << patientName << endl;
-	
+	string message = "";
+
+	message += "Sensor ID : " + to_string(sensorId) + "\n";
+	message += "Print date : " + printDate.toString("dd.MM.yyyy").toStdString() + "\n"; // .toUtf8().constData()
+	message += "Doctor name : " + doctorName + "\n";
+	message += "Patient name : " + patientName + "\n";
+
 	for (auto const& continuousAttributeValue : continuousAttributesValues)
 	{
-		cout << continuousAttributeValue.first << " : " << continuousAttributeValue.second << endl;
+		message += continuousAttributeValue.first + " : " + to_string(continuousAttributeValue.second)+ "\n";
 	}
 	for (auto const& discreteAttributeValue : discreteAttributesValues)
 	{
-		cout << discreteAttributeValue.first << " : " << discreteAttributeValue.second << endl;
+		message += discreteAttributeValue.first + " : " + discreteAttributeValue.second + "\n";
 	}
+
+	if (printOnScreen)
+		cout << message;
+
+	return message;
 }
 
 string HealthPrint::getPatientName()

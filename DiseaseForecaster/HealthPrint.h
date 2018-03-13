@@ -27,14 +27,16 @@ protected:
 	// Methods
 public:
 	// Constructors
-	HealthPrint(int id, string patientName, string doctorName, string printDate, int sensorId, 
+	HealthPrint(int id, string patientName, string doctorName, string printDate, int sensorId,
 		map<string, double> continuousAttributesValues = map<string, double>(), map<string, string> discreteAttributesValues = map<string, string>());
 
 	// Destructors
 	~HealthPrint();
 
+	int getId() { return id; }
+
 	//Others
-	void displayContent();
+	string displayContent(bool printOnScreen = true);
 	string getPatientName();
 	QDate getPrintDate();
 

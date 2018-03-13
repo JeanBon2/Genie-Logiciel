@@ -3,11 +3,12 @@
 
 // System include
 #include <iostream>
+#include <string>
 using namespace std;
 
 // Personnal include
-#include "c:\Users\asduc.INSA-LYON\Documents\Génie logiciel\Genie-Logiciel\DiseaseForecaster\tests\AbstractTest.h"
-#include "c:\Users\asduc.INSA-LYON\Documents\Génie logiciel\Genie-Logiciel\DiseaseForecaster\tests\MethodTest.h"
+#include "tests/AbstractTest.h"
+#include "tests/MethodTest.h"
 #include "HealthPrint.h"
 
 // Constants
@@ -43,7 +44,7 @@ public:
 	   : healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest,
 		   sensorIdTest, continuousAttributesValuesTest, discreteAttributesValuesTest)
    {
-	   // Création d'un objet HealthPrint avec des paramètres corrects
+	   // Crï¿½ation d'un objet HealthPrint avec des paramï¿½tres corrects
 	   continuousAttributesValuesTest.insert(std::pair<string, double>("id", idTest));
 	   discreteAttributesValuesTest.insert(std::pair<string, string>("patientName", patientNameTest));
 	   discreteAttributesValuesTest.insert(std::pair<string, string>("doctorName", doctorNameTest));
@@ -58,7 +59,6 @@ public:
        addTest(new displayContentTest(this));
        addTest(new getPatientNameTest(this));
        addTest(new getPrintDateTest(this));
-       addTest(new analyseTest(this));
    }
 
 
@@ -74,13 +74,11 @@ public:
        HealthPrintTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "HealthPrintTest"; }
        TestResult execute()
         {
-		   /*
-		   if (! outter->healthPrint1)
-		   {
-			   assert(false);
-		   }*/
-		   assert(false);
-		   
+
+		       assert(outter->healthPrint1.getId() == outter->idTest);
+           assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
+           assert(outter->healthPrint1.getPrintDate().toString("dd/MM/yyyy").toStdString().compare(outter->printDateTest) == 0);
+
            return testResult;
         }
    };
@@ -92,11 +90,17 @@ public:
        displayContentTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "displayContentTest"; }
        TestResult execute()
         {
-		   // TODO rediriger l'affichage vers une variable afin
-		   outter->healthPrint1.displayContent();
+          string message = "";
+          string date = "25.04.2016";
 
-		   assert(false);
-		   
+        	message += "Sensor ID : " + to_string(int(outter->sensorIdTest)) + "\n";
+        	message += "Print date : " + date + "\n"; // .toUtf8().constData()
+        	message += "Doctor name : " + outter->doctorNameTest + "\n";
+        	message += "Patient name : " + outter->patientNameTest + "\n";
+
+		       string buffer = outter->healthPrint1.displayContent(false);
+		       assert(message.compare(buffer) == 0);
+
            return testResult;
         }
    };
@@ -108,15 +112,7 @@ public:
        getPatientNameTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "getPatientNameTest"; }
        TestResult execute()
         {
-		   string patientNameRetour;
-
-		   // Test de récupération du nom du patient
-		   patientNameRetour = outter->healthPrint1.getPatientName();
-
-		   if (outter->patientNameTest != patientNameRetour)
-		   {
-			   assert(false);
-		   }
+			     assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
 
            return testResult;
         }
@@ -129,33 +125,8 @@ public:
        getPrintDateTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "getPrintDateTest"; }
        TestResult execute()
         {
-		   QDate dateRetour;
-		   string dateR;
+			     assert(outter->healthPrint1.getPrintDate().toString("dd/MM/yyyy").toStdString().compare(outter->printDateTest) == 0);
 
-		   // Test de récupération de la date de l'empreinte
-		   dateRetour = outter->healthPrint1.getPrintDate();
-		   dateR = dateRetour.toString("dd.MM.yyyy").toUtf8().constData();
-
-		   if (dateR != outter->printDateTest)
-		   {
-			   assert(false);
-		   }
-
-           return testResult;
-        }
-   };
-
-   // Test class for the method analyse of class HealthPrint
-   class analyseTest : public THealthPrintMethod
-   {
-   public:
-       analyseTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "analyseTest"; }
-       TestResult execute()
-        {
-		   //outter->healthPrint1.analyse();
-		   
-		   assert(false);
-		   
            return testResult;
         }
    };

@@ -16,16 +16,20 @@ class Analyse
 	// Attributes
 private:
 	int id;
-	HealthPrint healthPrint;
+	HealthPrint& healthPrint;
 	vector<PotentialDisease> diseases;
 
 	// Methods
 public:
 	// Constructor
-	Analyse(int id, HealthPrint healthPrint, vector<PotentialDisease> diseases = vector<PotentialDisease>());
+	Analyse(int id, HealthPrint& healthPrint, vector<PotentialDisease> diseases = vector<PotentialDisease>());
 
 	// Destructor
 	~Analyse();
+
+	int getId() { return id; }
+
+	HealthPrint& getHealthprint() { return healthPrint; }
 
 	//Others
 	void displayContent();
