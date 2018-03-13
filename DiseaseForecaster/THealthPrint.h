@@ -59,7 +59,10 @@ public:
        addTest(new displayContentTest(this));
        addTest(new getPatientNameTest(this));
        addTest(new getPrintDateTest(this));
+	   addTest(new getContinuousAttributesValuesTest(this));
+	   addTest(new getDiscreteAttributesValuesTest(this));
 	   addTest(new getIdTest(this));
+	   addTest(new getSensorIdTest(this));
    }
 
 
@@ -132,11 +135,37 @@ public:
         }
    };
 
+   // Test class for the method getContinuousAttributesValues of class HealthPrint
+   class getContinuousAttributesValuesTest : public THealthPrintMethod
+   {
+   public:
+	   getContinuousAttributesValuesTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getContinuousAttributesValuesTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->healthPrint1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
+
+		   return testResult;
+	   }
+   };
+
+   // Test class for the method getDiscreteAttributesValues of class HealthPrint
+   class getDiscreteAttributesValuesTest : public THealthPrintMethod
+   {
+   public:
+	   getDiscreteAttributesValuesTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getDiscreteAttributesValuesTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->healthPrint1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
+
+		   return testResult;
+	   }
+   };
+
    // Test class for the method getId of class HealthPrint
    class getIdTest : public THealthPrintMethod
    {
    public:
-	   getIdTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getPrintDateTest"; }
+	   getIdTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getIdTest"; }
 	   TestResult execute()
 	   {
 				assert(outter->healthPrint1.getId() == outter->idTest);
@@ -145,6 +174,18 @@ public:
 	   }
    };
 
+   // Test class for the method getSensorId of class HealthPrint
+   class getSensorIdTest : public THealthPrintMethod
+   {
+   public:
+	   getSensorIdTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getSensorIdTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->healthPrint1.getSensorId() == outter->sensorIdTest);
+
+		   return testResult;
+	   }
+   };
 
    // Destructor
     ~THealthPrint() {}
