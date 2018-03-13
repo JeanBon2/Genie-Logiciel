@@ -138,7 +138,7 @@ public:
    class getDoctorNameTest : public THealthPrintMethod
    {
    public:
-	   getDoctorNameTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getPatientNameTest"; }
+	   getDoctorNameTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getDoctorNameTest"; }
 	   TestResult execute()
 	   {
 		   assert(outter->healthPrint1.getDoctorName().compare(outter->doctorNameTest) == 0);

@@ -52,6 +52,11 @@ public:
    {
        addTest(new PotentialDiseaseTest(this));
        addTest(new DisplayContentTest(this));
+	   addTest(new getIdTest(this));
+	   addTest(new getContinuousAttributesValuesTest(this));
+	   addTest(new getDiscreteAttributesValuesTest(this));
+	   addTest(new getNameTest(this));
+	   addTest(new getMatchingRateTest(this));
    }
 
    /*
@@ -91,6 +96,71 @@ public:
 
           return testResult;
         }
+   };
+
+   // Test class for the method getId of class PotentialDisease
+   class getIdTest : public TPotentialDiseaseMethod
+   {
+   public:
+	   getIdTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getIdTestTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->potentialD1.getId() == outter->idTest);
+
+		   return testResult;
+	   }
+   };
+
+   // Test class for the method getContinuousAttributesValues of class PotentialDisease
+   class getContinuousAttributesValuesTest : public TPotentialDiseaseMethod
+   {
+   public:
+	   getContinuousAttributesValuesTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getContinuousAttributesValuesTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->potentialD1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
+
+		   return testResult;
+	   }
+   };
+
+   // Test class for the method getDiscreteAttributesValues of class PotentialDisease
+   class getDiscreteAttributesValuesTest : public TPotentialDiseaseMethod
+   {
+   public:
+	   getDiscreteAttributesValuesTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getDiscreteAttributesValuesTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->potentialD1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
+
+		   return testResult;
+	   }
+   };
+
+   // Test class for the method getName of class PotentialDisease
+   class getNameTest : public TPotentialDiseaseMethod
+   {
+   public:
+	   getNameTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getNameTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->potentialD1.getName().compare(outter->nameTest));
+
+		   return testResult;
+	   }
+   };
+
+   // Test class for the method getMatchingRate of class PotentialDisease
+   class getMatchingRateTest : public TPotentialDiseaseMethod
+   {
+   public:
+	   getMatchingRateTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getMatchingRateTest"; }
+	   TestResult execute()
+	   {
+		   assert(outter->potentialD1.getMatchingRate() == outter->matchingRateTest);
+
+		   return testResult;
+	   }
    };
 
 
