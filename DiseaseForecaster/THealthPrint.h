@@ -44,7 +44,7 @@ public:
 	   : healthPrint1(idTest, patientNameTest, doctorNameTest, printDateTest,
 		   sensorIdTest, continuousAttributesValuesTest, discreteAttributesValuesTest)
    {
-	   // Cr�ation d'un objet HealthPrint avec des param�tres corrects
+	   // Création d'un objet HealthPrint avec des paramètres corrects
 	   continuousAttributesValuesTest.insert(std::pair<string, double>("id", idTest));
 	   discreteAttributesValuesTest.insert(std::pair<string, string>("patientName", patientNameTest));
 	   discreteAttributesValuesTest.insert(std::pair<string, string>("doctorName", doctorNameTest));
@@ -59,6 +59,7 @@ public:
        addTest(new displayContentTest(this));
        addTest(new getPatientNameTest(this));
        addTest(new getPrintDateTest(this));
+	   addTest(new getIdTest(this));
    }
 
 
@@ -75,7 +76,7 @@ public:
        TestResult execute()
         {
 
-		       assert(outter->healthPrint1.getId() == outter->idTest);
+				assert(outter->healthPrint1.getId() == outter->idTest);
            assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
            assert(outter->healthPrint1.getPrintDate().toString("dd/MM/yyyy").toStdString().compare(outter->printDateTest) == 0);
 
@@ -129,6 +130,19 @@ public:
 
            return testResult;
         }
+   };
+
+   // Test class for the method getId of class HealthPrint
+   class getIdTest : public THealthPrintMethod
+   {
+   public:
+	   getIdTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getPrintDateTest"; }
+	   TestResult execute()
+	   {
+				assert(outter->healthPrint1.getId() == outter->idTest);
+
+		   return testResult;
+	   }
    };
 
 
