@@ -79,14 +79,6 @@ public:
        HealthPrintTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "HealthPrintTest"; }
        TestResult execute()
         {
-		   double idTest = 1;
-		   string patientNameTest = "Dupont";
-		   string doctorNameTest = "Durand";
-		   string printDateTest = "25/04/2016";
-		   double sensorIdTest = 1;
-		   map<string, double> continuousAttributesValuesTest;
-		   map<string, string> discreteAttributesValuesTest;
-
 		   assert(outter->healthPrint1.getId() == outter->idTest);
            assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
 		   assert(outter->healthPrint1.getDoctorName().compare(outter->doctorNameTest) == 0);

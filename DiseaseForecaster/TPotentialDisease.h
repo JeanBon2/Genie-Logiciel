@@ -71,12 +71,11 @@ public:
        PotentialDiseaseTest(TPotentialDisease* tmp): TPotentialDiseaseMethod(tmp) { testResult.name = "PotentialDiseaseTest"; }
        TestResult execute()
         {
-		   /*
-		   if (! outter->potentialD1)
-		   {
-		   assert(false);
-		   }*/
-		   assert(false);
+		   assert(outter->potentialD1.getId() == outter->idTest);
+		   assert(outter->potentialD1.getName().compare(outter->nameTest) == 0);
+		   assert(outter->potentialD1.getMatchingRate() == outter->matchingRateTest);
+		   assert(outter->potentialD1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
+		   assert(outter->potentialD1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
 
            return testResult;
         }
