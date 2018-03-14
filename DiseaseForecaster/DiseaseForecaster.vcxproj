@@ -191,7 +191,6 @@
     <ClInclude Include="LogInterface.h" />
     <ClInclude Include="MenuInterface.h" />
     <ClInclude Include="PotentialDisease.h" />
-    <ClInclude Include="PotentialDiseaseTest.h" />
     <ClInclude Include="SearchInterface.h" />
     <ClInclude Include="tests\MethodTest.h" />
     <ClInclude Include="tests\TAttribute.h" />
