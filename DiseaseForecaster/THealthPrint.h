@@ -98,18 +98,18 @@ public:
        displayContentTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "displayContentTest"; }
        TestResult execute()
         {
-          string message = "";
-          string date = "25.04.2016";
+			string message = "";
+			string date = "25.04.2016";
 
         	message += "Sensor ID : " + to_string(int(outter->sensorIdTest)) + "\n";
         	message += "Print date : " + date + "\n"; // .toUtf8().constData()
         	message += "Doctor name : " + outter->doctorNameTest + "\n";
         	message += "Patient name : " + outter->patientNameTest + "\n";
 
-		       string buffer = outter->healthPrint1.displayContent(false);
-		       assert(message.compare(buffer) == 0);
+		    string buffer = outter->healthPrint1.displayContent(false);
+		    assert(message.compare(buffer) == 0);
 
-           return testResult;
+            return testResult;
         }
    };
 
@@ -120,9 +120,9 @@ public:
        getPatientNameTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "getPatientNameTest"; }
        TestResult execute()
         {
-			     assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
+			assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
 
-           return testResult;
+            return testResult;
         }
    };
 
@@ -146,9 +146,9 @@ public:
        getPrintDateTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "getPrintDateTest"; }
        TestResult execute()
         {
-			     assert(outter->healthPrint1.getPrintDate().toString("dd/MM/yyyy").toStdString().compare(outter->printDateTest) == 0);
+			assert(outter->healthPrint1.getPrintDate().toString("dd/MM/yyyy").toStdString().compare(outter->printDateTest) == 0);
 
-           return testResult;
+            return testResult;
         }
    };
 
@@ -185,9 +185,9 @@ public:
 	   getIdTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getIdTest"; }
 	   TestResult execute()
 	   {
-				assert(outter->healthPrint1.getId() == outter->idTest);
+			assert(outter->healthPrint1.getId() == outter->idTest);
 
-		   return testResult;
+		    return testResult;
 	   }
    };
 
