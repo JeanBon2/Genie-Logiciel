@@ -122,6 +122,9 @@
     <ClInclude Include="PotentialDisease.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PotentialDiseaseTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SearchInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
