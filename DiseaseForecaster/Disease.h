@@ -36,6 +36,7 @@ public:
 	vector<shared_ptr<Attribute>> getDiscriminantAttributes() const { return discriminantAttributes; }
 	void addDiscriminantAttribute(shared_ptr<Attribute> attribute);
 	bool isDiscriminant(shared_ptr<Attribute> attribute);
+	bool isDiscriminant(string id);
 };
 
 #endif // DISEASE_H

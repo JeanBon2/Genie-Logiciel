@@ -8,6 +8,8 @@ using namespace std;
 
 // Personnal include
 #include "Analyse.h"
+#include "Disease.h"
+#include "DbManager.h"
 
 // Class
 class AnalyseInterface
@@ -32,6 +34,12 @@ public:
 
 private:
 	vector<HealthPrint*> getHealthPrintFromFile(string filePath);
+
+	vector<Disease> getAllDiseases();
+
+	// Attributes
+protected:
+	  DbManager db;
 
 };
 

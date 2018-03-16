@@ -1,14 +1,15 @@
 // System include
-using namespace std;
 #include <iostream>
 #include <string>
 #include <map>
+
+using namespace std;
 
 // Personnal include
 #include "PotentialDisease.h"
 
 // Constructor
-PotentialDisease::PotentialDisease(int id, string name, double matchingRate, map<string, double> continuousAttributesValues, map<string,string> discreteAttributesValues) 
+PotentialDisease::PotentialDisease(int id, string name, double matchingRate, map<string, double> continuousAttributesValues, map<string,string> discreteAttributesValues)
 	: id(id), name(name), matchingRate(matchingRate), continuousAttributesValues(continuousAttributesValues), discreteAttributesValues(discreteAttributesValues)
 {
 	#ifdef DEBUG
@@ -25,18 +26,25 @@ PotentialDisease::~PotentialDisease()
 }
 
 //Other
-void PotentialDisease::displayContent()
+string PotentialDisease::displayContent(bool printOnScreen)
 {
-	cout <<"Disease name : "<< name << endl;
-	cout <<"Matching rate : " << matchingRate << endl;
+	string message = "";
+
+	message += "Disease name : " + name + "\n";
+	message += "Matching rate : " + to_string(matchingRate) + "\n";;
 	for (auto const& continuousAttributeValue : continuousAttributesValues)
 	{
-		cout << continuousAttributeValue.first << " "<< continuousAttributeValue.second << endl;
+		message += continuousAttributeValue.first +  " " + to_string(continuousAttributeValue.second) + "\n";
 	}
 	for (auto const& discreteAttributesValue : discreteAttributesValues)
 	{
-		cout << discreteAttributesValue.first << " " << discreteAttributesValue.second << endl;
+		message += discreteAttributesValue.first + " " + discreteAttributesValue.second + "\n";
 	}
+
+	if (printOnScreen)
+		cout << message;
+
+	return message;
 }
 
 int PotentialDisease::getId()
