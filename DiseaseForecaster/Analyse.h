@@ -27,8 +27,6 @@ public:
 	// Destructor
 	~Analyse();
 
-	int getId() { return id; }
-
 	HealthPrint& getHealthprint() { return healthPrint; }
 
 	//Others

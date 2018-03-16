@@ -27,7 +27,7 @@ public:
 	~PotentialDisease();
 
 	//Other
-	void displayContent();
+	string displayContent(bool printOnScreen = true);
 	int getId();
 	map<string, double> getContinuousAttributesValues();
 	map<string, string> getDiscreteAttributesValues();
