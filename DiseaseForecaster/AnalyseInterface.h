@@ -8,6 +8,8 @@ using namespace std;
 
 // Personnal include
 #include "Analyse.h"
+#include "Disease.h"
+#include "DbManager.h"
 
 // Constants
 
@@ -16,10 +18,6 @@ using namespace std;
 // Class
 class AnalyseInterface
 {
-	// Attributes
-protected:
-
-
 	// Methods
 public:
 	// Constructors
@@ -40,6 +38,12 @@ public:
 
 private:
 	vector<HealthPrint*> getHealthPrintFromFile(string filePath);
+
+	vector<Disease> getAllDiseases();
+
+	// Attributes
+protected:
+	  DbManager db;
 
 };
 

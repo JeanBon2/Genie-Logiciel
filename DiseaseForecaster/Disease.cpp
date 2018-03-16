@@ -41,3 +41,15 @@ bool Disease::isDiscriminant(shared_ptr<Attribute> attribute)
 	}
 	return false;
 }
+
+bool Disease::isDiscriminant(string id)
+{
+	for(auto&& discriminantAttribute : discriminantAttributes)
+	{
+		if (to_string(discriminantAttribute->getId()).compare(id) == 0)
+		{
+			return true;
+		}
+	}
+	return false;
+}
