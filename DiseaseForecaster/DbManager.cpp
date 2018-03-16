@@ -90,7 +90,7 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 		const unsigned int indexDoctorName = record.indexOf("doctorName");
 		const unsigned int indexPrintDate = record.indexOf("printDate");
 		const unsigned int indexSensorId = record.indexOf("sensorId");
-
+		
 		while (query.next())
 		{
 
@@ -101,7 +101,7 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 			const string printDateValue = query.value(indexPrintDate).toString().toStdString();
 			const unsigned int sensorIdValue = query.value(indexSensorId).toInt();
 
-			HealthPrint healthPrint(healthPrintIdValue, patientNameValue, doctorNameValue, printDateValue, sensorIdValue);
+			const HealthPrint healthPrint(healthPrintIdValue, patientNameValue, doctorNameValue, printDateValue, sensorIdValue);
 			Analyse analyse(analyseIdValue, healthPrint, getPotentialDiseaseForAnalyse(analyseIdValue));
 
 			analysesLists.emplace_back(analyse);
@@ -126,7 +126,7 @@ bool DbManager::insertIntoDatabase(const Analyse& analyse)
 
 bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attributesData)
 {
-
+	
 	for (auto && attr : attributesData)
 	{
 		QSqlQuery query;
@@ -140,6 +140,69 @@ bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attr
 		}
 	}
 	return true;
+}
+
+bool DbManager::insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData)
+{
+	for (auto && disease : diseasesData)
+	{
+		QSqlQuery query;
+		query.prepare("INSERT INTO Diseases (diseaseId, diseaseName) VALUES (:id, :name)");
+		query.bindValue(":id", QString::number(disease->id));
+		query.bindValue(":name", QString::fromStdString(disease->name));
+		if (!query.exec())
+		{
+			return false;
+		}
+	}
+}
+
+
+bool DbManager::insertDiscriminantAttributes(vector<UpdateInterface::discriminantAttributesContent*> discriminantDiseasesData)
+{
+	for (auto && discAttr : discriminantDiseasesData)
+	{
+		QSqlQuery query;
+		query.prepare("INSERT INTO DiscriminantAttributes (diseaseId, attributeId) VALUES (:idDisease, :idAttr)");
+		query.bindValue(":idDisease", QString::number(discAttr->diseaseId));
+		query.bindValue(":idAttr", QString::number(discAttr->attributeId));
+		if (!query.exec())
+		{
+			return false;
+		}
+	}
+}
+
+bool DbManager::insertContinuousNormalValues(vector<UpdateInterface::continuousValuesContent*> continuousValuesData) {
+
+	for (auto && contValues : continuousValuesData)
+	{
+		QSqlQuery query;
+		query.prepare("INSERT INTO ContinuousNormalValues (attributeId, minimumValue, maximumValue) VALUES (:attId, :minVal, :maxVal)");
+		query.bindValue(":attId", QString::number(contValues->attributeId));
+		query.bindValue(":minVal", QString::number(contValues->minimumValue));
+		query.bindValue(":maxVal", QString::number(contValues->maximumValue));
+		if (!query.exec())
+		{
+			return false;
+		}
+	}
+}
+
+bool DbManager::insertDiscretNormalValues(vector<UpdateInterface::discretesValuesContent*> discretesValuesData)
+{
+
+	for (auto && discValues : discretesValuesData)
+	{
+		QSqlQuery query;
+		query.prepare("INSERT INTO DiscreteNormalValues (attributeId, normalValue) VALUES (:attId, :normVal)");
+		query.bindValue(":attId", QString::number(discValues->attributeId));
+		query.bindValue(":normVal", QString::fromStdString(discValues->normalValue));
+		if (!query.exec())
+		{
+			return false;
+		}
+	}
 }
 
 vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(const int analyseId)
@@ -166,8 +229,8 @@ vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(const int anal
 			const double matchingRateValue = query.value(indexMatchingRate).toDouble();
 			const string diseaseNameValue = query.value(indexDiseaseName).toString().toStdString();
 
-			/* TODO : rï¿½cupï¿½rer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insï¿½rer en paramï¿½tres dans emplace_back
-			 * Nï¿½cessite d'utiliser `potentialDiseaseId` avec une mï¿½thode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
+			/* TODO : récupérer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insérer en paramètres dans emplace_back
+			 * Nécessite d'utiliser `potentialDiseaseId` avec une méthode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
 			 */
 
 			//potentialDiseases.push_back(PotentialDisease();
@@ -195,7 +258,7 @@ map<string, double> DbManager::getAbnormalContinuousAttributesForPotentialDiseas
 	if (query.exec())
 	{
 		QSqlRecord record = query.record();
-
+		
 		const unsigned int indexAttributeName = record.indexOf("name");
 		const unsigned int indexAttributeValue = record.indexOf("attributeValue");
 
@@ -358,7 +421,7 @@ HealthPrint DbManager::getHealthprint(const int healthPrintId)
 			return foundHealthprint; ;
 		}
 	}
-
+	
 }
 
 

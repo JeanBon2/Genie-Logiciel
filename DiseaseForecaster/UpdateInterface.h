@@ -61,7 +61,7 @@ private:
 
 	vector<attributeContent*> attributesData;
 	vector<diseaseContent*> diseasesData;
-	vector<discriminantAttributesContent*> discriminantDiseasesData;
+	vector<discriminantAttributesContent*> discriminantAttributesData;
 	vector<continuousValuesContent*> continuousValuesData;
 	vector<discretesValuesContent*> discretesValuesData;
 

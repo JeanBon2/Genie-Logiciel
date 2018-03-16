@@ -69,7 +69,19 @@ void UpdateInterface::run()
 	state = START_IMPORT_MODEL;
 	displayInterfaceText();
 	getAttributeContent(getJsonContent());
+	getDiseasesContent(getJsonContent());
+	getAttributesValues(getJsonContent());
+	/*
+	for (auto && attr : attributesData)
+	{
+		cout << attr->name;
+	}
+	*/
 	DbManager::insertAttributes(attributesData);
+	DbManager::insertDiseases(diseasesData);
+	DbManager::insertDiscriminantAttributes(discriminantAttributesData);
+	DbManager::insertContinuousNormalValues(continuousValuesData);
+	DbManager::insertDiscretNormalValues(discretesValuesData);
 	state = EXPORT_SUCCESS;
 	displayInterfaceText();
 	system("pause");
@@ -148,7 +160,7 @@ void UpdateInterface::getDiseasesContent(QJsonObject jsonObject) {
 			discriminantAttributesContent *structDiscriminantAttrib = new discriminantAttributesContent();
 			structDiscriminantAttrib->diseaseId = disease.toObject().value(QString("id")).toInt();
 			structDiscriminantAttrib->attributeId = discriminantAttributeJsonArray[i].toInt();
-			discriminantDiseasesData.push_back(structDiscriminantAttrib);
+			discriminantAttributesData.push_back(structDiscriminantAttrib);
 		}
 	}
 }

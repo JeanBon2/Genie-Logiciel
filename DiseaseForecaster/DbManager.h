@@ -37,6 +37,9 @@ public:
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
 	static bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
 	static bool insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData);
+	static bool insertDiscriminantAttributes(vector<UpdateInterface::discriminantAttributesContent*> discriminantDiseasesData);
+	static bool insertContinuousNormalValues(vector<UpdateInterface::continuousValuesContent*> continuousValuesData);
+	static bool insertDiscretNormalValues(vector<UpdateInterface::discretesValuesContent*> discretesValuesData);
 
 	vector<Analyse> getAnalyseResults(string patientName);
 
