@@ -21,7 +21,7 @@ private:
 	// Methods
 public:
 	// Constructor
-	Analyse(int id, HealthPrint& healthPrint, vector<PotentialDisease> diseases = vector<PotentialDisease>());
+	Analyse(int id, HealthPrint& healthPrint, vector<PotentialDisease> diseases);
 
 	//Others
     int getId() { return id; }

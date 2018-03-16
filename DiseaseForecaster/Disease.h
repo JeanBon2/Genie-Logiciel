@@ -37,6 +37,7 @@ public:
 	void addDiscriminantAttribute(shared_ptr<Attribute> attribute);
 	bool isDiscriminant(shared_ptr<Attribute> attribute);
 	bool isDiscriminant(string id);
+	shared_ptr<Attribute> isDiscriminantByName(string name, bool& succes);
 };
 
 #endif // DISEASE_H

@@ -48,7 +48,9 @@ public:
     vector<Disease> getDiseases();
     shared_ptr<Attribute> getAttributeForId(int attributeId);
     vector<interval> getNormalIntervalsForContinuousAttribute(int attributeId);
+    vector<interval> getNormalIntervalsForContinuousAttribute(string name);
     vector<string> getNormalValuesForDiscreteAttribute(int attributeId);
+    vector<string> getNormalValuesForDiscreteAttribute(string name);
 private:
     vector<PotentialDisease> getPotentialDiseaseForAnalyse(int analyseId);
     map<string, double> getAbnormalContinuousAttributesForPotentialDisease(const int diseaseId, const int analyseId);

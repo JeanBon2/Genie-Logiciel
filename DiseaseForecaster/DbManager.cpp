@@ -480,6 +480,49 @@ vector<string> DbManager::getNormalValuesForDiscreteAttribute(int attributeId)
     }
     return normalValues;
 }
+
+vector<string> DbManager::getNormalValuesForDiscreteAttribute(string name)
+{
+  vector<string> normalValues;
+
+  QSqlQuery query;
+  query.prepare("SELECT normalValue FROM DiscreteNormalValues D WHERE INNER JOIN Attributes A ON A.attributeId = D.attributeId WHERE A.name = :name");
+  query.bindValue(":name", QString::fromStdString(name));
+  if (query.exec())
+  {
+      QSqlRecord record = query.record();
+      const int indexNormalValue = record.indexOf("normalValue");
+      while (query.next())
+      {
+          string normalValue = query.value(indexNormalValue).toString().toUtf8().constData();
+          normalValues.emplace_back(normalValue);
+      }
+  }
+  return normalValues;
+}
+
+vector<interval> DbManager::getNormalIntervalsForContinuousAttribute(string name)
+{
+  vector<interval> normalIntervals;
+
+  QSqlQuery query;
+  query.prepare("SELECT minimumValue, maximumValue FROM ContinuousNormalValues C INNER JOIN Attributes A ON A.attributeId = C.attributeId WHERE A.name = :name");
+  query.bindValue(":name", QString::fromStdString(name));
+  if (query.exec())
+  {
+      QSqlRecord record = query.record();
+      const int indexMinimum = record.indexOf("minimumValue");
+      const int indexMaximum = record.indexOf("maximumValue");
+      while (query.next())
+      {
+          double minimum = query.value(indexMinimum).toDouble();
+          double maximum = query.value(indexMaximum).toDouble();
+          normalIntervals.emplace_back(minimum, maximum);
+      }
+  }
+  return normalIntervals;
+}
+
 vector<interval> DbManager::getNormalIntervalsForContinuousAttribute(int attributeId)
 {
     vector<interval> normalIntervals;

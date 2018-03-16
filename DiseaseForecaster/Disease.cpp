@@ -53,3 +53,18 @@ bool Disease::isDiscriminant(string id)
 	}
 	return false;
 }
+
+shared_ptr<Attribute> Disease::isDiscriminantByName(string name, bool& succes)
+{
+
+	for(auto&& discriminantAttribute : discriminantAttributes)
+	{
+		if (discriminantAttribute->getName().compare(name) == 0)
+		{
+			return discriminantAttribute;
+			succes = true;
+		}
+	}
+
+	succes = false;
+}

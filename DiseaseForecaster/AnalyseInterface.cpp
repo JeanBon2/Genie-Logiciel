@@ -15,29 +15,19 @@ using namespace std;
 
 void AnalyseInterface::displayInterfaceText()
 {
-
+  // TODO
 }
 
 void AnalyseInterface::run()
 {
-
+  // TODO
 }
 
 vector<Analyse> AnalyseInterface::AnalysePrintFile(string filePath)
 {
-
-
   vector<Analyse> analyses;
 
   vector<HealthPrint*> healthPrints = getHealthPrintFromFile(filePath);
-
-/*  cout << "==========================" << endl;
-  for (auto&& it :healthPrints)
-  {
-    it->displayContent();
-    cout << endl;
-  }
-  */
 
   // 2. Get all Diseases
   vector<Disease> diseases = getAllDiseases();
@@ -49,6 +39,8 @@ vector<Analyse> AnalyseInterface::AnalysePrintFile(string filePath)
   for (auto&& hp : healthPrints)
   {
     vector<PotentialDisease> potencialDiseases;
+    map<string, double> continuousAttributesValues;
+    map<string, string> discreteAttributesValues;
 
     for (auto&& dis : diseases)
     {
@@ -57,30 +49,65 @@ vector<Analyse> AnalyseInterface::AnalysePrintFile(string filePath)
 
       for (auto&& hpAttribute : hp->getContinuousAttributesValues())
       {
+        bool succes = false;
+        shared_ptr<Attribute>  att = dis.isDiscriminantByName(hpAttribute.first, succes);
+
+        if (succes)
+        {
+            vector<interval> inter = db.getNormalIntervalsForContinuousAttribute(hpAttribute.first);
+            if (hpAttribute.second > inter[0].first &&
+                hpAttribute.second < inter[0].second)
+            {
+              continuousAttributesValues.insert(hpAttribute);
+              nbAnormalAttributes++;
+            }
+        }
+
         nbAttributes++;
       }
       for (auto&& hpAttribute : hp->getDiscreteAttributesValues())
       {
-        dis->getDiscriminantAttributes();
+        bool succes = false;
+        shared_ptr<Attribute>  att = dis.isDiscriminantByName(hpAttribute.first, succes);
+
+        if (succes)
+        {
+          vector<string> normalValues = db.getNormalValuesForDiscreteAttribute(hpAttribute.first);
+
+          for (auto&& normalValue : normalValues)
+          {
+            if (normalValue == hpAttribute.second)
+            {
+              discreteAttributesValues.insert(hpAttribute);
+              nbAnormalAttributes++;
+              break;
+            }
+          }
+        }
+
         nbAttributes++;
       }
 
-      if (nbAttributes / nbAnormalAttributes > 0.8)
+      double matchingRate = nbAttributes / nbAnormalAttributes;
+      if ( matchingRate > 0.8)
       {
-        PotentialDisease pd();
-        potencialDiseases.push_back()
+        PotentialDisease potencialdisease(0, dis.getName(), matchingRate, continuousAttributesValues, discreteAttributesValues);
+        potencialDiseases.push_back(potencialdisease);
       }
     }
 
-    //Analyse analyse;
+    Analyse analyse(0, *hp, potencialDiseases);
+    analyses.push_back(analyse);
+  }
+
+  // 4. INSERTION DES RÉSULTATS
+  for (auto&& it : analyses)
+  {
+      db.insertAnalyse(it);
   }
 
 
-
-  // 4. INSERTION DES RÉSULTATS
-
-  
-    return analyses;
+  return analyses;
 }
 
 vector<Analyse> AnalyseInterface::AnalysePrintFolder(string folderPath)
@@ -172,7 +199,7 @@ vector<Disease> AnalyseInterface::getAllDiseases()
 
   for (auto&& it : diseases)
   {
-    cout << "ligne " << it.getId() << " " << it.getName() << endl;
+    //cout << "ligne " << it.getId() << " " << it.getName() << endl;
     vector<shared_ptr<Attribute>> attributes = db.getDiscriminantAttributesForDisease(it.getId());
 
     for (auto&& it2 : attributes)
