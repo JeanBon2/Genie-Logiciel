@@ -559,13 +559,80 @@ bool DbManager::insertHealthPrint(HealthPrint& healthprint)
 
     return true;
 }
-bool DbManager::insertPotentialDisease(PotentialDisease potentialdisease, int analyseId)
+bool DbManager::insertPotentialDisease(PotentialDisease potentialdisease, int analyseId, HealthPrint healthPrint)
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO PotentialDiseases (matchingRate, analyseId, diseaseId) VALUES (:matchingRate, :analyseId,)");
+    int diseaseId;
+    query.prepare("SELECT diseaseId FROM Disease WHERE diseaseName = :name");
+    query.bindValue(":name", QString::fromStdString(potentialdisease.getName()));
+    if (query.exec() && query.next())
+    {
+        QSqlRecord record = query.record();
+        const int indexDiseaseId = record.indexOf("diseaseId");
+        diseaseId = query.value(indexDiseaseId).toInt();
+    }
+    else
+    {
+        return false;
+    }
+    query.prepare("INSERT INTO PotentialDiseases (matchingRate, analyseId, diseaseId) VALUES (:matchingRate, :analyseId, :diseaseId)");
+    query.bindValue(":matchingRate", potentialdisease.getMatchingRate());
+    query.bindValue(":analyseId", analyseId);
+    query.bindValue("diseaseId",diseaseId);
+    potentialdisease.setId(getLastIndex("PotentialDiseases"));
+
     if (!query.exec())
     {
         return false;
+    }
+    potentialdisease.setId(getLastIndex("PotentialDisease"));
+    for(auto&& continuousAttributesValues : potentialdisease.getContinuousAttributesValues())
+    {
+        int healthPrintAttributeValuesId;
+        query.prepare("SELECT healthPrintAttributeValuesId FROM HealthPrintAttributeValuesId WHERE healthPrintId = :healthPrintId AND attributeValue= :attributeValue");
+        query.bindValue(":healthPrintId", healthPrint.getId());
+        query.bindValue(":attributeValue", healthPrint.getContinuousAttributesValues().operator [](continuousAttributesValues.first));
+        if (query.exec() && query.next())
+        {
+            QSqlRecord record = query.record();
+            const int indexAttributeId = record.indexOf("healthPrintId");
+            healthPrintAttributeValuesId = query.value(indexAttributeId).toInt();
+        }
+        else
+        {
+            return false;
+        }
+        query.prepare("INSERT INTO AbnormaAttributes (healthPrintAttributeValuesId, potentialDiseaseId) VALUES (:healthPrintAttributeValuesId, :potentialDiseaseId)");
+        query.bindValue(":healthPrintAttributeValuesId", healthPrintAttributeValuesId);
+        query.bindValue(":potentialDiseaseId", potentialdisease.getId());
+        if (!query.exec())
+        {
+            return false;
+        }
+    }
+    for(auto&& discreteAttributesValues : potentialdisease.getDiscreteAttributesValues())
+    {
+        int healthPrintAttributeValuesId;
+        query.prepare("SELECT healthPrintAttributeValuesId FROM HealthPrintAttributeValuesId WHERE healthPrintId = :healthPrintId AND ValueName= :ValueName");
+        query.bindValue(":healthPrintId", healthPrint.getId());
+        query.bindValue(":ValueName", QString::fromStdString(healthPrint.getDiscreteAttributesValues().operator [](discreteAttributesValues.first)));
+        if (query.exec() && query.next())
+        {
+            QSqlRecord record = query.record();
+            const int indexAttributeId = record.indexOf("healthPrintId");
+            healthPrintAttributeValuesId = query.value(indexAttributeId).toInt();
+        }
+        else
+        {
+            return false;
+        }
+        query.prepare("INSERT INTO AbnormaAttributes (healthPrintAttributeValuesId, potentialDiseaseId) VALUES (:healthPrintAttributeValuesId, :potentialDiseaseId)");
+        query.bindValue(":healthPrintAttributeValuesId", healthPrintAttributeValuesId);
+        query.bindValue(":potentialDiseaseId", potentialdisease.getId());
+        if (!query.exec())
+        {
+            return false;
+        }
     }
     return true;
 }

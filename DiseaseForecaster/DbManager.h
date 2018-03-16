@@ -60,7 +60,7 @@ private:
     HealthPrint getHealthprint(const int healthPrintId);
 
     bool insertHealthPrint(HealthPrint& healthprint);
-    bool insertPotentialDisease(const PotentialDisease potentialdisease, int analyseId);
+    bool insertPotentialDisease(PotentialDisease potentialdisease, int analyseId, HealthPrint healthPrint);
 
     int getLastIndex(string tablename);
 
