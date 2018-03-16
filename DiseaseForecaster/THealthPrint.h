@@ -79,13 +79,24 @@ public:
        HealthPrintTest(THealthPrint* tmp): THealthPrintMethod(tmp) { testResult.name = "HealthPrintTest"; }
        TestResult execute()
         {
+		   map<string, double> retour;
+		   retour = outter->healthPrint1.getContinuousAttributesValues();
+		   map<string, string> retour2;
+		   retour2 = outter->healthPrint1.getDiscreteAttributesValues();
+
 		   assert(outter->healthPrint1.getId() == outter->idTest);
            assert(outter->healthPrint1.getPatientName().compare(outter->patientNameTest) == 0);
 		   assert(outter->healthPrint1.getDoctorName().compare(outter->doctorNameTest) == 0);
            assert(outter->healthPrint1.getPrintDate().toString("dd/MM/yyyy").toStdString().compare(outter->printDateTest) == 0);
 		   assert(outter->healthPrint1.getSensorId() == outter->sensorIdTest);
-		   assert(outter->healthPrint1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
-		   assert(outter->healthPrint1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
+		   for (auto&& iterateur : retour)
+		   {
+			   assert(iterateur.second == outter->continuousAttributesValuesTest[iterateur.first]);
+		   }
+		   for (auto&& iterateur : retour2)
+		   {
+			   assert(iterateur.second == outter->discreteAttributesValuesTest[iterateur.first]);
+		   }
 
            return testResult;
         }
@@ -159,7 +170,13 @@ public:
 	   getContinuousAttributesValuesTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getContinuousAttributesValuesTest"; }
 	   TestResult execute()
 	   {
-		   assert(outter->healthPrint1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
+		   map<string, double> retour;
+		   retour = outter->healthPrint1.getContinuousAttributesValues();
+
+		   for (auto&& iterateur : retour)
+		   {
+			   assert(iterateur.second == outter->continuousAttributesValuesTest[iterateur.first]);
+		   }
 
 		   return testResult;
 	   }
@@ -172,7 +189,13 @@ public:
 	   getDiscreteAttributesValuesTest(THealthPrint* tmp) : THealthPrintMethod(tmp) { testResult.name = "getDiscreteAttributesValuesTest"; }
 	   TestResult execute()
 	   {
-		   assert(outter->healthPrint1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
+		   map<string, string> retour;
+		   retour = outter->healthPrint1.getDiscreteAttributesValues();
+
+		   for (auto&& iterateur : retour)
+		   {
+			   assert(iterateur.second == outter->discreteAttributesValuesTest[iterateur.first]);
+		   }
 
 		   return testResult;
 	   }

@@ -4,6 +4,7 @@
 // System include
 #include <iostream>
 #include <string>
+#include <map>
 using namespace std;
 
 // Personnal include
@@ -71,11 +72,22 @@ public:
        PotentialDiseaseTest(TPotentialDisease* tmp): TPotentialDiseaseMethod(tmp) { testResult.name = "PotentialDiseaseTest"; }
        TestResult execute()
         {
+		   map<string, double> retour;
+		   retour = outter->potentialD1.getContinuousAttributesValues();
+		   map<string, string> retour2;
+		   retour2 = outter->potentialD1.getDiscreteAttributesValues();
+
 		   assert(outter->potentialD1.getId() == outter->idTest);
 		   assert(outter->potentialD1.getName().compare(outter->nameTest) == 0);
 		   assert(outter->potentialD1.getMatchingRate() == outter->matchingRateTest);
-		   assert(outter->potentialD1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
-		   assert(outter->potentialD1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
+		   for (auto&& iterateur : retour)
+		   {
+			   assert(iterateur.second == outter->continuousAttributesValuesTest[iterateur.first]);
+		   }
+		   for (auto&& iterateur : retour2)
+		   {
+			   assert(iterateur.second == outter->discreteAttributesValuesTest[iterateur.first]);
+		   }
 
            return testResult;
         }
@@ -88,10 +100,21 @@ public:
        DisplayContentTest(TPotentialDisease* tmp): TPotentialDiseaseMethod(tmp) { testResult.name = "DisplayContentTest"; }
        TestResult execute()
         {
-		   // TODO rediriger le retour vers une variable et non l'écran
-		   outter->potentialD1.displayContent();
+		   string message = "";
 
-		   assert(false);
+		   message += "Disease name : " + outter->nameTest + "\n";
+		   message += "Matching rate : " + to_string(outter->matchingRateTest) + "\n";;
+		   for (auto const& continuousAttributeValue : outter->continuousAttributesValuesTest)
+		   {
+			   message += continuousAttributeValue.first + " " + to_string(continuousAttributeValue.second) + "\n";
+		   }
+		   for (auto const& discreteAttributesValue : outter->discreteAttributesValuesTest)
+		   {
+			   message += discreteAttributesValue.first + " " + discreteAttributesValue.second + "\n";
+		   }
+
+		   string buffer = outter->potentialD1.displayContent(false);
+		   assert(message.compare(buffer) == 0);
 
           return testResult;
         }
@@ -117,7 +140,13 @@ public:
 	   getContinuousAttributesValuesTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getContinuousAttributesValuesTest"; }
 	   TestResult execute()
 	   {
-		   assert(outter->potentialD1.getContinuousAttributesValues() == outter->continuousAttributesValuesTest);
+		   map<string, double> retour;
+		   retour = outter->potentialD1.getContinuousAttributesValues();
+
+		   for (auto&& iterateur : retour)
+		   {
+			   assert(iterateur.second == outter->continuousAttributesValuesTest[iterateur.first]);
+		   }
 
 		   return testResult;
 	   }
@@ -130,7 +159,13 @@ public:
 	   getDiscreteAttributesValuesTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getDiscreteAttributesValuesTest"; }
 	   TestResult execute()
 	   {
-		   assert(outter->potentialD1.getDiscreteAttributesValues() == outter->discreteAttributesValuesTest);
+		   map<string, string> retour;
+		   retour = outter->potentialD1.getDiscreteAttributesValues();
+
+		   for (auto&& iterateur : retour)
+		   {
+			   assert(iterateur.second == outter->discreteAttributesValuesTest[iterateur.first]);
+		   }
 
 		   return testResult;
 	   }
@@ -143,7 +178,7 @@ public:
 	   getNameTest(TPotentialDisease* tmp) : TPotentialDiseaseMethod(tmp) { testResult.name = "getNameTest"; }
 	   TestResult execute()
 	   {
-		   assert(outter->potentialD1.getName().compare(outter->nameTest));
+		   assert(outter->potentialD1.getName().compare(outter->nameTest) == 0);
 
 		   return testResult;
 	   }
