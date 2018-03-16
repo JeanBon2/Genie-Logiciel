@@ -33,8 +33,8 @@ public:
     ~DbManager();
 
     // Others
-    bool insertIntoDatabase(const Analyse& analyse);
-    bool insertIntoDatabase(const vector<Analyse>& diseases);
+    bool insertIntoDatabase(vector<Analyse>& analyses);
+    bool insertAnalyse(Analyse& analyse);
 
     bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
     bool insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData);
@@ -59,6 +59,10 @@ private:
 
     HealthPrint getHealthprint(const int healthPrintId);
 
+    bool insertHealthPrint(HealthPrint& healthprint);
+    bool insertPotentialDisease(const PotentialDisease potentialdisease, int analyseId);
+
+    int getLastIndex(string tablename);
 
     void wipeData();
 };

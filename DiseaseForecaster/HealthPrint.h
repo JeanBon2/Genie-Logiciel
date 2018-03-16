@@ -16,8 +16,8 @@ class HealthPrint
 {
 	// Attributes
 protected:
-	map<string, double> continuousAttributesValues;
-	map<string, string> discreteAttributesValues;
+    map<string, double> continuousAttributesValues{};
+    map<string, string> discreteAttributesValues{};
 	int id;
 	string patientName;
 	string doctorName;
@@ -34,15 +34,15 @@ public:
 	~HealthPrint();
 
 	//Others
-	string getPatientName();
-	string getDoctorName();
-	QDate getPrintDate();
+    string &getPatientName();
+    string &getDoctorName();
+    QDate &getPrintDate();
 	int getId();
     void setId(const int id) {this->id = id;}
 	int getSensorId();
 
-    map<string, double> getContinuousAttributesValues();
-    map<string, string> getDiscreteAttributesValues();
+    map<string, double> &getContinuousAttributesValues();
+    map<string, string> &getDiscreteAttributesValues();
 
     string displayContent(bool printOnScreen = true);
 };

@@ -60,23 +60,23 @@ int HealthPrint::getId()
 {
 	return id;
 }
-string HealthPrint::getPatientName()
+string& HealthPrint::getPatientName()
 {
 	return patientName;
 }
-string HealthPrint::getDoctorName()
+string& HealthPrint::getDoctorName()
 {
 	return doctorName;
 }
-QDate HealthPrint::getPrintDate()
+QDate& HealthPrint::getPrintDate()
 {
 	return printDate;
 }
-map<string, double> HealthPrint::getContinuousAttributesValues()
+map<string, double>& HealthPrint::getContinuousAttributesValues()
 {
 	return continuousAttributesValues;
 }
-map<string, string> HealthPrint::getDiscreteAttributesValues()
+map<string, string>& HealthPrint::getDiscreteAttributesValues()
 {
 	return discreteAttributesValues;
 }

@@ -23,12 +23,13 @@ public:
 	// Constructor
 	Analyse(int id, HealthPrint& healthPrint, vector<PotentialDisease> diseases = vector<PotentialDisease>());
 
-	int getId() { return id; }
-
 	//Others
+    int getId() { return id; }
+    void setId(int id) {this->id = id;}
+
 	void displayContent();
 	void displayHeader();
-	HealthPrint getHealthPrint();
+    HealthPrint& getHealthPrint();
 	vector<PotentialDisease> getDiseases();
 
 };
