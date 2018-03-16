@@ -90,7 +90,7 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 		const unsigned int indexDoctorName = record.indexOf("doctorName");
 		const unsigned int indexPrintDate = record.indexOf("printDate");
 		const unsigned int indexSensorId = record.indexOf("sensorId");
-		
+
 		while (query.next())
 		{
 
@@ -101,7 +101,7 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 			const string printDateValue = query.value(indexPrintDate).toString().toStdString();
 			const unsigned int sensorIdValue = query.value(indexSensorId).toInt();
 
-			const HealthPrint healthPrint(healthPrintIdValue, patientNameValue, doctorNameValue, printDateValue, sensorIdValue);
+			HealthPrint healthPrint(healthPrintIdValue, patientNameValue, doctorNameValue, printDateValue, sensorIdValue);
 			Analyse analyse(analyseIdValue, healthPrint, getPotentialDiseaseForAnalyse(analyseIdValue));
 
 			analysesLists.emplace_back(analyse);
@@ -126,7 +126,7 @@ bool DbManager::insertIntoDatabase(const Analyse& analyse)
 
 bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attributesData)
 {
-	
+
 	for (auto && attr : attributesData)
 	{
 		QSqlQuery query;
@@ -229,8 +229,8 @@ vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(const int anal
 			const double matchingRateValue = query.value(indexMatchingRate).toDouble();
 			const string diseaseNameValue = query.value(indexDiseaseName).toString().toStdString();
 
-			/* TODO : récupérer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insérer en paramètres dans emplace_back
-			 * Nécessite d'utiliser `potentialDiseaseId` avec une méthode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
+			/* TODO : rï¿½cupï¿½rer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les insï¿½rer en paramï¿½tres dans emplace_back
+			 * Nï¿½cessite d'utiliser `potentialDiseaseId` avec une mï¿½thode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
 			 */
 
 			//potentialDiseases.push_back(PotentialDisease();
@@ -258,7 +258,7 @@ map<string, double> DbManager::getAbnormalContinuousAttributesForPotentialDiseas
 	if (query.exec())
 	{
 		QSqlRecord record = query.record();
-		
+
 		const unsigned int indexAttributeName = record.indexOf("name");
 		const unsigned int indexAttributeValue = record.indexOf("attributeValue");
 
@@ -421,7 +421,7 @@ HealthPrint DbManager::getHealthprint(const int healthPrintId)
 			return foundHealthprint; ;
 		}
 	}
-	
+
 }
 
 
