@@ -9,6 +9,7 @@ using namespace std;
 #include "UpdateInterface.h"
 #include "Interface.h"
 #include "DbManager.h"
+#include "Disease.h"
 // Constants
 
 // Constructors
@@ -77,13 +78,23 @@ void UpdateInterface::run()
 		cout << attr->name;
 	}
 	*/
-	DbManager::insertAttributes(attributesData);
-	DbManager::insertDiseases(diseasesData);
-	DbManager::insertDiscriminantAttributes(discriminantAttributesData);
-	DbManager::insertContinuousNormalValues(continuousValuesData);
-	DbManager::insertDiscretNormalValues(discretesValuesData);
+	DbManager dbInsert = DbManager("DiseaseForecaster.db");
+	dbInsert.insertAttributes(attributesData);
+	dbInsert.insertDiseases(diseasesData);
+	dbInsert.insertDiscriminantAttributes(discriminantAttributesData);
+	dbInsert.insertContinuousNormalValues(continuousValuesData);
+	dbInsert.insertDiscretNormalValues(discretesValuesData);
 	state = EXPORT_SUCCESS;
 	displayInterfaceText();
+
+
+	vector<Disease> d = dbInsert.getDiseases();
+
+	for (auto&& it : d)
+	{
+		cout << " test " << it.getName() << endl;
+	}
+
 	system("pause");
 
 }

@@ -35,11 +35,12 @@ public:
 	// Others
 	bool insertIntoDatabase(const Analyse& analyse);
 	bool insertIntoDatabase(const vector<Analyse>& diseases);
-	static bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
-	static bool insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData);
-	static bool insertDiscriminantAttributes(vector<UpdateInterface::discriminantAttributesContent*> discriminantDiseasesData);
-	static bool insertContinuousNormalValues(vector<UpdateInterface::continuousValuesContent*> continuousValuesData);
-	static bool insertDiscretNormalValues(vector<UpdateInterface::discretesValuesContent*> discretesValuesData);
+	
+	bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
+	bool insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData);
+	bool insertDiscriminantAttributes(vector<UpdateInterface::discriminantAttributesContent*> discriminantDiseasesData);
+	bool insertContinuousNormalValues(vector<UpdateInterface::continuousValuesContent*> continuousValuesData);
+	bool insertDiscretNormalValues(vector<UpdateInterface::discretesValuesContent*> discretesValuesData);
 
 	vector<Analyse> getAnalyseResults(string patientName);
 
