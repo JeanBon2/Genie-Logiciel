@@ -87,14 +87,6 @@ void UpdateInterface::run()
 	state = EXPORT_SUCCESS;
 	displayInterfaceText();
 
-
-	vector<Disease> d = dbInsert.getDiseases();
-
-	for (auto&& it : d)
-	{
-		cout << " test " << it.getName() << endl;
-	}
-
 	system("pause");
 
 }
