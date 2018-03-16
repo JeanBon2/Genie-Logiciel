@@ -3,6 +3,7 @@
 #include <QFile>
 #include <typeinfo>
 #include <string>
+#include <QDirIterator>
 using namespace std;
 
 // Personnal include
@@ -15,15 +16,30 @@ using namespace std;
 
 void AnalyseInterface::displayInterfaceText()
 {
-  // TODO
+  cout << "Effectuer une Analyse" << endl;
+  cout << "1. Analyser un fichier d'empreintes" << endl;
+  cout << "2. Analyser un dossier d'empreintes" << endl;
 }
 
 void AnalyseInterface::run()
 {
-  // TODO
+  int choice;
+  string path;
+
+  displayInterfaceText();
+
+  cin >> choice;
+
+  cout << "Saisir le chemin : ";
+  cin >> path;
+
+  if (choice == 1)
+    AnalysePrintFile(path);
+  else if (choice == 2)
+    AnalysePrintFolder(path);
 }
 
-vector<Analyse> AnalyseInterface::AnalysePrintFile(string filePath)
+void AnalyseInterface::AnalysePrintFile(string filePath)
 {
   vector<Analyse> analyses;
 
@@ -105,16 +121,16 @@ vector<Analyse> AnalyseInterface::AnalysePrintFile(string filePath)
   {
       db.insertAnalyse(it);
   }
-
-
-  return analyses;
 }
 
-vector<Analyse> AnalyseInterface::AnalysePrintFolder(string folderPath)
+void AnalyseInterface::AnalysePrintFolder(string folderPath)
 {
-	vector<Analyse> resultat;
+  QDirIterator it(QString::fromStdString(folderPath), QStringList() << "*.txt", QDir::Files, QDirIterator::Subdirectories);
 
-	return resultat;
+  while (it.hasNext())
+  {
+      AnalysePrintFile(it.next().toStdString());
+  }
 }
 
 

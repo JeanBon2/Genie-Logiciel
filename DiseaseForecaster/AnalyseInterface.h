@@ -28,9 +28,9 @@ public:
 
   void run();
 
-  vector<Analyse> AnalysePrintFile(string filePath);
+  void AnalysePrintFile(string filePath);
 
-  vector<Analyse> AnalysePrintFolder(string folderPath);
+  void AnalysePrintFolder(string folderPath);
 
 private:
 	vector<HealthPrint*> getHealthPrintFromFile(string filePath);
