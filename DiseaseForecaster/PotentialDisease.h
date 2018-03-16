@@ -28,7 +28,10 @@ public:
 
 	//Other
 	string displayContent(bool printOnScreen = true);
-	int getId();
+
+    int getId();
+    void setId(int id) {this->id = id;}
+
 	map<string, double> getContinuousAttributesValues();
 	map<string, string> getDiscreteAttributesValues();
 	string getName();

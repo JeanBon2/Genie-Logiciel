@@ -25,9 +25,6 @@ public:
 	// Constructors
 	DiscreteAttribute(const int id, const string& name, const vector<string>&& normalValues = vector<string>());
 
-	// Destructors
-	~DiscreteAttribute() override;
-
 	// Others
 	int getId() const { return id; }
 	string getName() const { return name; }

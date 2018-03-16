@@ -23,15 +23,13 @@ protected:
 	// Methods
 public:
 	// Constructors
+    Attribute() = default;
 	Attribute(const int id, const string& name, const bool discrete);
 
-	// Destructors
-	virtual ~Attribute();
-
 	// Others
-	int getId() const { return id; }
+    int getId() const { return id; }
 	string getName() const { return name; }
-	bool isDiscrete() const { return discrete; }
+    virtual bool isDiscrete() const { return discrete; }
 };
 
 #endif // ATTRIBUTE_H

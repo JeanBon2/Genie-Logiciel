@@ -15,14 +15,6 @@ ContinuousAttribute::ContinuousAttribute(const int id, const string& name, const
 #endif // DEBUG
 }
 
-// Destructor
-ContinuousAttribute::~ContinuousAttribute()
-{
-#ifdef DEBUG
-	cout << "ContinuousAttribute destructor call" << endl;
-#endif // DEBUG
-}
-
 void ContinuousAttribute::addNormalInterval(const interval& normalInterval)
 {
 	normalIntervals.push_back(normalInterval);

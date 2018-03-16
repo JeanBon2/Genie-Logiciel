@@ -8,7 +8,7 @@ using namespace std;
 // Constants
 
 // Constructors
-Attribute::Attribute(const int id, const string name, const bool discrete) : id(id), name(name), discrete(discrete)
+Attribute::Attribute(const int id, const string& name, const bool discrete) : id(id), name(name), discrete(discrete)
 {
 #ifdef DEBUG
 	cout << "Attribute constructor call" << endl;

@@ -535,6 +535,28 @@ bool DbManager::insertHealthPrint(HealthPrint& healthprint)
         query.bindValue(":healthPrintId", healthprint.getId());
         query.bindValue(":attributeId", attributeId);
     }
+    for(auto&& discreteAttributesValues : healthprint.getDiscreteAttributesValues())
+    {
+        int attributeId;
+        query.prepare("SELECT attributeId FROM Attributes WHERE name = :name");
+        query.bindValue(":name", QString::fromStdString(discreteAttributesValues.first));
+        if (query.exec() && query.next())
+        {
+            QSqlRecord record = query.record();
+            const int indexAttributeId = record.indexOf("attributeId");
+            attributeId = query.value(indexAttributeId).toInt();
+        }
+        else
+        {
+            return false;
+        }
+
+        query.prepare("INSERT INTO HealthPrintAttributeValues (valueName, healthPrintId, attributeId) VALUES (:valueName, :healthPrintId, :attributeId)");
+        query.bindValue(":valueName", QString::fromStdString(discreteAttributesValues.second));
+        query.bindValue(":healthPrintId", healthprint.getId());
+        query.bindValue(":attributeId", attributeId);
+    }
+
     return true;
 }
 bool DbManager::insertPotentialDisease(PotentialDisease potentialdisease, int analyseId)
