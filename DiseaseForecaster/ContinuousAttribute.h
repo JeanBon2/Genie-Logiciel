@@ -10,8 +10,6 @@ using namespace std;
 // Personnal include
 #include "Attribute.h"
 
-// Constants
-
 // Types
 typedef pair<double, double> interval;
 
@@ -25,10 +23,7 @@ private:
 	// Methods
 public:
 	// Constructors
-	ContinuousAttribute(const int id, const string& name, const vector<interval>&& normalIntervals = vector<interval>() );
-
-	// Destructors
-	~ContinuousAttribute() override;
+    ContinuousAttribute(const int id, const string& name, const vector<interval>&& normalIntervals = vector<interval>() );
 
 	// Others
 	int getId() const { return id; }

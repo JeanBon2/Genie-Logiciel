@@ -7,22 +7,13 @@ using namespace std;
 #include <stack>
 #include <unordered_map>
 #include <string>
-// Personnal include
-
-// Constants
-
-
-// Types
 
 // Class
 class Interface
 {
 	// Attributes
-public:
-	
-	
 protected:
-	const enum interfaceList
+    enum interfaceList
 	{
 		MENU_INTERFACE,
 		ANALYSE_INTERFACE,
@@ -35,22 +26,14 @@ protected:
 	static unordered_map< string,  string> texts;
 	static stack<interfaceList> stackInterface;
 
-	
-private:
-	
-
-
 	// Methods
 public:
-	// Constructors
-	Interface();
 	// Destructors
-	~Interface();
+    virtual ~Interface() = default;
 
 	// Others
 	static bool loadMap(const string path);
 	static void start();
-	
 	
 protected:
 	void previous();
@@ -61,10 +44,6 @@ protected:
 
 	string getAction();
 	virtual void run()=0;
-
-	
-
-private:
 };
 
 #endif 

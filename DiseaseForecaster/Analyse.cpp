@@ -15,14 +15,6 @@ Analyse::Analyse(int id, HealthPrint& healthPrint, vector<PotentialDisease> dise
 	#endif // DEBUG
 }
 
-// Destructor
-Analyse::~Analyse()
-{
-	#ifdef DEBUG
-		cout << "Analyse destructor call" << endl;
-	#endif // DEBUG
-}
-
 // Others
 void Analyse::displayContent()
 {
@@ -36,11 +28,6 @@ void Analyse::displayContent()
 void Analyse::displayHeader()
 {
 	cout << healthPrint.getPatientName() << " - " << healthPrint.getPrintDate().toString("dd.MM.yyyy").toUtf8().constData() << endl;
-}
-
-int Analyse::getId()
-{
-	return id;
 }
 HealthPrint Analyse::getHealthPrint()
 {

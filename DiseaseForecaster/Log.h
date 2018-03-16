@@ -4,37 +4,21 @@
 // System include
 using namespace std;
 #include <iostream>
-// Personnal include
-
-// Constants
-
-// Types
 
 // Class
 class Log
 {
 	// Attributes
-public:
-
-protected:
-
 private:
-		static const string path; 
+    static const string path;
+
 	// Methods
 public:
-	// Constructors
-	Log ();
-
-    static bool info ( const string text );
-
 	// Destructors
 	~Log ();
 
 	// Others
-	
-protected:
-
-private:
+    static bool info ( const string text );
 };
 
 #endif 

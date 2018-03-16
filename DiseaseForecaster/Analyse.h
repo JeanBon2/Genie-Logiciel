@@ -1,4 +1,3 @@
-#pragma once
 #ifndef ANALYSE_H
 #define ANALYSE_H
 
@@ -24,17 +23,11 @@ public:
 	// Constructor
 	Analyse(int id, HealthPrint& healthPrint, vector<PotentialDisease> diseases = vector<PotentialDisease>());
 
-	// Destructor
-	~Analyse();
-
 	int getId() { return id; }
-
-	HealthPrint& getHealthprint() { return healthPrint; }
 
 	//Others
 	void displayContent();
 	void displayHeader();
-	int getId();
 	HealthPrint getHealthPrint();
 	vector<PotentialDisease> getDiseases();
 

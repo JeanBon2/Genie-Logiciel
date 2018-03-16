@@ -22,25 +22,8 @@ using namespace std;
 unordered_map <string, string> Interface::texts;
 stack<Interface::interfaceList> Interface::stackInterface;
 
-// Constructors
-Interface::Interface()
-{
-#ifdef DEBUG
-	cout << "Interface constructor call" << endl;
-#endif // DEBUG
-}
-
-
-// Destructor
-Interface::~Interface()
-{
-#ifdef DEBUG
-	cout << "Xxx destructor call" << endl;
-#endif // DEBUG
-}
-
 // Public methods
-bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
+bool Interface::loadMap(const string path)
 {
 	const QString defaultpath = R"(.\Ressources\Fr_fr.lng)";
 	string key, value;
@@ -72,11 +55,6 @@ bool Interface::loadMap(const string path)	// C'est mieux avec 'Interface::' :P
 		value = dictionnary.take(currentKey).toString().toUtf8().constData();
 		texts.emplace(key, value);
 	}
-
-	/*for (auto& test : texts)
-	{
-		cout << test.first << ":" << test.second << endl;
-	}*/
 
 	return true;
 }

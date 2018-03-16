@@ -27,7 +27,7 @@ protected:
 
 
 private:
-	const enum exportState
+    enum exportState
 	{
 		START_EXPORT,
 		END_EXPORT,

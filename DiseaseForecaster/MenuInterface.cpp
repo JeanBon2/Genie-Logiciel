@@ -11,34 +11,6 @@ using namespace std;
 #include "MenuInterface.h"
 #include "Log.h"
 
-// Constants
-
-// Constructors
-MenuInterface::MenuInterface()
-{
-#ifdef DEBUG
-	cout << "MenuInterface constructor call" << endl;
-#endif // DEBUG
-}
-
-MenuInterface::MenuInterface(const MenuInterface*)
-{
-#ifdef DEBUG
-	cout << "Xxx copy constructor call" << endl;
-#endif // DEBUG
-
-}
-
-// Destructor
-MenuInterface::~MenuInterface()
-{
-#ifdef DEBUG
-	cout << "Xxx destructor call" << endl;
-#endif // DEBUG
-}
-
-// Public methods
-
 // Protected methods
 void MenuInterface::displayInterfaceText()
 {

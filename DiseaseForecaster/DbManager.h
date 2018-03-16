@@ -20,43 +20,47 @@ using namespace std;
 // Class
 class DbManager
 {
-	// Attributes
+    // Attributes
 private:
-	QSqlDatabase database;
+    QSqlDatabase database;
 
-	// Methods
+    // Methods
 public:
-	// Constructors
-	DbManager(const string& path);
+    // Constructors
+    DbManager(const string& path);
 
-	// Destructors
-	~DbManager();
+    // Destructors
+    ~DbManager();
 
-	// Others
-	bool insertIntoDatabase(const Analyse& analyse);
-	bool insertIntoDatabase(const vector<Analyse>& diseases);
-	static bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
-	static bool insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData);
+    // Others
+    bool insertIntoDatabase(const Analyse& analyse);
+    bool insertIntoDatabase(const vector<Analyse>& diseases);
 
-	vector<Analyse> getAnalyseResults(string patientName);
+    bool insertAttributes(vector<UpdateInterface::attributeContent*> attributesData);
+    bool insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData);
+    bool insertDiscriminantAttributes(vector<UpdateInterface::discriminantAttributesContent*> discriminantDiseasesData);
+    bool insertContinuousNormalValues(vector<UpdateInterface::continuousValuesContent*> continuousValuesData);
+    bool insertDiscretNormalValues(vector<UpdateInterface::discretesValuesContent*> discretesValuesData);
 
-	vector<shared_ptr<Attribute>> getDiscriminantAttributesForDisease(int diseaseId);
-	vector<Disease> getDiseases();
-	shared_ptr<Attribute> getAttributeForId(int attributeId);
-	vector<interval> getNormalIntervalsForContinuousAttribute(int attributeId);
-	vector<string> getNormalValuesForDiscreteAttribute(int attributeId);
+    vector<Analyse> getAnalyseResults(string patientName);
+
+    vector<shared_ptr<Attribute>> getDiscriminantAttributesForDisease(int diseaseId);
+    vector<Disease> getDiseases();
+    shared_ptr<Attribute> getAttributeForId(int attributeId);
+    vector<interval> getNormalIntervalsForContinuousAttribute(int attributeId);
+    vector<string> getNormalValuesForDiscreteAttribute(int attributeId);
 private:
-	vector<PotentialDisease> getPotentialDiseaseForAnalyse(int analyseId);
-	map<string, double> getAbnormalContinuousAttributesForPotentialDisease(const int diseaseId, const int analyseId);
-	map<string, string> getAbnormalDiscreteAttributesForPotentialDisease(const int diseaseId, const int analyseId);
+    vector<PotentialDisease> getPotentialDiseaseForAnalyse(int analyseId);
+    map<string, double> getAbnormalContinuousAttributesForPotentialDisease(const int diseaseId, const int analyseId);
+    map<string, string> getAbnormalDiscreteAttributesForPotentialDisease(const int diseaseId, const int analyseId);
 
-	map<string, double> getContinuousAttributeForHealthPrint(const int healthPrintId);
-	map<string, string> getDiscreteAttributeForHealthPrint(const int healthPrintId);
+    map<string, double> getContinuousAttributeForHealthPrint(const int healthPrintId);
+    map<string, string> getDiscreteAttributeForHealthPrint(const int healthPrintId);
 
-	HealthPrint getHealthprint(const int healthPrintId);
+    HealthPrint getHealthprint(const int healthPrintId);
 
 
-	void wipeData();
+    void wipeData();
 };
 
 #endif // DBMANAGER_H

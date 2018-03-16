@@ -10,8 +10,6 @@ using namespace std;
 // Personnal include
 #include "Attribute.h"
 
-// Constants
-
 // Types
 typedef pair<string, double> value;
 
@@ -25,10 +23,7 @@ private:
 	// Methods
 public:
 	// Constructors
-	DiscreteAttribute(const int id, const string& name, const vector<string>&& normalValues = vector<string>());
-
-	// Destructors
-	~DiscreteAttribute() override;
+    DiscreteAttribute(const int id, const string& name, const vector<string>&& normalValues = vector<string>());
 
 	// Others
 	int getId() const { return id; }

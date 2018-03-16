@@ -34,7 +34,7 @@ CsvParser::CsvParser(string content) : content(content)
 CsvParser::~CsvParser()
 {
 #ifdef DEBUG
-	cout << "Xxx destructor call" << endl;
+    cout << "CsvParser destructor call" << endl;
 #endif // DEBUG
 }
 

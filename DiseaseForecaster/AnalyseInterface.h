@@ -9,17 +9,9 @@ using namespace std;
 // Personnal include
 #include "Analyse.h"
 
-// Constants
-
-// Types
-
 // Class
 class AnalyseInterface
 {
-	// Attributes
-protected:
-
-
 	// Methods
 public:
 	// Constructors

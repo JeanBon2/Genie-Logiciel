@@ -5,12 +5,6 @@
 #include <iostream>
 using namespace std;
 
-// Personnal include
-
-// Constants
-
-// Types
-
 // Class
 class Attribute
 {
@@ -23,10 +17,7 @@ protected:
 	// Methods
 public:
 	// Constructors
-	Attribute(const int id, const string& name, const bool discrete);
-
-	// Destructors
-	virtual ~Attribute();
+    Attribute(const int id, const string& name, const bool discrete);
 
 	// Others
 	int getId() const { return id; }

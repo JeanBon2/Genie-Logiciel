@@ -26,7 +26,7 @@ protected:
 
 
 private:
-	const enum updateState
+    enum updateState
 	{
 		START_UPDATE,
 		START_ANALYSIS,

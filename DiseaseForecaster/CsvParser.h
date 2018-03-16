@@ -7,12 +7,6 @@
 #include <string>
 using namespace std;
 
-// Personnal include
-
-// Constants
-
-// Types
-
 // Class
 class CsvParser
 {

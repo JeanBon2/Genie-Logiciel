@@ -52,26 +52,21 @@ bool DbManager::insertIntoDatabase(const vector<Analyse>& analyses)
 }
 vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 {
-	//const QString sqlQuery = "SELECT a.analyseId,\
-	//	h.patientName, h.doctorName, h.printDate,\
-	//	p.matchingRate,\
-	//	d.diseaseName,\
-	//	hpav.attributeValue, hpav.valueName,\
-	//	att.name, att.discrete\
-	//	FROM Analyses a INNER JOIN HealthPrints h ON a.healthPrintId = h.healthPrintId\
-	//	INNER JOIN PotentialDiseases p ON a.analyseId = p.analyseId\
-	//	INNER JOIN Diseases d ON p.diseaseId = d.diseaseId\
-	//	INNER JOIN AbnormalAttributes abatt ON p.potentialDiseaseId = abatt.potentialDiseaseId\
-	//	INNER JOIN HealthPrintAttributeValues hpav ON abatt.healthPrintAttributeValuesId = hpav.healthPrintAttributeValuesId\
-	//	INNER JOIN Attributes att ON hpav.attributeId = att.attributeId\
-	//	WHERE h.patientName = :patientName\
-	//	ORDER BY a.analyseId, p.potentialDiseaseId, h.printDate;";
+    const QString sqlQuery = "SELECT a.analyseId,\
+        h.patientName, h.doctorName, h.printDate,\
+        p.matchingRate,\
+        d.diseaseName,\
+        hpav.attributeValue, hpav.valueName,\
+        att.name, att.discrete\
+        FROM Analyses a INNER JOIN HealthPrints h ON a.healthPrintId = h.healthPrintId\
+        INNER JOIN PotentialDiseases p ON a.analyseId = p.analyseId\
+        INNER JOIN Diseases d ON p.diseaseId = d.diseaseId\
+        INNER JOIN AbnormalAttributes abatt ON p.potentialDiseaseId = abatt.potentialDiseaseId\
+        INNER JOIN HealthPrintAttributeValues hpav ON abatt.healthPrintAttributeValuesId = hpav.healthPrintAttributeValuesId\
+        INNER JOIN Attributes att ON hpav.attributeId = att.attributeId\
+        WHERE h.patientName = :patientName\
+        ORDER BY a.analyseId, p.potentialDiseaseId, h.printDate;";
 
-	// Without patientName, for tests
-	const QString sqlQuery = "SELECT a.analyseId,\
-		h.healthPrintId, h.patientName, h.doctorName, h.printDate,h.sensorId\
-		FROM Analyses a INNER JOIN HealthPrints h ON a.healthPrintId = h.healthPrintId\
-		ORDER BY a.analyseId, h.printDate;";
 	vector<Analyse> analysesLists;
 	map<string, double> continuousAttributesValues;
 	map<string, string> discreteAttributesValues;
@@ -95,7 +90,7 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 		{
 
 			const unsigned int analyseIdValue = query.value(indexAnalyseId).toInt();
-			const unsigned int healthPrintIdValue = query.value(indexAnalyseId).toInt();
+            const unsigned int healthPrintIdValue = query.value(indexHealthPrintId).toInt();
 			const string patientNameValue = query.value(indexPatientName).toString().toStdString();
 			const string doctorNameValue = query.value(indexDoctorName).toString().toStdString();
 			const string printDateValue = query.value(indexPrintDate).toString().toStdString();
@@ -109,35 +104,102 @@ vector<Analyse> DbManager::getAnalyseResults(const string patientName)
 	}
 	return analysesLists;
 }
+bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attributesData)
+{
+
+    for (auto && attr : attributesData)
+    {
+        QSqlQuery query;
+        query.prepare("INSERT INTO Attributes (AttributeId, name, discrete) VALUES (:id, :name, :discrete)");
+        query.bindValue(":id", QString::number(attr->id));
+        query.bindValue(":name", QString::fromStdString(attr->name));
+        query.bindValue(":discrete", QString::number(attr->discrete));
+        if (!query.exec())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool DbManager::insertDiseases(vector<UpdateInterface::diseaseContent*> diseasesData)
+{
+    for (auto && disease : diseasesData)
+    {
+        QSqlQuery query;
+        query.prepare("INSERT INTO Diseases (diseaseId, diseaseName) VALUES (:id, :name)");
+        query.bindValue(":id", QString::number(disease->id));
+        query.bindValue(":name", QString::fromStdString(disease->name));
+        if (!query.exec())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+bool DbManager::insertDiscriminantAttributes(vector<UpdateInterface::discriminantAttributesContent*> discriminantDiseasesData)
+{
+    for (auto && discAttr : discriminantDiseasesData)
+    {
+        QSqlQuery query;
+        query.prepare("INSERT INTO DiscriminantAttributes (diseaseId, attributeId) VALUES (:idDisease, :idAttr)");
+        query.bindValue(":idDisease", QString::number(discAttr->diseaseId));
+        query.bindValue(":idAttr", QString::number(discAttr->attributeId));
+        if (!query.exec())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool DbManager::insertContinuousNormalValues(vector<UpdateInterface::continuousValuesContent*> continuousValuesData) {
+
+    for (auto && contValues : continuousValuesData)
+    {
+        QSqlQuery query;
+        query.prepare("INSERT INTO ContinuousNormalValues (attributeId, minimumValue, maximumValue) VALUES (:attId, :minVal, :maxVal)");
+        query.bindValue(":attId", QString::number(contValues->attributeId));
+        query.bindValue(":minVal", QString::number(contValues->minimumValue));
+        query.bindValue(":maxVal", QString::number(contValues->maximumValue));
+        if (!query.exec())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool DbManager::insertDiscretNormalValues(vector<UpdateInterface::discretesValuesContent*> discretesValuesData)
+{
+
+    for (auto && discValues : discretesValuesData)
+    {
+        QSqlQuery query;
+        query.prepare("INSERT INTO DiscreteNormalValues (attributeId, normalValue) VALUES (:attId, :normVal)");
+        query.bindValue(":attId", QString::number(discValues->attributeId));
+        query.bindValue(":normVal", QString::fromStdString(discValues->normalValue));
+        if (!query.exec())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 // Private methods
 bool DbManager::insertIntoDatabase(const Analyse& analyse)
 {
 	QSqlQuery query;
 	query.prepare("INSERT INTO Diseases VALUES (:id, :name)");
-	//query.bindValue(":id", QString::number(analyse.getId()));
-	//query.bindValue(":name", QString::fromStdString(disease.getName()));
+    //query.bindValue(":id", QString::number(analyse.getId()));
+    //query.bindValue(":name", QString::fromStdString(analyse.getName()));
 	if (!query.exec())
 	{
 		return false;
-	}
-	return true;
-}
-
-bool DbManager::insertAttributes(vector<UpdateInterface::attributeContent*> attributesData)
-{
-
-	for (auto && attr : attributesData)
-	{
-		QSqlQuery query;
-		query.prepare("INSERT INTO Attributes (AttributeId, name, discrete) VALUES (:id, :name, :discrete)");
-		query.bindValue(":id", QString::number(attr->id));
-		query.bindValue(":name", QString::fromStdString(attr->name));
-		query.bindValue(":discrete", QString::number(attr->discrete));
-		if (!query.exec())
-		{
-			return false;
-		}
 	}
 	return true;
 }
@@ -159,18 +221,19 @@ vector<PotentialDisease> DbManager::getPotentialDiseaseForAnalyse(const int anal
 		const unsigned int indexPotentialDiseaseId = record.indexOf("potentialDiseaseId");
 		const unsigned int indexMatchingRate = record.indexOf("matchingRate");
 		const unsigned int indexDiseaseName = record.indexOf("diseaseName");
+        const unsigned int indexDiseaseId = record.indexOf("diseaseId");
 
 		while (query.next())
 		{
 			const unsigned int potentialDiseaseIdValue = query.value(indexPotentialDiseaseId).toInt();
 			const double matchingRateValue = query.value(indexMatchingRate).toDouble();
 			const string diseaseNameValue = query.value(indexDiseaseName).toString().toStdString();
+            const unsigned int diseaseIdValue = query.value(indexDiseaseId).toInt();
 
-			/* TODO : r�cup�rer les attributs (dans AbnormalAttributes et HealthPrintAttributeValues) et les ins�rer en param�tres dans emplace_back
-			 * N�cessite d'utiliser `potentialDiseaseId` avec une m�thode du style `getAbnormalAttributesForPotentialDisease(int potentialDiseaseId)`
-			 */
-
-			//potentialDiseases.push_back(PotentialDisease();
+            potentialDiseases.push_back(
+                        PotentialDisease(potentialDiseaseIdValue, diseaseNameValue, matchingRateValue,
+                                         getAbnormalContinuousAttributesForPotentialDisease(diseaseIdValue, analyseId),
+                                         getAbnormalDiscreteAttributesForPotentialDisease(diseaseIdValue, analyseId)));
 		}
 	}
 	return potentialDiseases;

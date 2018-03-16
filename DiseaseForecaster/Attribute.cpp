@@ -14,11 +14,3 @@ Attribute::Attribute(const int id, const string& name, const bool discrete) : id
 	cout << "Attribute constructor call" << endl;
 #endif // DEBUG
 }
-
-// Destructor
-Attribute::~Attribute()
-{
-#ifdef DEBUG
-	cout << "Attribute destructor call" << endl;
-#endif // DEBUG
-}

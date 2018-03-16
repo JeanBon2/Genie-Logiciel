@@ -15,14 +15,6 @@ DiscreteAttribute::DiscreteAttribute(const int id, const string& name, const vec
 #endif // DEBUG
 }
 
-// Destructor
-DiscreteAttribute::~DiscreteAttribute()
-{
-#ifdef DEBUG
-	cout << "DiscreteAttribute destructor call" << endl;
-#endif // DEBUG
-}
-
 // Public methods
 void DiscreteAttribute::addNormalValue(const string& normalValue)
 {

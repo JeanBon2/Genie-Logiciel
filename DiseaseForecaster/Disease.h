@@ -11,9 +11,6 @@ using namespace std;
 #include "Attribute.h"
 #include "DiscreteAttribute.h"
 #include "ContinuousAttribute.h"
-// Constants
-
-// Types
 
 // Class
 class Disease

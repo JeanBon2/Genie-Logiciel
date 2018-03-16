@@ -22,7 +22,7 @@ public:
 
 
 protected:
-	const enum interfaceList
+    enum interfaceList
 	{
 		MENU_INTERFACE,
 		UPDATE_INTERFACE,

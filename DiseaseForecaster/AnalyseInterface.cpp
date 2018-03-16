@@ -76,7 +76,7 @@ vector<HealthPrint*> AnalyseInterface::getHealthPrintFromFile(string filePath)
 {
   // 1. Get HealthPrints from file
   QFile file(QString::fromStdString(filePath));
-	vector<vector<string>> healthPrintsFromFile =  CsvParser::staticParse(file);
+    vector<vector<string>> healthPrintsFromFile =  CsvParser::staticParse(file);
 
   vector<vector<string>>::iterator it;
   vector<string>::iterator it2;

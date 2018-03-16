@@ -8,9 +8,6 @@
 
 const string Log::path = ".\\Ressources\\forecaster.log";
 
-Log::Log()
-{}
-
 bool Log::info(const string text)
 {
     ofstream file(path, ios::app);

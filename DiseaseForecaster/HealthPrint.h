@@ -34,14 +34,17 @@ public:
 	~HealthPrint();
 
 	//Others
-	string displayContent(bool printOnScreen = true);
 	string getPatientName();
 	string getDoctorName();
 	QDate getPrintDate();
-	map<string, double> getContinuousAttributesValues();
-	map<string, string> getDiscreteAttributesValues();
 	int getId();
+    void setId(const int id) {this->id = id;}
 	int getSensorId();
+
+    map<string, double> getContinuousAttributesValues();
+    map<string, string> getDiscreteAttributesValues();
+
+    string displayContent(bool printOnScreen = true);
 };
 
 #endif // HEALTHPRINT_H
